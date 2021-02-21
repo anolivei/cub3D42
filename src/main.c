@@ -6,30 +6,26 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/14 03:09:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/21 01:00:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../includes/cub3D.h"
+
+int initializeWindow()
+{
+
+}
 
 int main(int argc, char **argv)
 {
-    ft_setup()
-    ft_draw()
+    initializeWindow();
+    setup();
+    while (1)
+    {
+       //processImput();
+       //update();
+       //render();
+    }
     return(0)
-}
-
-void ft_setup()
-{
-
-}
-
-void ft_update()
-{
-
-}
-
-void ft_draw()
-{
-
 }
