@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/21 01:00:34 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/21 22:46:24 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 /*
 ** INCLUDES
 */
-# include "mlx.h"
-# include "../libft/libft.h"
-# include "get_next_line.h"
+# include <mlx.h>
+# include "./get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
+# include <stdio.h>
 /*
 ** DEFINES
 */
@@ -70,5 +70,6 @@
 /*
 ** FUNCTIONS
 */
+int initializeWindow();
 
 #endif
