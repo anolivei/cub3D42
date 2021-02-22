@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/21 22:46:24 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/22 00:36:06 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** INCLUDES
 */
 # include <mlx.h>
-# include "./get_next_line.h"
+# include "get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -66,10 +66,14 @@
 /*
 ** STRUCTS
 */
-
+typedef struct  s_mlx
+{
+    void        *window;
+    void        *init;
+}               t_mlx;
 /*
 ** FUNCTIONS
 */
-int initializeWindow();
-
+int             initialize_window(t_mlx *mlx);
+int             destroy_window(int keycode, t_mlx *mlx);
 #endif
