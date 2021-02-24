@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/22 00:36:06 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/24 01:01:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB_H
+# define CUB_H
+
 /*
 ** INCLUDES
 */
@@ -20,12 +21,16 @@
 # include <math.h>
 # include <fcntl.h>
 # include <stdio.h>
+
 /*
 ** DEFINES
 */
 # define PI 3.1416
-# define RADIUS_PLAYER 4				
+# define RADIUS_PLAYER 4
 # define PIXEL_LEN 10
+# define FALSE 0
+# define TRUE 1
+
 /*
 ** KEYCODES MAC
 */
@@ -39,6 +44,7 @@
 # define LEFT_ARROW_KEYM 123
 # define TAB_KEYM 48
 # define ESC_KEYM 53
+
 /*
 ** KEYCODES LINUX
 */
@@ -52,6 +58,7 @@
 # define LEFT_ARROW_KEYL 65361
 # define TAB_KEYL 65289
 # define ESC_KEYL 65307
+
 /*
 ** COLORS
 */
@@ -66,14 +73,23 @@
 /*
 ** STRUCTS
 */
-typedef struct  s_mlx
+typedef struct	s_mlx
 {
-    void        *window;
-    void        *init;
-}               t_mlx;
+	void		*window;
+	void		*init;
+	void		*image;
+}				t_mlx;
+
 /*
-** FUNCTIONS
+** CUB FUNCTIONS
 */
-int             initialize_window(t_mlx *mlx);
-int             destroy_window(int keycode, t_mlx *mlx);
+int				initialize_window(t_mlx *mlx);
+int				destroy_window(int keycode, t_mlx *mlx);
+void			setup(void);
+void			update(void);
+
+/*
+** LIB FUNCTIONS
+*/
+void			ft_putstr_fd(char *s, int fd);
 #endif

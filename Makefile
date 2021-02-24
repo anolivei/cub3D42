@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/02/21 22:46:56 by anolivei         ###   ########.fr        #
+#    Updated: 2021/02/23 23:48:41 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,15 @@ NAME =			cub3D
 NAME_MAC =		cub3D_MAC
 
 HEADER_DIR =	includes
-SRC_DIR =		src
+SRC_DIR =		src/cub
+GNL_DIR = 		src/gnl
+LIB_DIR =		src/libft
 OBJ_DIR	=		.obj
 
 SRC =	$(SRC_DIR)/main.c \
-		$(SRC_DIR)/get_next_line.c \
-		$(SRC_DIR)/get_next_line_utils.c
+		$(GNL_DIR)/get_next_line.c \
+		$(GNL_DIR)/get_next_line_utils.c \
+		$(LIB_DIR)/ft_putstr_fd.c
 
 OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
@@ -43,12 +46,18 @@ linux: $(NAME_LINUX)
 $(NAME_LINUX): $(OBJ)
 		clang $(OBJ) $(HEADER_LINUX) $(LINUX_FLAGS) -o $@
 
+debug: 
+	gcc -g -lm -lmlx -framework OpenGL -framework AppKit $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
+
+debug_linux:
+	gdd -g -lXext -lX11 -lbsd -lm -lmlx $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
+
 clean:
-	/bin/rm -rf $(OBJ_DIR)
+	/bin/rm -rf $(OBJ_DIR) cub3D.dSYM cub3D_debug.dSYM
 
 fclean: clean
-	/bin/rm -f $(NAME) $(NAME_LINUX)
+	/bin/rm -f $(NAME) $(NAME_LINUX) cub3D_debug
 
 re: fclean all
 
-.PONY: all clean fclean re mac
+.PONY: all clean fclean re debug

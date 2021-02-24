@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/21 22:20:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/22 21:17:46 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/get_next_line.h"
+#include "../../includes/get_next_line.h"
 
 static int	gnl_end_line(char *s_line)
 {
