@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/02/23 23:48:41 by anolivei         ###   ########.fr        #
+#    Updated: 2021/02/26 02:10:22 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,18 @@ NAME =			cub3D
 NAME_MAC =		cub3D_MAC
 
 HEADER_DIR =	includes
-SRC_DIR =		src/cub
+CUB_DIR =		src/cub
 GNL_DIR = 		src/gnl
 LIB_DIR =		src/libft
 OBJ_DIR	=		.obj
 
-SRC =	$(SRC_DIR)/main.c \
+SRC =	$(CUB_DIR)/main.c \
+		$(CUB_DIR)/mlx_utils.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c
 
-OBJ = $(patsubst $(SRC_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
+OBJ = $(patsubst $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
 CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 
@@ -37,14 +38,14 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				mkdir -p $(OBJ_DIR)
 				clang -c $(CFLAGS) $< -o $@
 
 linux: $(NAME_LINUX)
 
 $(NAME_LINUX): $(OBJ)
-		clang $(OBJ) $(HEADER_LINUX) $(LINUX_FLAGS) -o $@
+		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
 
 debug: 
 	gcc -g -lm -lmlx -framework OpenGL -framework AppKit $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"

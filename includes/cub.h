@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/24 01:01:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/26 02:03:12 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,36 @@ typedef struct	s_mlx
 	void		*image;
 }				t_mlx;
 
+typedef struct	s_player
+{
+	int			x;
+	int			y;
+}				t_player;
+
+typedef struct  s_data 
+{
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_data;
+
+typedef struct	s_all {
+	t_data		data;
+	t_player	player;
+	t_mlx		mlx;
+}				t_all;
+
 /*
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_mlx *mlx);
 int				destroy_window(int keycode, t_mlx *mlx);
-void			setup(void);
-void			update(void);
-
+void			setup(t_player *player);
+void			update(t_player *player);
+void			put_pixel(t_data *data, int x, int y, int color);
+int				pick_pixel(t_data *data, int x, int y);
 /*
 ** LIB FUNCTIONS
 */

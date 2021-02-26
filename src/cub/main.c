@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/24 01:01:12 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/26 01:58:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,16 @@ int		destroy_window(int keycode, t_mlx *mlx)
 	return (TRUE);
 }
 
-void	setup(void)
+void	setup(t_player *player)
 {
-
+	player->x = 0;
+	player->y = 0;
 }
 
-void	update(void)
+void	update(t_player *player)
 {
-	
+	player->x += 1;
+	player->y += 1;
 }
 
 void	render(void)
@@ -61,15 +63,15 @@ void	render(void)
 
 int		main(void)
 {
-	t_mlx mlx;
+	t_all		all;
 
-	initialize_window(&mlx);
-	setup();
+	initialize_window(&all.mlx);
+	setup(&all.player);
 	while (1)
 	{
-		mlx_hook(mlx.window, 2, 1, destroy_window, &mlx);
-		mlx_loop(mlx.init);
-		update();
+		mlx_hook(all.mlx.window, 2, 1, destroy_window, &all.mlx);
+		mlx_loop(all.mlx.init);
+		update(&all.player);
 		//render();
 	}
 	return(0);
