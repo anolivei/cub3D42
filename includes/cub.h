@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/28 23:26:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/01 01:22:39 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ typedef struct	s_all
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_all *mlx);
-int				destroy_window(int keycode, t_mlx *mlx);
+int				destroy_window(int keycode, t_all *all);
 void			setup(t_player *player);
 void			update(t_player *player);
 void			put_pixel(t_img *data, int x, int y, int color);

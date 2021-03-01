@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/28 23:34:30 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/01 01:38:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,19 @@ int		initialize_window(t_all *all)
 	return (TRUE);
 }
 
-int		destroy_window(int keycode, t_mlx *mlx)
+int		destroy_window(int keycode, t_all *all)
 {
+	if (keycode == D_KEYM || keycode == D_KEYL)
+	{
+		update(&all->player);
+		//all->player.x++;
+		draw_square(all);
+	}
+	
 	if (keycode == ESC_KEYM || keycode == ESC_KEYL)
 	{
-		mlx_clear_window(mlx->init, mlx->window);
-		mlx_destroy_window(mlx->init, mlx->window);
+		mlx_clear_window(all->mlx.init, all->mlx.window);
+		mlx_destroy_window(all->mlx.init, all->mlx.window);
 		exit(0);
 		return (FALSE);
 	}
@@ -48,8 +55,8 @@ int		destroy_window(int keycode, t_mlx *mlx)
 
 void	setup(t_player *player)
 {
-	player->x = 0;
-	player->y = 0;
+	player->x = 10;
+	player->y = 10;
 }
 
 void	update(t_player *player)
@@ -60,7 +67,7 @@ void	update(t_player *player)
 
 void	render(void)
 {
-
+	
 }
 
 int		main(void)
@@ -69,13 +76,10 @@ int		main(void)
 
 	initialize_window(&all);
 	setup(&all.player);
-	while (1)
-	{
-		draw_square(&all);
-		mlx_hook(all.mlx.window, 2, 1, destroy_window, &all.mlx);
-		mlx_loop(all.mlx.init);
-		update(&all.player);
-		//render();
-	}
+	draw_square(&all);
+	update(&all.player);
+	mlx_hook(all.mlx.window, 2, 1, destroy_window, &all);
+	mlx_loop(all.mlx.init);
+	//render();
 	return (0);
 }
