@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   draw_square.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/26 01:46:59 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/28 23:30:11 by anolivei         ###   ########.fr       */
+/*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
+/*   Updated: 2021/02/28 23:31:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	put_pixel(t_img *data, int x, int y, int color)
+void	draw_square(t_all *all)
 {
-	char	*dst;
+	int	x;
+	int	y;
 
-	dst = data->addr + (y * data->size_l + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
-int		pick_pixel(t_img *data, int x, int y)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->size_l + x * (data->bpp / 8));
-	return (*(unsigned int*)dst);
+	all->img.addr = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp,
+		&all->img.size_l, &all->img.endian);
+	x = 0;
+	y = 0;
+	while (x <= 32)
+	{
+		while (y <= 32)
+		{
+			put_pixel(&all->img, x, y, 0xFFFFFF);
+			y++;
+		}
+		x++;
+		y = 0;
+	}
+	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
+		all->img.img_ptr, 0, 0);
 }

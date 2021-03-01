@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/26 02:03:12 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/02/28 23:26:10 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 # define PIXEL_LEN 10
 # define FALSE 0
 # define TRUE 1
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 /*
 ** KEYCODES MAC
@@ -77,7 +79,6 @@ typedef struct	s_mlx
 {
 	void		*window;
 	void		*init;
-	void		*image;
 }				t_mlx;
 
 typedef struct	s_player
@@ -86,17 +87,19 @@ typedef struct	s_player
 	int			y;
 }				t_player;
 
-typedef struct  s_data 
+typedef struct	s_img
 {
-	void		*img;
+	void		*img_ptr;
+	int			*data;
 	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	int			size_l;
+	int			bpp;
 	int			endian;
-}				t_data;
+}				t_img;
 
-typedef struct	s_all {
-	t_data		data;
+typedef struct	s_all
+{
+	t_img		img;
 	t_player	player;
 	t_mlx		mlx;
 }				t_all;
@@ -104,12 +107,13 @@ typedef struct	s_all {
 /*
 ** CUB FUNCTIONS
 */
-int				initialize_window(t_mlx *mlx);
+int				initialize_window(t_all *mlx);
 int				destroy_window(int keycode, t_mlx *mlx);
 void			setup(t_player *player);
 void			update(t_player *player);
-void			put_pixel(t_data *data, int x, int y, int color);
-int				pick_pixel(t_data *data, int x, int y);
+void			put_pixel(t_img *data, int x, int y, int color);
+int				pick_pixel(t_img *data, int x, int y);
+void			draw_square(t_all *all);
 /*
 ** LIB FUNCTIONS
 */
