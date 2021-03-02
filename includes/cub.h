@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/01 01:22:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/01 20:42:02 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void			update(t_player *player);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 void			draw_square(t_all *all);
+void			clean_old_square(t_all *all);
 /*
 ** LIB FUNCTIONS
 */

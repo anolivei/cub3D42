@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/01 01:38:28 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/01 22:00:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_square(t_all *all)
 	{
 		while (y <= (32 + all->player.y))
 		{
-			//put_pixel(&all->img, x - (all->player.x - 1), y - (all->player.y - 1), 0x000000);
+			clean_old_square(all);
 			put_pixel(&all->img, x, y, 0xFFFF00);
 			y++;
 		}
@@ -34,4 +34,24 @@ void	draw_square(t_all *all)
 	}
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);
+}
+
+void	clean_old_square(t_all *all)
+{
+	int x;
+	int y;
+
+	x = all->player.x - 2;
+	y = all->player.y - 2;
+	while (x <= 32 + all->player.x)
+	{
+		put_pixel(&all->img, x, y, 0x000000);
+		x++;
+	}
+	x = all->player.x - 2;
+	while (y <= 32 + all->player.y)
+	{
+		put_pixel(&all->img, x, y, 0x000000);
+		y++;
+	}
 }
