@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/03 15:04:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:06:34 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	update(t_player *player)
 void	render(t_all *all)
 {
 	render_map(all);
-	render_rays();
+	//render_rays();
 	//render_player();
 
 }
