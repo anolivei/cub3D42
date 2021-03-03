@@ -6,31 +6,31 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/01 22:03:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/03 00:45:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	draw_square(t_all *all)
+void	draw_square(t_all *all, int color)
 {
 	int	x;
 	int	y;
 
 	all->img.addr = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp,
 		&all->img.size_l, &all->img.endian);
-	x = all->player.x;
-	y = all->player.y;
-	while (x <= (32 + all->player.x))
+	x = all->map.tile_x;
+	y = all->map.tile_y;
+	while (x <= (TILE_SIZE + all->map.tile_x))
 	{
-		while (y <= (32 + all->player.y))
+		while (y <= (TILE_SIZE + all->map.tile_y))
 		{
-			clean_old_square(all);
-			put_pixel(&all->img, x, y, 0xFFFF00);
+		//	clean_old_square(all);
+			put_pixel(&all->img, x, y, color);
 			y++;
 		}
 		x++;
-		y = all->player.y;
+		y = all->map.tile_y;
 	}
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);
@@ -41,15 +41,15 @@ void	clean_old_square(t_all *all)
 	int x;
 	int y;
 
-	x = all->player.x - 2;
-	y = all->player.y - 2;
-	while (x <= 32 + all->player.x)
+	x = all->map.tile_x - 2;
+	y = all->map.tile_y - 2;
+	while (x <= 32 + all->map.tile_x)
 	{
 		put_pixel(&all->img, x, y, 0x000000);
 		x++;
 	}
-	x = all->player.x - 2;
-	while (y <= 32 + all->player.y)
+	x = all->map.tile_x - 2;
+	while (y <= 32 + all->map.tile_y)
 	{
 		put_pixel(&all->img, x, y, 0x000000);
 		y++;

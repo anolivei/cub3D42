@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/02/28 21:51:18 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/02 23:56:56 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ OBJ_DIR	=		.obj
 SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/mlx_utils.c \
 		$(CUB_DIR)/draw_square.c \
+		$(CUB_DIR)/render_map.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c

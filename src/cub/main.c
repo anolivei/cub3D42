@@ -6,31 +6,12 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/02 22:51:49 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/03 00:44:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-const int map [MAP_NUM_ROWS][MAP_NUM_COLS] = {
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
-	{1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-	{1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
-}
 int		initialize_window(t_all *all)
 {
 	if ((all->mlx.init = mlx_init()) == 0)
@@ -59,7 +40,7 @@ int		destroy_window(int keycode, t_all *all)
 	{
 		update(&all->player);
 		//all->player.x++;
-		draw_square(all);
+		draw_square(all, 0xFF00FF);
 	}
 	
 	if (keycode == ESC_KEYM || keycode == ESC_KEYL)
@@ -74,19 +55,29 @@ int		destroy_window(int keycode, t_all *all)
 
 void	setup(t_player *player)
 {
-	player->x = 10;
-	player->y = 10;
+	player->x = WIN_WIDTH / 2;
+	player->y = WIN_HEIGHT / 2;
+	player->width = 5;
+	player->height = 5;
+	player->turn_dir = 0;
+	player->walk_dir = 0;
+	player->rot_angle = PI / 2;
+	player->walk_speed = 100;
+	player->turn_speed = 45 * (PI / 180);
 }
 
 void	update(t_player *player)
 {
-//	player->x += 1;
-//	player->y += 1;
+	player->x += 1;
+	player->y += 1;
 }
 
-void	render(void)
+void	render(t_all *all)
 {
-	
+	render_map(all);
+	//render_rays();
+	//render_player();
+
 }
 
 int		main(void)
@@ -95,10 +86,10 @@ int		main(void)
 
 	initialize_window(&all);
 	setup(&all.player);
-	draw_square(&all);
+	draw_square(&all, 0xFF00FF);
 	update(&all.player);
 	mlx_hook(all.mlx.window, 2, 1, destroy_window, &all);
 	mlx_loop(all.mlx.init);
-	//render();
+	render(&all);
 	return (0);
 }

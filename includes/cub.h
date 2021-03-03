@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/02 20:44:58 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/03 00:43:56 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,15 @@ typedef struct	s_mlx
 
 typedef struct	s_player
 {
-	int			x;
-	int			y;
+	float			x;
+	float			y;
+	float			width;
+	float			height;
+	int				turn_dir; /* -1 for left, +1 for right */
+	int				walk_dir; /* -1 for back, +1 for front */
+	float			rot_angle;
+	float			walk_speed;
+	float			turn_speed;
 }				t_player;
 
 typedef struct	s_img
@@ -102,11 +109,20 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
+typedef struct	s_map
+{
+	int			wall_color;
+	int			floor_color;
+	int 		tile_x;
+	int			tile_y;
+}				t_map;
+
 typedef struct	s_all
 {
 	t_img		img;
 	t_player	player;
 	t_mlx		mlx;
+	t_map		map;
 }				t_all;
 
 /*
@@ -118,8 +134,10 @@ void			setup(t_player *player);
 void			update(t_player *player);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
-void			draw_square(t_all *all);
+void			draw_square(t_all *all, int color);
 void			clean_old_square(t_all *all);
+void			render_map(t_all *all);
+void			render(t_all *all);
 /*
 ** LIB FUNCTIONS
 */
