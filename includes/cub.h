@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/01 20:42:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/02 20:44:58 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,18 @@
 /*
 ** DEFINES
 */
-# define PI 3.1416
+# define PI 3.14159265
+# define TWO_PI 6.28318530
 # define RADIUS_PLAYER 4
-# define PIXEL_LEN 10
+# define TILE_SIZE 64
+# define MAP_NUM_ROWS 17
+# define MAP_NUM_COLS 39
 # define FALSE 0
 # define TRUE 1
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
+# define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+# define FOV (60 * (PI/180))
+# define NUM_RAYS WIN_WIDTH
 
 /*
 ** KEYCODES MAC
