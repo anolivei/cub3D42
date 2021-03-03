@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/02 21:25:32 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/02 22:51:49 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int		main(void)
 
 	initialize_window(&all);
 	setup(&all.player);
-//	draw_square(&all);
+	draw_square(&all);
 	update(&all.player);
 	mlx_hook(all.mlx.window, 2, 1, destroy_window, &all);
 	mlx_loop(all.mlx.init);
