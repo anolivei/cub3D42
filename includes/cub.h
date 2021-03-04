@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 00:10:27 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 20:02:40 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@
 # define MAGENTA 0x00FF00FF
 # define CYAN 0x0000FFFF
 # define WHITE 0x00FFFFFF
-
+# define BLACK 0x00000000
 /*
 ** STRUCTS
 */

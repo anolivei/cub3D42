@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 00:14:34 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 20:03:53 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	render_map(t_all *all)
 		j = 0;
 		while (j < MAP_NUM_COLS)
 		{
-			printf("%i %i\n", i, j);
 			all->map.tile_x = j * TILE_SIZE;
 			all->map.tile_y = i * TILE_SIZE;
 			tile_color = map[i][j] != 0 ? RED : WHITE;
