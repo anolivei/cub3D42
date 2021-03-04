@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/03 18:22:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 00:28:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		initialize_window(t_all *all)
 		return (FALSE);
 	}
 	if ((all->img.img_ptr = mlx_new_image(all->mlx.init,
-		WIN_WIDTH, WIN_HEIGHT)) == 0)
+		WIN_WIDTH + 1, WIN_HEIGHT + 1)) == 0)
 	{
 		ft_putstr_fd("Error initializing new image\n", 1);
 		return (FALSE);
@@ -39,8 +39,8 @@ int		destroy_window(int keycode, t_all *all)
 	if (keycode == D_KEYM || keycode == D_KEYL)
 	{
 		update(&all->player);
-		//all->player.x++;
-		draw_square(all, 0xFF00FF);
+		all->player.x++;
+		render_map(all);
 	}
 	
 	if (keycode == ESC_KEYM || keycode == ESC_KEYL)
@@ -68,15 +68,15 @@ void	setup(t_player *player)
 
 void	update(t_player *player)
 {
-//	player->x += 1;
+	player->x += 1;
 	player->y += 1;
 }
 
 void	render(t_all *all)
 {
 	render_map(all);
-	render_rays();
-	//render_player();
+//	render_rays();
+//	render_player();
 
 }
 
@@ -86,7 +86,6 @@ int		main(void)
 
 	initialize_window(&all);
 	setup(&all.player);
-	draw_square(&all, 0xFF00FF);
 	update(&all.player);
 	mlx_hook(all.mlx.window, 2, 1, destroy_window, &all);
 	mlx_loop(all.mlx.init);

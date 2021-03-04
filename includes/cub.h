@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/03 00:43:56 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 00:10:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define PI 3.14159265
 # define TWO_PI 6.28318530
 # define RADIUS_PLAYER 4
-# define TILE_SIZE 64
+# define TILE_SIZE 32
 # define MAP_NUM_ROWS 17
-# define MAP_NUM_COLS 39
+# define MAP_NUM_COLS 29
 # define FALSE 0
 # define TRUE 1
 # define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
