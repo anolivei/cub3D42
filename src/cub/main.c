@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 00:28:19 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 23:38:43 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int		destroy_window(int keycode, t_all *all)
 {
 	if (keycode == D_KEYM || keycode == D_KEYL)
 	{
-		update(&all->player);
-		all->player.x++;
-		render_map(all);
+	//	update(&all->player);
+	//	all->player.x++;
+		render(all);
 	}
 	
 	if (keycode == ESC_KEYM || keycode == ESC_KEYL)
@@ -76,7 +76,7 @@ void	render(t_all *all)
 {
 	render_map(all);
 //	render_rays();
-//	render_player();
+	render_player(all);
 
 }
 

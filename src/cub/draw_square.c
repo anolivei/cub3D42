@@ -6,32 +6,32 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 21:41:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 23:25:38 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	draw_square(t_all *all, int color)
+void	draw_square(t_all *all, int draw_x, int draw_y, int size, int color)
 {
 	int	x;
 	int	y;
 
-	all->map.tile_x = all->map.tile_x * MINIMAP_SCALE_FACTOR;
-	all->map.tile_y = all->map.tile_y * MINIMAP_SCALE_FACTOR;
+	draw_x = draw_x * MINIMAP_SCALE_FACTOR;
+	draw_y = draw_y * MINIMAP_SCALE_FACTOR;
 	all->img.addr = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp,
 		&all->img.size_l, &all->img.endian);
-	x = all->map.tile_x;
-	y = all->map.tile_y;
-	while (x <= ((TILE_SIZE * MINIMAP_SCALE_FACTOR)+ all->map.tile_x))
+	x = draw_x;
+	y = draw_y;
+	while (x <= ((size * MINIMAP_SCALE_FACTOR)+ draw_x))
 	{
-		while (y <= ((TILE_SIZE * MINIMAP_SCALE_FACTOR) + all->map.tile_y))
+		while (y <= ((size * MINIMAP_SCALE_FACTOR) + draw_y))
 		{
 			put_pixel(&all->img, x, y, color);
 			y++;
 		}
 		x++;
-		y = all->map.tile_y;
+		y = draw_y;
 	}
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);

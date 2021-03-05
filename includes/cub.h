@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 22:48:11 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 23:39:35 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
-# define MINIMAP_SCALE_FACTOR 0.4
+# define MINIMAP_SCALE_FACTOR 0.3
 
 /*
 ** KEYCODES MAC
@@ -135,10 +135,11 @@ void			setup(t_player *player);
 void			update(t_player *player);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
-void			draw_square(t_all *all, int color);
 void			clean_old_square(t_all *all);
 void			render_map(t_all *all);
 void			render(t_all *all);
+void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
+void			render_player(t_all *all);
 /*
 ** LIB FUNCTIONS
 */
