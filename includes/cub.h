@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 20:02:40 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/04 22:48:11 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
+# define MINIMAP_SCALE_FACTOR 0.4
 
 /*
 ** KEYCODES MAC
