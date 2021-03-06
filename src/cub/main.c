@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 12:56:25 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/05 23:10:22 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,6 @@ int		initialize_window(t_all *all)
 	return (TRUE);
 }
 
-int		destroy_window(int keycode, t_all *all)
-{
-	if (keycode == D_KEYM || keycode == D_KEYL)
-	{
-	//	update(&all->player);
-	//	all->player.x++;
-		render(all);
-	}
-	
-	if (keycode == ESC_KEYM || keycode == ESC_KEYL)
-	{
-		mlx_clear_window(all->mlx.init, all->mlx.window);
-		mlx_destroy_window(all->mlx.init, all->mlx.window);
-		exit(0);
-		return (FALSE);
-	}
-	return (TRUE);
-}
-
 void	setup(t_player *player)
 {
 	player->x = WIN_WIDTH / 2;
@@ -75,9 +56,8 @@ void	update(t_player *player)
 void	render(t_all *all)
 {
 	render_map(all);
-//	render_rays();
 	render_player(all);
-
+	//	render_rays();
 }
 
 int		main(void)
@@ -87,7 +67,7 @@ int		main(void)
 	initialize_window(&all);
 	setup(&all.player);
 	update(&all.player);
-	mlx_hook(all.mlx.window, 2, 1, destroy_window, &all);
+	mlx_hook(all.mlx.window, 2, 1, process_imput, &all);
 	mlx_loop(all.mlx.init);
 	render(&all);
 	return (0);

@@ -6,7 +6,15 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:59:52 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 13:00:07 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/05 23:11:17 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/cub.h"
+
+void	move_player(t_all *all)
+{
+	int x;
+
+	x = all->player.x;
+}

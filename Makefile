@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/03/05 00:31:16 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/05 23:10:04 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/draw_line.c \
 		$(CUB_DIR)/render_map.c \
 		$(CUB_DIR)/render_player.c \
+		$(CUB_DIR)/move_player.c \
+		$(CUB_DIR)/process_imput.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c

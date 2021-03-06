@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 00:31:51 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/05 23:33:17 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,15 @@ typedef struct	s_mlx
 
 typedef struct	s_player
 {
-	float			x;
-	float			y;
-	float			width;
-	float			height;
-	int				turn_dir; /* -1 for left, +1 for right */
-	int				walk_dir; /* -1 for back, +1 for front */
-	float			rot_angle;
-	float			walk_speed;
-	float			turn_speed;
+	float		x;
+	float		y;
+	float		width;
+	float		height;
+	int			turn_dir; /* -1 for left, +1 for right */
+	int			walk_dir; /* -1 for back, +1 for front */
+	float		rot_angle;
+	float		walk_speed;
+	float		turn_speed;
 }				t_player;
 
 typedef struct	s_img
@@ -130,7 +130,8 @@ typedef struct	s_all
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_all *mlx);
-int				destroy_window(int keycode, t_all *all);
+void			destroy_window(t_all *all);
+int				process_imput(int keycode, t_all *all);
 void			setup(t_player *player);
 void			update(t_player *player);
 
