@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 00:09:46 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 12:42:23 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:48:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,4 @@ void	draw_line(t_all *all, int size)
 		x_init = x_init + cos(all->player.rot_angle) * 1 * MINIMAP_SCALE_FACTOR;
 		y_init = y_init + sin(all->player.rot_angle) * 1 * MINIMAP_SCALE_FACTOR;
 	}
-	printf("%f\n", all->player.rot_angle);
-	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
-		all->img.img_ptr, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 12:35:32 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 16:28:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ int				key_release(int keycode, t_all *all);
 void			process_input(t_all *all);
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup(t_player *player);
-void			update(t_player *player);
 
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);

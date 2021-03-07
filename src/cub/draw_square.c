@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 23:25:38 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 15:46:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ void	draw_square(t_all *all, int draw_x, int draw_y, int size, int color)
 		x++;
 		y = draw_y;
 	}
-	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
-		all->img.img_ptr, 0, 0);
 }
 
 void	clean_old_square(t_all *all)
