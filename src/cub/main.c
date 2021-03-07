@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/06 22:37:45 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 13:15:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	setup(t_player *player)
 
 void	update(t_player *player)
 {
-	player->x += 1;
-	player->y += 1;
+//	move_player(player);
+	player->x = player->x;
 }
 
 void	render(t_all *all)
@@ -66,9 +66,9 @@ int		main(void)
 
 	initialize_window(&all);
 	setup(&all.player);
-	update(&all.player);
 	process_input(&all);
-	mlx_loop(all.mlx.init);
+	update(&all.player);
 	render(&all);
+	mlx_loop(all.mlx.init);
 	return (0);
 }

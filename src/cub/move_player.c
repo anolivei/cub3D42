@@ -6,15 +6,22 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:59:52 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 23:11:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 12:44:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	move_player(t_all *all)
+void	move_player(t_player *player)
 {
-	int x;
+	float	move_step;
+	float	new_player_x;
+	float	new_player_y;
 
-	x = all->player.x;
+	player->rot_angle += player->turn_dir + player->turn_speed;
+	move_step = player->walk_dir * player->walk_speed;
+	new_player_x = player->x + cos(player->rot_angle * move_step);
+	new_player_y = player->y + sin(player->rot_angle * move_step);
+	player->x = new_player_x;
+	player->y = new_player_y;
 }
