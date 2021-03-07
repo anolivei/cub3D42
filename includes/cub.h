@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 16:28:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:29:31 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ void			render_player(t_all *all);
 void			move_player(t_player *player);
 
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
-void			clean_old_square(t_all *all);
 void			draw_line(t_all *all, int size);
 
 /*

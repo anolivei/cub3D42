@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 15:46:33 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 17:29:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,5 @@ void	draw_square(t_all *all, int draw_x, int draw_y, int size, int color)
 		}
 		x++;
 		y = draw_y;
-	}
-}
-
-void	clean_old_square(t_all *all)
-{
-	int x;
-	int y;
-
-	x = all->map.tile_x - 2;
-	y = all->map.tile_y - 2;
-	while (x <= 32 + all->map.tile_x)
-	{
-		put_pixel(&all->img, x, y, 0x000000);
-		x++;
-	}
-	x = all->map.tile_x - 2;
-	while (y <= 32 + all->map.tile_y)
-	{
-		put_pixel(&all->img, x, y, 0x000000);
-		y++;
 	}
 }
