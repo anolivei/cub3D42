@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 23:10:22 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:37:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		main(void)
 	initialize_window(&all);
 	setup(&all.player);
 	update(&all.player);
-	mlx_hook(all.mlx.window, 2, 1, process_imput, &all);
+	process_input(&all);
 	mlx_loop(all.mlx.init);
 	render(&all);
 	return (0);

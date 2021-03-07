@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/05 23:33:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/06 22:37:28 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,11 @@ typedef struct	s_all
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_all *mlx);
-void			destroy_window(t_all *all);
-int				process_imput(int keycode, t_all *all);
+int				destroy_window(t_all *all);
+int				key_press(int keycode, t_all *all);
+int				key_release(int keycode, t_all *all);
+void			process_input(t_all *all);
+void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup(t_player *player);
 void			update(t_player *player);
 
