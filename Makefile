@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/03/06 22:37:36 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/07 23:44:26 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME)
+	./$(NAME)
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
