@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 16:49:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 23:13:43 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int		destroy_window(t_all *all)
 
 void	process_input(t_all *all)
 {
-	mlx_hook(all->mlx.window, 2, 1, key_press, all);
-	mlx_hook(all->mlx.window, 3, 1, key_release, all);
-	mlx_hook(all->mlx.window, 17, 1, destroy_window, all);
+	mlx_hook(all->mlx.window, 2, 1L << 0, key_press, all);
+	mlx_hook(all->mlx.window, 3, 1L << 1, key_release, all);
+	mlx_hook(all->mlx.window, 17, 1l << 17, destroy_window, all);
 }

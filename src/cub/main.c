@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 19:27:31 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 23:09:42 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	setup(t_player *player)
 	player->turn_dir = 0;
 	player->walk_dir = 0;
 	player->rot_angle = 0 * (PI / 180);
-	player->walk_speed = 50.0f;
+	player->walk_speed = 10;
 	player->turn_speed = 5 * (PI / 180);
 }
 
@@ -63,7 +63,6 @@ int		main(void)
 	initialize_window(&all);
 	setup(&all.player);
 	process_input(&all);
-	//render(&all);
 	mlx_loop(all.mlx.init);
 	return (0);
 }
