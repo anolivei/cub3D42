@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 00:09:46 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 19:37:47 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/07 20:59:22 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,14 @@ void	draw_line(t_all *all, int size)
 
 	x_init = (all->player.x + all->player.height / 2) * MINIMAP_SCALE_FACTOR;
 	y_init = (all->player.y + all->player.height / 2) * MINIMAP_SCALE_FACTOR;
-	angle_normalized = all->player.rot_angle > (2 * PI) ? (all->player.rot_angle - 
-		(((int)(all->player.rot_angle / (2 * PI))) * (2 * PI))) : all->player.rot_angle;
+	if (all->player.rot_angle >= 0)
+		angle_normalized = all->player.rot_angle;
+	else
+		angle_normalized = all->player.rot_angle >= (-360 * (PI / 180)) ? 
+			((2 * PI) + (all->player.rot_angle)) : 
+			(((2 * PI) * (((int)((all->player.rot_angle * -1) / (2 * PI))) + 1)) + (all->player.rot_angle));
+	angle_normalized = angle_normalized > (2 * PI) ? (angle_normalized - 
+			(((int)(angle_normalized / (2 * PI))) * (2 * PI))) : angle_normalized;
 	if (angle_normalized >= 0 && angle_normalized <= (90 * (PI / 180)))
 		draw_line_0_45(all, x_init, y_init, size);
 	if (angle_normalized > (90 * (PI / 180)) && angle_normalized <= (180 * (PI / 180)))
