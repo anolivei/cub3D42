@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 21:30:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/09 00:15:35 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ typedef struct	s_player
 {
 	float		x;
 	float		y;
+	float		new_player_x;
+	float		new_player_y;
 	float		width;
 	float		height;
 	int			turn_dir; /* -1 for left, +1 for right */
@@ -144,6 +146,7 @@ void			render(t_all *all);
 void			render_map(t_all *all);
 void			render_player(t_all *all);
 void			move_player(t_player *player);
+int				has_wall_at(float x, float y);
 
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
 void			draw_line(t_all *all, int size);

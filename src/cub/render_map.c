@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/04 23:24:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/09 00:25:02 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,16 @@ void	render_map(t_all *all)
 		}
 		i++;
 	}
+}
+
+int		has_wall_at(float x, float y)
+{	
+	int map_x;
+	int map_y;
+
+	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
+		return (TRUE);
+	map_x = floor(x / TILE_SIZE);
+	map_y = floor(y / TILE_SIZE);
+	return(map[map_y][map_x] != 0 ? 1 : 0);
 }
