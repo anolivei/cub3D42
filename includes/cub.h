@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/10 01:05:53 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/10 02:59:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,24 +100,42 @@ typedef struct	s_player
 	float		turn_speed;
 }				t_player;
 
-typedef struct	s_ray
+typedef struct	s_hor
 {
 	int			found_hor_wall_hit;
-	int			found_vert_wall_hit;
 	float		hor_wall_hit_x;
 	float		hor_wall_hit_y;
+	int			hor_wall_content;
+	float		next_hor_touch_x;
+	float		next_hor_touch_y;
+	float		x_to_check;
+	float		y_to_check;
+}				t_hor;
+
+typedef struct	s_ver
+{
+	int			found_vert_wall_hit;
 	float		ver_wall_hit_x;
 	float		ver_wall_hit_y;
-	int			hor_wall_content;
 	int			ver_wall_content;
-	int			is_ray_fac_down;
-	int			is_ray_fac_up;
-	int			is_ray_fac_right;
-	int			is_ray_fac_left;
+	float		next_ver_touch_x;
+	float		next_ver_touch_y;
+}				t_ver;
+
+typedef struct	s_rayaux
+{
 	float		x_interc;
 	float		y_interc;
 	float		x_step;
 	float		y_step;
+	int			is_ray_fac_down;
+	int			is_ray_fac_up;
+	int			is_ray_fac_right;
+	int			is_ray_fac_left;
+}				t_rayaux;
+
+typedef struct	s_ray
+{
 	float		ray_angle;
 	float		wall_hit_x;
 	float		wall_hit_y;
@@ -155,6 +173,9 @@ typedef struct	s_all
 	t_mlx		mlx;
 	t_map		map;
 	t_ray		ray;
+	t_rayaux	rayaux;
+	t_hor		hor;
+	t_ver		ver;
 }				t_all;
 
 /*
@@ -190,4 +211,5 @@ void			draw_line(t_all *all, int size);
 ** LIB FUNCTIONS
 */
 void			ft_putstr_fd(char *s, int fd);
+
 #endif
