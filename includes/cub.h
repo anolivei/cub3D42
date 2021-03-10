@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/09 22:37:27 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/10 01:05:53 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,22 @@ typedef struct	s_player
 
 typedef struct	s_ray
 {
+	int			found_hor_wall_hit;
+	int			found_vert_wall_hit;
+	float		hor_wall_hit_x;
+	float		hor_wall_hit_y;
+	float		ver_wall_hit_x;
+	float		ver_wall_hit_y;
+	int			hor_wall_content;
+	int			ver_wall_content;
+	int			is_ray_fac_down;
+	int			is_ray_fac_up;
+	int			is_ray_fac_right;
+	int			is_ray_fac_left;
+	float		x_interc;
+	float		y_interc;
+	float		x_step;
+	float		y_step;
 	float		ray_angle;
 	float		wall_hit_x;
 	float		wall_hit_y;
@@ -145,10 +161,12 @@ typedef struct	s_all
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_all *mlx);
+
 int				destroy_window(t_all *all);
 int				key_press(int keycode, t_all *all);
 int				key_release(int keycode, t_all *all);
 void			process_input(t_all *all);
+
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup(t_player *player);
 
@@ -158,10 +176,13 @@ int				pick_pixel(t_img *data, int x, int y);
 void			render(t_all *all);
 void			render_map(t_all *all);
 void			render_player(t_all *all);
+
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
-void			cast_all_rays(t_all *all);
 
+void			cast_all_rays(t_all *all);
+void			cast_ray(float ray_angle, int strip_id, t_all *all);
+float			normalize_angle(float angle);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
 void			draw_line(t_all *all, int size);
 
