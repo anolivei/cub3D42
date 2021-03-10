@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/09 00:27:13 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/09 20:59:01 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		main(void)
 	initialize_window(&all);
 	setup(&all.player);
 	process_input(&all);
+	cast_all_rays(&all);
 	mlx_loop(all.mlx.init);
 	return (0);
 }

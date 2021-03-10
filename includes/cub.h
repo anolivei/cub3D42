@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/09 00:15:35 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/09 22:37:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ typedef struct	s_player
 {
 	float		x;
 	float		y;
-	float		new_player_x;
-	float		new_player_y;
 	float		width;
 	float		height;
 	int			turn_dir; /* -1 for left, +1 for right */
@@ -101,6 +99,20 @@ typedef struct	s_player
 	float		walk_speed;
 	float		turn_speed;
 }				t_player;
+
+typedef struct	s_ray
+{
+	float		ray_angle;
+	float		wall_hit_x;
+	float		wall_hit_y;
+	float		distance;
+	int			hit_vert;
+	int			ray_up;
+	int			ray_down;
+	int			ray_left;
+	int			ray_right;
+	int			wall_hit_content;
+}				t_ray[NUM_RAYS];
 
 typedef struct	s_img
 {
@@ -126,6 +138,7 @@ typedef struct	s_all
 	t_player	player;
 	t_mlx		mlx;
 	t_map		map;
+	t_ray		ray;
 }				t_all;
 
 /*
@@ -147,6 +160,7 @@ void			render_map(t_all *all);
 void			render_player(t_all *all);
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
+void			cast_all_rays(t_all *all);
 
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
 void			draw_line(t_all *all, int size);
