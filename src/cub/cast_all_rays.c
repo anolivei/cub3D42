@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/10 03:01:23 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/10 03:10:49 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 		}
 		else
 		{
-			all->hor.next_hor_touch_x = all->rayaux.x_step;
-			all->hor.next_hor_touch_y = all->rayaux.y_step;
+			all->hor.next_hor_touch_x += all->rayaux.x_step;
+			all->hor.next_hor_touch_y += all->rayaux.y_step;
 		}
 	}
 	strip_id = strip_id + 1;
