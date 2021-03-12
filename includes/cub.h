@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/11 00:32:23 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/12 02:18:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <stdio.h>
 
 /*
@@ -118,6 +119,7 @@ typedef struct	s_intsc
 	int			is_ray_fac_up;
 	int			is_ray_fac_right;
 	int			is_ray_fac_left;
+	float		hit_distance;
 }				t_intsc;
 
 typedef struct	s_ray
@@ -183,6 +185,7 @@ int				pick_pixel(t_img *data, int x, int y);
 void			render(t_all *all);
 void			render_map(t_all *all);
 void			render_player(t_all *all);
+void			render_rays(t_all *all);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
@@ -190,6 +193,7 @@ int				has_wall_at(float x, float y);
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
+float			distance_between_points(float x1, float y1, float x2, float y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
 void			draw_line(t_all *all, int size);
 
