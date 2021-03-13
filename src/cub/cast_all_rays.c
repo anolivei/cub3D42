@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/12 02:37:23 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/13 01:06:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	all->hor.next_touch_x = all->hor.x_interc;
 	all->hor.next_touch_y = all->hor.y_interc;
 	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= WIN_WIDTH &&
-		all->hor.next_touch_y >= 0 && all->hor.next_touch_x <= WIN_HEIGHT)
+		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= WIN_HEIGHT)
 	{
 		all->hor.x_to_check = all->hor.next_touch_x;
 		all->hor.y_to_check = all->hor.next_touch_y + (all->hor.is_ray_fac_up ? -1 : 0);
@@ -140,11 +140,11 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	}
 	all->hor.hit_distance = all->hor.found_wall_hit
 	? distance_between_points(all->player.x, all->player.y, all->hor.wall_hit_x, all->hor.wall_hit_y)
-	: INT_MAX;
+	: FLT_MAX;
 	strip_id = strip_id + 1 - 1;
 	all->ver.hit_distance = all->hor.found_wall_hit 
 	? distance_between_points(all->player.x, all->player.y, all->ver.wall_hit_x, all->ver.wall_hit_y)
-	: INT_MAX;
+	: FLT_MAX;
 	if (all->ver.hit_distance < all->hor.hit_distance)
 	{
 		all->ray[strip_id].distance = all->ver.hit_distance;

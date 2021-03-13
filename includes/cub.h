@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/12 02:18:32 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/13 00:45:42 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
-
+# include <float.h>
 /*
 ** DEFINES
 */
