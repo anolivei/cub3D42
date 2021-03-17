@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/13 01:06:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/16 23:26:38 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 			// found the wall hit
 			all->ver.wall_hit_x = all->ver.next_touch_x;
 			all->ver.wall_hit_y = all->ver.next_touch_y;
-			all->ver.wall_content = map2[(int)floor(all->ver.y_to_check / TILE_SIZE)][(int)floor(all->ver.x_to_check / TILE_SIZE)];
+	//		all->ver.wall_content = map2[(int)floor(all->ver.y_to_check / TILE_SIZE)][(int)floor(all->ver.x_to_check / TILE_SIZE)];
 			all->ver.found_wall_hit = TRUE;
 			break;
 		}
