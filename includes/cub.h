@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/13 00:45:42 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/20 17:10:03 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ float			normalize_angle(float angle);
 float			distance_between_points(float x1, float y1, float x2, float y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
 void			draw_line(t_all *all, int size);
+void			draw_all_rays(t_all *all, int i);
 
 /*
 ** LIB FUNCTIONS
