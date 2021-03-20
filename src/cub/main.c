@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 17:15:11 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:06:51 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	render(t_all *all)
 {
 	render_map(all);
 	render_player(all);
+	render_rays(all);
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);
-	render_rays(all);
 }
 
 int		main(void)
@@ -63,7 +63,6 @@ int		main(void)
 	initialize_window(&all);
 	setup(&all.player);
 	process_input(&all);
-	cast_all_rays(&all);
 	mlx_loop(all.mlx.init);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/03/20 17:10:42 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/20 20:24:06 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/render_player.c \
 		$(CUB_DIR)/render_rays.c \
 		$(CUB_DIR)/move_player.c \
-		$(CUB_DIR)/has_wall_at.c \
 		$(CUB_DIR)/process_input.c \
 		$(CUB_DIR)/cast_all_rays.c \
 		$(GNL_DIR)/get_next_line.c \

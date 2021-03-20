@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 16:43:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/20 20:29:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,18 @@ const int map2 [MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
+
+static int	has_wall_at2(float x, float y)
+{	
+	int	map_x;
+	int	map_y;
+
+	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
+		return (TRUE);
+	map_x = floor(x / TILE_SIZE);
+	map_y = floor(y / TILE_SIZE);
+	return(map2[map_y][map_x] != 0 ? 1 : 0);
+}
 
 float		normalize_angle(float angle)
 {
@@ -81,13 +93,13 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	{
 		all->hor.x_to_check = all->hor.next_touch_x;
 		all->hor.y_to_check = all->hor.next_touch_y + (all->hor.is_ray_fac_up ? -1 : 0);
-		if (has_wall_at(all->hor.x_to_check, all->hor.y_to_check))
+		if (has_wall_at2(all->hor.x_to_check, all->hor.y_to_check))
 		{
 			// found the wall hit
 			all->hor.wall_hit_x = all->hor.next_touch_x;
 			all->hor.wall_hit_y = all->hor.next_touch_y;
 			all->hor.wall_content = map2[(int)floor(all->hor.y_to_check / TILE_SIZE)]
-			[(int)floor(all->hor.x_to_check / TILE_SIZE)];
+				[(int)floor(all->hor.x_to_check / TILE_SIZE)];
 			all->hor.found_wall_hit = TRUE;
 			break;
 		}
@@ -118,17 +130,18 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	all->ver.next_touch_y = all->ver.y_interc;
 
 	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= WIN_WIDTH &&
-		all->ver.next_touch_y >= 0 && all->ver.next_touch_x <= WIN_HEIGHT)
+		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= WIN_HEIGHT)
 	{
 		all->ver.x_to_check = all->ver.next_touch_x + (all->ver.is_ray_fac_left ? -1 : 0);
 		all->ver.y_to_check = all->ver.next_touch_y;
 		
-		if (has_wall_at(all->ver.x_to_check, all->ver.y_to_check))
+		if (has_wall_at2(all->ver.x_to_check, all->ver.y_to_check))
 		{
 			// found the wall hit
 			all->ver.wall_hit_x = all->ver.next_touch_x;
 			all->ver.wall_hit_y = all->ver.next_touch_y;
-		//	all->ver.wall_content = map2[(int)floor(all->ver.y_to_check / TILE_SIZE)][(int)floor(all->ver.x_to_check / TILE_SIZE)];
+			all->ver.wall_content = map2[(int)floor(all->ver.y_to_check / TILE_SIZE)]
+				[(int)floor(all->ver.x_to_check / TILE_SIZE)];
 			all->ver.found_wall_hit = TRUE;
 			break;
 		}
@@ -138,6 +151,7 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 			all->ver.next_touch_y += all->ver.y_step;
 		}
 	}
+
 	all->hor.hit_distance = all->hor.found_wall_hit
 	? distance_between_points(all->player.x, all->player.y, all->hor.wall_hit_x, all->hor.wall_hit_y)
 	: FLT_MAX;
@@ -176,6 +190,7 @@ void		cast_all_rays(t_all *all)
 	strip_id = 0;
 	while (strip_id < NUM_RAYS)
 	{
+	//	printf("entrou_cast\n%i\n", strip_id);
 		cast_ray(ray_angle, strip_id, all);
 		ray_angle += FOV / NUM_RAYS;
 		strip_id++;
