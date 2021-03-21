@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 20:29:08 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/20 23:09:39 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,20 +79,20 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	*/
 	setup_rays(&all->hor);
 	all->hor.y_interc = floor (all->player.y / TILE_SIZE) * TILE_SIZE;
-	all->hor.y_interc += all->hor.is_ray_fac_down ? TILE_SIZE : 0;
+	all->hor.y_interc += all->intsc.is_ray_fac_down ? TILE_SIZE : 0;
 	all->hor.x_interc = all->player.x + (all->hor.y_interc - all->player.y) / tan(ray_angle);
 	all->hor.y_step = TILE_SIZE;
-	all->hor.y_step *= all->hor.is_ray_fac_up ? -1 : 1;
+	all->hor.y_step *= all->intsc.is_ray_fac_up ? -1 : 1;
 	all->hor.x_step = TILE_SIZE / tan(ray_angle);
-	all->hor.x_step *= (all->hor.is_ray_fac_left && all->hor.x_step > 0) ? -1 : 1;
-	all->hor.x_step *= (all->hor.is_ray_fac_right && all->hor.x_step < 0) ? -1 : 1;
+	all->hor.x_step *= (all->intsc.is_ray_fac_left && all->hor.x_step > 0) ? -1 : 1;
+	all->hor.x_step *= (all->intsc.is_ray_fac_right && all->hor.x_step < 0) ? -1 : 1;
 	all->hor.next_touch_x = all->hor.x_interc;
 	all->hor.next_touch_y = all->hor.y_interc;
 	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= WIN_WIDTH &&
 		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= WIN_HEIGHT)
 	{
 		all->hor.x_to_check = all->hor.next_touch_x;
-		all->hor.y_to_check = all->hor.next_touch_y + (all->hor.is_ray_fac_up ? -1 : 0);
+		all->hor.y_to_check = all->hor.next_touch_y + (all->intsc.is_ray_fac_up ? -1 : 0);
 		if (has_wall_at2(all->hor.x_to_check, all->hor.y_to_check))
 		{
 			// found the wall hit
@@ -115,16 +115,16 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	setup_rays(&all->ver);
 
 	all->ver.x_interc = floor (all->player.x / TILE_SIZE) * TILE_SIZE;
-	all->ver.x_interc += all->ver.is_ray_fac_right ? TILE_SIZE : 0;
+	all->ver.x_interc += all->intsc.is_ray_fac_right ? TILE_SIZE : 0;
 
 	all->ver.y_interc = all->player.y + (all->ver.x_interc - all->player.x) * tan(ray_angle);
 
 	all->ver.x_step = TILE_SIZE;
-	all->ver.x_step *= all->ver.is_ray_fac_left ? -1 : 1;
+	all->ver.x_step *= all->intsc.is_ray_fac_left ? -1 : 1;
 
 	all->ver.y_step = TILE_SIZE * tan(ray_angle);
-	all->ver.y_step *= (all->ver.is_ray_fac_up && all->ver.y_step > 0) ? -1 : 1;
-	all->ver.y_step *= (all->ver.is_ray_fac_down && all->ver.y_step < 0) ? -1 : 1;
+	all->ver.y_step *= (all->intsc.is_ray_fac_up && all->ver.y_step > 0) ? -1 : 1;
+	all->ver.y_step *= (all->intsc.is_ray_fac_down && all->ver.y_step < 0) ? -1 : 1;
 
 	all->ver.next_touch_x = all->ver.x_interc;
 	all->ver.next_touch_y = all->ver.y_interc;
@@ -132,7 +132,7 @@ void		cast_ray(float ray_angle, int strip_id, t_all *all)
 	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= WIN_WIDTH &&
 		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= WIN_HEIGHT)
 	{
-		all->ver.x_to_check = all->ver.next_touch_x + (all->ver.is_ray_fac_left ? -1 : 0);
+		all->ver.x_to_check = all->ver.next_touch_x + (all->intsc.is_ray_fac_left ? -1 : 0);
 		all->ver.y_to_check = all->ver.next_touch_y;
 		
 		if (has_wall_at2(all->ver.x_to_check, all->ver.y_to_check))
