@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/03/20 20:24:06 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/21 01:53:20 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ OBJ_DIR	=		.obj
 SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/mlx_utils.c \
 		$(CUB_DIR)/draw_square.c \
-		$(CUB_DIR)/draw_line.c \
 		$(CUB_DIR)/draw_all_rays.c \
+		$(CUB_DIR)/cub_utils.c \
 		$(CUB_DIR)/render_map.c \
 		$(CUB_DIR)/render_player.c \
 		$(CUB_DIR)/render_rays.c \

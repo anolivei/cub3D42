@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 17:10:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:36:12 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
-# define MINIMAP_SCALE_FACTOR 1.0
+# define MINIMAP_SCALE_FACTOR 0.4
 
 /*
 ** KEYCODES MAC
@@ -193,9 +193,8 @@ int				has_wall_at(float x, float y);
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
-float			distance_between_points(float x1, float y1, float x2, float y2);
+float			distance_between_points(t_player *player, t_intsc *hv);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
-void			draw_line(t_all *all, int size);
 void			draw_all_rays(t_all *all, int i);
 
 /*

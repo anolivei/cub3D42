@@ -6,13 +6,13 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 20:06:51 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:29:29 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-int initialize_window(t_all *all)
+int		initialize_window(t_all *all)
 {
 	if ((all->mlx.init = mlx_init()) == 0)
 	{
@@ -31,6 +31,8 @@ int initialize_window(t_all *all)
 		ft_putstr_fd("Error initializing new image\n", 1);
 		return (FALSE);
 	}
+	all->img.addr = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp,
+		&all->img.size_l, &all->img.endian);
 	return (TRUE);
 }
 
@@ -38,8 +40,8 @@ void	setup(t_player *player)
 {
 	player->x = WIN_WIDTH / 2;
 	player->y = WIN_HEIGHT / 2;
-	player->width = 6;
-	player->height = 6;
+	player->width = 1;
+	player->height = 1;
 	player->turn_dir = 0;
 	player->walk_dir = 0;
 	player->rot_angle = 45 * (PI / 180);

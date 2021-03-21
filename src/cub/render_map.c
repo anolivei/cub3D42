@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/20 20:22:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/21 01:42:46 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_map(t_all *all)
 }
 
 int		has_wall_at(float x, float y)
-{	
+{
 	int	map_x;
 	int	map_y;
 
@@ -63,5 +63,5 @@ int		has_wall_at(float x, float y)
 		return (TRUE);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
-	return(map[map_y][map_x] != 0 ? 1 : 0);
+	return (map[map_y][map_x] != 0 ? 1 : 0);
 }
