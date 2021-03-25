@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/24 02:01:34 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/24 22:50:03 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ void	generate_3d_projection(t_all *all)
 	float	proj_wall_height;
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
+	float	perp_dist;
 
 	i = 0;
 	while(i < NUM_RAYS)
 	{
+		perp_dist = all->ray[i].distance * cos(all->ray[i].ray_angle - all->player.rot_angle);
 		dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV / 2);
-		proj_wall_height = (TILE_SIZE / all->ray[i].distance) * dist_proj_plane;
+		proj_wall_height = (TILE_SIZE / perp_dist) * dist_proj_plane;
 		wall_strip_height = (int)proj_wall_height;
 		wall_top_pixel = (WIN_HEIGHT / 2) - (wall_strip_height / 2);
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
