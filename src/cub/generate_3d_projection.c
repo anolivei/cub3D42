@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/24 22:50:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 00:12:50 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	generate_3d_projection(t_all *all)
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
 	float	perp_dist;
+	int		color;
 
 	i = 0;
 	while(i < NUM_RAYS)
@@ -34,10 +35,24 @@ void	generate_3d_projection(t_all *all)
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
 		wall_bottom_pixel = (WIN_HEIGHT / 2) + (wall_strip_height / 2);
 		wall_bottom_pixel = wall_bottom_pixel > WIN_HEIGHT ? WIN_HEIGHT : wall_bottom_pixel;
+		//ceil
+		y = 0;
+		while (y < ((2 * wall_top_pixel) / 2))
+		{
+			put_pixel(&all->img, i, y, YELLOW);
+			y++;
+		}
+		//wall
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
-			put_pixel(&all->img, i, y, CYAN);
+			put_pixel(&all->img, i, y, color = all->ray[i].hit_vert ? CYAN : BLUE);
+			y++;
+		}
+		//floor
+		while (y < WIN_HEIGHT)
+		{
+			put_pixel(&all->img, i, y, GREEN);
 			y++;
 		}
 		i++;

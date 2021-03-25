@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/07 23:49:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 00:53:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ static void	move_render(t_all *all, int *walk_turn, int i)
 
 int			key_press(int keycode, t_all *all)
 {
-	if (keycode == TAB_KEYM || keycode == TAB_KEYL)
-		render(all);
 	if (keycode == W_KEYM || keycode == W_KEYL)
 		move_render(all, &all->player.walk_dir, +1);
 	if (keycode == S_KEYM || keycode == S_KEYL)

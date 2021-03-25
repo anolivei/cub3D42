@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/24 02:01:30 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 00:41:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	setup(t_player *player)
 
 void	render(t_all *all)
 {
-	clear_window(all);
+	cast_all_rays(all);
 	generate_3d_projection(all);
 	render_map(all);
 	render_player(all);
@@ -65,7 +65,9 @@ int		main(void)
 	t_all	all;
 
 	initialize_window(&all);
+	//clear_window(&all);
 	setup(&all.player);
+	render(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);
 	return (0);
