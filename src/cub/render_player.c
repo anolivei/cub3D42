@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 23:02:15 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/21 01:44:04 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 01:09:58 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	render_player(t_all *all)
 {
-	draw_square(all, all->player.x, all->player.y, all->player.height, MAGENTA);
+	put_pixel(&all->img, all->player.x, all->player.y, MAGENTA);
 }

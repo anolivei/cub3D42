@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/24 02:02:13 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/30 00:22:20 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define TRUE 1
 # define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+# define TEXT_WIDTH 32
+# define TEXT_HEIGHT 32
+# define NUM_TEXT 8
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
 # define MINIMAP_SCALE_FACTOR 0.3
@@ -82,6 +85,11 @@
 /*
 ** STRUCTS
 */
+typedef struct	s_text
+{
+	int			texture[NUM_TEXT];
+}				t_text;
+
 typedef struct	s_mlx
 {
 	void		*window;
@@ -150,12 +158,14 @@ typedef struct	s_map
 {
 	int			wall_color;
 	int			floor_color;
+	int			tile_color;
 	int 		tile_x;
 	int			tile_y;
 }				t_map;
 
 typedef struct	s_all
 {
+	t_text		text;
 	t_intsc		intsc;
 	t_intsc		hor;
 	t_intsc		ver;
@@ -177,8 +187,8 @@ int				key_release(int keycode, t_all *all);
 void			process_input(t_all *all);
 
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
-void			setup(t_player *player);
-
+void			setup_player(t_player *player);
+void			setup_texture(t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 
@@ -187,7 +197,6 @@ void			render_map(t_all *all);
 void			render_player(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
-void			clear_window(t_all *all);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
@@ -196,7 +205,7 @@ void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
 float			distance_between_points(t_player *player, t_intsc *hv);
-void			draw_square(t_all *all, int draw_x, int draw_y, int size, int color);
+void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
 
 /*

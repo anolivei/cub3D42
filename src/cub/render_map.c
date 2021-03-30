@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/21 01:42:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 01:14:26 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	render_map(t_all *all)
 {
 	int	i;
 	int	j;
-	int	tile_color;
 
 	i = 0;
 	while (i < MAP_NUM_ROWS)
@@ -46,8 +45,8 @@ void	render_map(t_all *all)
 		{
 			all->map.tile_x = j * TILE_SIZE;
 			all->map.tile_y = i * TILE_SIZE;
-			tile_color = map[i][j] != 0 ? RED : WHITE;
-			draw_square(all, all->map.tile_x, all->map.tile_y, TILE_SIZE, tile_color);
+			all->map.tile_color = map[i][j] != 0 ? RED : WHITE;
+			draw_square(all, all->map.tile_x, all->map.tile_y, TILE_SIZE);
 			j++;
 		}
 		i++;

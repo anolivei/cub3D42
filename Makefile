@@ -6,12 +6,12 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/03/24 00:28:11 by anolivei         ###   ########.fr        #
+#    Updated: 2021/03/29 00:10:43 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =			cub3D
-NAME_MAC =		cub3D_MAC
+NAME_LINUX =	cub3D_linux
 
 HEADER_DIR =	includes
 CUB_DIR =		src/cub
@@ -54,6 +54,7 @@ $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				clang -c $(CFLAGS) $< -o $@
 
 linux: $(NAME_LINUX)
+	./$(NAME_LINUX)
 
 $(NAME_LINUX): $(OBJ)
 		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@

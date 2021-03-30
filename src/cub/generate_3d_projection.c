@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/25 00:12:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/29 22:10:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ void	generate_3d_projection(t_all *all)
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
 	float	perp_dist;
-	int		color;
+	//int		color;
+	int		text_offset_x;
+	int		text_offset_y;
+	int		dist_from_top;
 
 	i = 0;
 	while(i < NUM_RAYS)
@@ -43,10 +46,16 @@ void	generate_3d_projection(t_all *all)
 			y++;
 		}
 		//wall
+		if (all->ray[i].hit_vert)
+			text_offset_x = (int)all->ray[i].wall_hit_y % TEXT_HEIGHT;
+		else
+			text_offset_x = (int)all->ray[i].wall_hit_x % TEXT_WIDTH;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
-			put_pixel(&all->img, i, y, color = all->ray[i].hit_vert ? CYAN : BLUE);
+			dist_from_top = y + (wall_strip_height / 2) - (WIN_HEIGHT / 2);
+			text_offset_y = dist_from_top * ((float)TEXT_HEIGHT / wall_strip_height);
+			put_pixel(&all->img, i, y, BLUE);
 			y++;
 		}
 		//floor
@@ -56,23 +65,5 @@ void	generate_3d_projection(t_all *all)
 			y++;
 		}
 		i++;
-	}
-}
-
-void	clear_window(t_all *all)
-{
-	int x;
-	int y;
-
-	x = 0;
-	while (x < WIN_WIDTH)
-	{
-		y = 0;
-		while (y < WIN_HEIGHT)
-		{
-			put_pixel(&all->img, x, y, BLACK);
-			y++;
-		}
-		x++;
 	}
 }

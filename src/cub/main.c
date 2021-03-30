@@ -6,11 +6,12 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/25 00:41:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/30 00:22:25 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+#include "../../includes/textures.h"
 
 int		initialize_window(t_all *all)
 {
@@ -36,7 +37,7 @@ int		initialize_window(t_all *all)
 	return (TRUE);
 }
 
-void	setup(t_player *player)
+void	setup_player(t_player *player)
 {
 	player->x = WIN_WIDTH / 2;
 	player->y = WIN_HEIGHT / 2;
@@ -49,13 +50,25 @@ void	setup(t_player *player)
 	player->turn_speed = 5 * (PI / 180);
 }
 
+void	setup_texture(t_text *text)
+{
+	text->texture[0] = (int)REDBRICK_TEXTURE;
+	text->texture[1] = (int)PURPLESTONE_TEXTURE;
+	text->texture[2] = (int)MOSSYSTONE_TEXTURE;
+	text->texture[3] = (int)GRAYSTONE_TEXTURE;
+	text->texture[4] = (int)COLORSTONE_TEXTURE;
+	text->texture[5] = (int)BLUESTONE_TEXTURE;
+	text->texture[6] = (int)WOOD_TEXTURE;
+	text->texture[7] = (int)EAGLE_TEXTURE;
+}
+
 void	render(t_all *all)
 {
 	cast_all_rays(all);
 	generate_3d_projection(all);
 	render_map(all);
-	render_player(all);
 	render_rays(all);
+	render_player(all);
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);
 }
@@ -65,8 +78,8 @@ int		main(void)
 	t_all	all;
 
 	initialize_window(&all);
-	//clear_window(&all);
-	setup(&all.player);
+	setup_player(&all.player);
+	setup_texture(&all.text);
 	render(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);

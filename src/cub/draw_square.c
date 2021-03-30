@@ -6,13 +6,13 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/28 20:38:25 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/21 01:39:31 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/25 01:14:59 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	draw_square(t_all *all, int draw_x, int draw_y, int size, int color)
+void	draw_square(t_all *all, int draw_x, int draw_y, int size)
 {
 	int	x;
 	int	y;
@@ -25,7 +25,7 @@ void	draw_square(t_all *all, int draw_x, int draw_y, int size, int color)
 	{
 		while (y <= ((size * MINIMAP_SCALE_FACTOR) + draw_y))
 		{
-			put_pixel(&all->img, x, y, color);
+			put_pixel(&all->img, x, y, all->map.tile_color);
 			y++;
 		}
 		x++;
