@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/31 00:50:14 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/31 01:13:01 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,14 @@ void	setup_player(t_player *player)
 void	setup_texture(t_all *all, t_text *text)
 {
 	text->north.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/brick.xpm", &text->north.width, &text->north.height);
+		"./textures/wood.xpm", &text->north.width, &text->north.height);
 	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
 		&text->north.bpp, &text->north.size_l, &text->north.endian);
+	
+	text->east.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
+		"./textures/blue.xpm", &text->east.width, &text->east.height);
+	text->east.addr = mlx_get_data_addr(text->east.img_ptr,
+		&text->east.bpp, &text->east.size_l, &text->east.endian);
 }
 
 void	render(t_all *all)
