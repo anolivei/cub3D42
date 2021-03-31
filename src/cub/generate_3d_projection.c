@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/29 22:10:27 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/31 00:47:15 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	generate_3d_projection(t_all *all)
 	int		wall_top_pixel;
 	int		wall_bottom_pixel;
 	float	perp_dist;
-	//int		color;
+	int		color;
 	int		text_offset_x;
 	int		text_offset_y;
 	int		dist_from_top;
@@ -47,15 +47,16 @@ void	generate_3d_projection(t_all *all)
 		}
 		//wall
 		if (all->ray[i].hit_vert)
-			text_offset_x = (int)all->ray[i].wall_hit_y % TEXT_HEIGHT;
+			text_offset_x = (int)all->ray[i].wall_hit_y % all->text.north.height;
 		else
-			text_offset_x = (int)all->ray[i].wall_hit_x % TEXT_WIDTH;
+			text_offset_x = (int)all->ray[i].wall_hit_x % all->text.north.width;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{
 			dist_from_top = y + (wall_strip_height / 2) - (WIN_HEIGHT / 2);
-			text_offset_y = dist_from_top * ((float)TEXT_HEIGHT / wall_strip_height);
-			put_pixel(&all->img, i, y, BLUE);
+			text_offset_y = dist_from_top * ((float)all->text.north.height / wall_strip_height);
+			color = pick_pixel(&all->text.north, text_offset_x, text_offset_y);
+			put_pixel(&all->img, i, y, color);
 			y++;
 		}
 		//floor

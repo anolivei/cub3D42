@@ -6,12 +6,11 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/30 00:22:25 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/31 00:50:14 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
-#include "../../includes/textures.h"
 
 int		initialize_window(t_all *all)
 {
@@ -46,20 +45,16 @@ void	setup_player(t_player *player)
 	player->turn_dir = 0;
 	player->walk_dir = 0;
 	player->rot_angle = 45 * (PI / 180);
-	player->walk_speed = 10;
-	player->turn_speed = 5 * (PI / 180);
+	player->walk_speed = 20;
+	player->turn_speed = 10 * (PI / 180);
 }
 
-void	setup_texture(t_text *text)
+void	setup_texture(t_all *all, t_text *text)
 {
-	text->texture[0] = (int)REDBRICK_TEXTURE;
-	text->texture[1] = (int)PURPLESTONE_TEXTURE;
-	text->texture[2] = (int)MOSSYSTONE_TEXTURE;
-	text->texture[3] = (int)GRAYSTONE_TEXTURE;
-	text->texture[4] = (int)COLORSTONE_TEXTURE;
-	text->texture[5] = (int)BLUESTONE_TEXTURE;
-	text->texture[6] = (int)WOOD_TEXTURE;
-	text->texture[7] = (int)EAGLE_TEXTURE;
+	text->north.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
+		"./textures/brick.xpm", &text->north.width, &text->north.height);
+	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
+		&text->north.bpp, &text->north.size_l, &text->north.endian);
 }
 
 void	render(t_all *all)
@@ -78,8 +73,8 @@ int		main(void)
 	t_all	all;
 
 	initialize_window(&all);
+	setup_texture(&all, &all.text);
 	setup_player(&all.player);
-	setup_texture(&all.text);
 	render(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);

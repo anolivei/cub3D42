@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/30 00:22:20 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/03/31 00:47:56 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PI 3.14159265
 # define TWO_PI 6.28318530
 # define RADIUS_PLAYER 4
-# define TILE_SIZE 32
+# define TILE_SIZE 64
 # define MAP_NUM_ROWS 17
 # define MAP_NUM_COLS 29
 # define FALSE 0
@@ -85,9 +85,25 @@
 /*
 ** STRUCTS
 */
+typedef struct	s_img
+{
+	void		*img_ptr;
+	char		*addr;
+	int			size_l;
+	int			bpp;
+	int			endian;
+	int			width;
+	int			height;
+}				t_img;
+
 typedef struct	s_text
 {
-	int			texture[NUM_TEXT];
+	t_img		sprite;
+	t_img		north;
+	t_img		south;
+	t_img		east;
+	t_img		west;
+	int			*texture[NUM_TEXT];
 }				t_text;
 
 typedef struct	s_mlx
@@ -144,16 +160,6 @@ typedef struct	s_ray
 	int			wall_hit_content;
 }				t_ray[NUM_RAYS];
 
-typedef struct	s_img
-{
-	void		*img_ptr;
-	int			*data;
-	char		*addr;
-	int			size_l;
-	int			bpp;
-	int			endian;
-}				t_img;
-
 typedef struct	s_map
 {
 	int			wall_color;
@@ -188,7 +194,7 @@ void			process_input(t_all *all);
 
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup_player(t_player *player);
-void			setup_texture(t_text *text);
+void			setup_texture(t_all *all, t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 
