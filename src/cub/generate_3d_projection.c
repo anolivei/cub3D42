@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/31 01:17:48 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/01 00:41:34 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	generate_3d_projection(t_all *all)
 		y = 0;
 		while (y < ((2 * wall_top_pixel) / 2))
 		{
-			put_pixel(&all->img, i, y, 0x0011FF);
+			put_pixel(&all->img, i, y, 0x0033FF);
 			y++;
 		}
 		//wall
@@ -55,15 +55,23 @@ void	generate_3d_projection(t_all *all)
 		{
 			dist_from_top = y + (wall_strip_height / 2) - (WIN_HEIGHT / 2);
 			text_offset_y = dist_from_top * ((float)all->text.north.height / wall_strip_height);
-			color = all->ray[i].hit_vert ? pick_pixel(&all->text.north, text_offset_x, text_offset_y)
-				: pick_pixel(&all->text.east, text_offset_x, text_offset_y);
+		
+			if (all->ray[i].ray_up && !all->ray[i].hit_vert)
+				color = pick_pixel(&all->text.north, text_offset_x, text_offset_y);
+			else if (all->ray[i].ray_down && !all->ray[i].hit_vert)
+				color = pick_pixel(&all->text.south, text_offset_x, text_offset_y);
+			else if (all->ray[i].ray_right && all->ray[i].hit_vert)
+				color = pick_pixel(&all->text.east, text_offset_x, text_offset_y);
+			else if (all->ray[i].ray_left && all->ray[i].hit_vert)
+				color = pick_pixel(&all->text.west, text_offset_x, text_offset_y);
+		
 			put_pixel(&all->img, i, y, color);
 			y++;
 		}
 		//floor
 		while (y < WIN_HEIGHT)
 		{
-			put_pixel(&all->img, i, y, GREEN);
+			put_pixel(&all->img, i, y, 0x008811);
 			y++;
 		}
 		i++;
