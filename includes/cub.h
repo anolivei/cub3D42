@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/31 00:47:56 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/05 23:13:39 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,15 @@ typedef struct	s_text
 	int			*texture[NUM_TEXT];
 }				t_text;
 
+typedef struct	s_sprite
+{
+	float		x;
+	float		y;
+	float		distance;
+	float		angle;
+	int			texture;
+}				t_sprite;
+
 typedef struct	s_mlx
 {
 	void		*window;
@@ -172,6 +181,7 @@ typedef struct	s_map
 typedef struct	s_all
 {
 	t_text		text;
+	t_sprite	sprite;
 	t_intsc		intsc;
 	t_intsc		hor;
 	t_intsc		ver;
