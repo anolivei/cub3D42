@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/05 23:26:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/06 01:06:50 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	render_sprites(t_all *all)
 {
-	
+	printf("ola");
+	all->sprite.distance = 1;
 }
