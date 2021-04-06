@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/05 23:13:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/05 23:25:53 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ void			render_map(t_all *all);
 void			render_player(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
+void			render_sprites(t_all *all);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);

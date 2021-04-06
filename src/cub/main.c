@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/01 19:28:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/06 01:01:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,18 @@ void	setup_texture(t_all *all, t_text *text)
 		"./textures/wood.xpm", &text->west.width, &text->west.height);
 	text->west.addr = mlx_get_data_addr(text->west.img_ptr,
 		&text->west.bpp, &text->west.size_l, &text->west.endian);
+
+	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
+		"./textures/sprite.xpm", &text->sprite.width, &text->sprite.height);
+	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
+		&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
 }
 
 void	render(t_all *all)
 {
 	cast_all_rays(all);
 	generate_3d_projection(all);
+	//render_sprites(all);
 	render_map(all);
 	render_rays(all);
 	render_player(all);
