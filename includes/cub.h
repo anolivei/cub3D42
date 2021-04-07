@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/05 23:25:53 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/06 23:59:30 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define TEXT_WIDTH 32
 # define TEXT_HEIGHT 32
-# define NUM_TEXT 8
+# define NUM_SPRITE 3
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
 # define MINIMAP_SCALE_FACTOR 0.3
@@ -103,7 +103,6 @@ typedef struct	s_text
 	t_img		south;
 	t_img		east;
 	t_img		west;
-	int			*texture[NUM_TEXT];
 }				t_text;
 
 typedef struct	s_sprite
@@ -112,7 +111,7 @@ typedef struct	s_sprite
 	float		y;
 	float		distance;
 	float		angle;
-	int			texture;
+	t_img		sprite;
 }				t_sprite;
 
 typedef struct	s_mlx
@@ -181,7 +180,7 @@ typedef struct	s_map
 typedef struct	s_all
 {
 	t_text		text;
-	t_sprite	sprite;
+	t_sprite	sprite[NUM_SPRITE];
 	t_intsc		intsc;
 	t_intsc		hor;
 	t_intsc		ver;
@@ -213,7 +212,7 @@ void			render_map(t_all *all);
 void			render_player(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
-void			render_sprites(t_all *all);
+void			render_sprites_projection(t_all *all);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);

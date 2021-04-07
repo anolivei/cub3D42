@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/06 01:01:21 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/07 00:04:31 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render(t_all *all)
 {
 	cast_all_rays(all);
 	generate_3d_projection(all);
-	//render_sprites(all);
+	render_sprites_projection(all);
 	render_map(all);
 	render_rays(all);
 	render_player(all);

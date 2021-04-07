@@ -6,14 +6,80 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/06 01:06:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/07 00:10:56 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-void	render_sprites(t_all *all)
+const int map3 [MAP_NUM_ROWS][MAP_NUM_COLS] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 2, 1},
+	{1, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
+	{1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+	{1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
+	{1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+};
+
+static void	find_sprites_on_map(t_all *all)
 {
-	printf("ola");
-	all->sprite.distance = 1;
+	int	i;
+	int	j;
+	int num;
+
+	i = 0;
+	num = 0;
+	while (i < MAP_NUM_ROWS)
+	{
+		j = 0;
+		while (j < MAP_NUM_COLS)
+		{
+			all->map.tile_x = (j * TILE_SIZE) + (TILE_SIZE / 2);
+			all->map.tile_y = (i * TILE_SIZE) + (TILE_SIZE / 2);
+			if (map3[i][j] == 2)
+			{
+				all->sprite[num].x = all->map.tile_x;
+				all->sprite[num].y = all->map.tile_y;
+				num++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+
+void	render_sprites_projection(t_all *all)
+{
+	t_sprite	visible_sprite[NUM_SPRITE];
+	int			num_visible_sprite;
+	int			i;
+	float		angle_sprite_player;
+
+	num_visible_sprite = 0;
+	i = 0;
+	find_sprites_on_map(all);
+	while (i < NUM_SPRITE)
+	{
+		angle_sprite_player = all->player.rot_angle - atan2(all->sprite[i].y - all->player.y,
+			all->sprite[i].x - all->player.x);
+		if (angle_sprite_player < FOV / 2)
+		{
+			visible_sprite[num_visible_sprite] = all->sprite[i];
+			num_visible_sprite++;
+		}
+		i++;
+	}
+	printf("%f %f\n", all->sprite[0].x, all->sprite[0].y);
 }
