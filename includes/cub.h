@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/08 00:22:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/08 02:48:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <limits.h>
 # include <stdio.h>
 # include <float.h>
+# include <stdbool.h>
 /*
 ** DEFINES
 */
@@ -38,7 +39,7 @@
 # define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
 # define TEXT_WIDTH 32
 # define TEXT_HEIGHT 32
-# define NUM_SPRITE 3
+# define NUM_SPRITE 5
 # define FOV (60 * (PI/180))
 # define NUM_RAYS WIN_WIDTH
 # define MINIMAP_SCALE_FACTOR 0.3
@@ -111,6 +112,7 @@ typedef struct	s_sprite
 	float		y;
 	float		distance;
 	float		angle;
+	bool		visible;
 	t_img		sprite;
 }				t_sprite;
 
@@ -213,6 +215,7 @@ void			render_player(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
+void			render_sprites_map(t_all *all);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);

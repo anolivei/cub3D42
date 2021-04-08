@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/07 00:05:34 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/08 02:05:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ void	render_map(t_all *all)
 		{
 			all->map.tile_x = j * TILE_SIZE;
 			all->map.tile_y = i * TILE_SIZE;
-			if (map[i][j] == 0)
-				all->map.tile_color = WHITE;
-			else
-				all->map.tile_color = map[i][j] == 1 ? RED : GREEN;
+			all->map.tile_color = map[i][j] == 1 ? RED : WHITE;
 			draw_square(all, all->map.tile_x, all->map.tile_y, TILE_SIZE);
 			j++;
 		}

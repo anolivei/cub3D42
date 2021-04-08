@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/07 00:04:31 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/08 03:06:06 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	render(t_all *all)
 	render_sprites_projection(all);
 	render_map(all);
 	render_rays(all);
+	render_sprites_map(all);
 	render_player(all);
 	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
 		all->img.img_ptr, 0, 0);
