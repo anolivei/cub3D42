@@ -3,9 +3,11 @@ My first RayCaster with miniLibX<br>
 
 Notion about Cub3D:<br>
 http://bit.ly/cub3D42<br>
-
-![Alt text](sanic.png?raw=true "Title")
-
+<br>
+<br>
+![Alt text](anolivei.png?raw=true "Title")<br>
+<br>
+<br>
 To install minilibX:
 ```
 sudo apt-get install -y libxext-dev && sudo apt-get install -y libxrandr-dev && sudo apt-get install -y libx11-dev && sudo apt-get install -y libbsd-dev && sudo apt-get install -y libssl-dev
