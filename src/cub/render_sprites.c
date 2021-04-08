@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/07 00:10:56 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/07 00:23:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,4 @@ void	render_sprites_projection(t_all *all)
 		}
 		i++;
 	}
-	printf("%f %f\n", all->sprite[0].x, all->sprite[0].y);
 }
