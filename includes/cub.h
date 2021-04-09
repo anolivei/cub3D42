@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/08 02:48:55 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/09 03:18:57 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,7 @@ void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
 void			render_sprites_map(t_all *all);
+void			render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visible_sprites);
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
@@ -223,7 +224,7 @@ int				has_wall_at(float x, float y);
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
-float			distance_between_points(t_player *player, t_intsc *hv);
+float			distance_between_points(int x1, int y1, int x2, int y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
 

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 01:52:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/03/21 01:52:52 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/09 00:25:31 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,7 @@ float		normalize_angle(float angle)
 	return (angle);
 }
 
-float		distance_between_points(t_player *player, t_intsc *hv)
+float	distance_between_points(int x1, int y1, int x2, int y2)
 {
-	int	x1;
-	int	y1;
-	int	x2;
-	int	y2;
-
-	x1 = player->x;
-	y1 = player->y;
-	x2 = hv->wall_hit_x;
-	y2 = hv->wall_hit_y;
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
 }

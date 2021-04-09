@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/01 00:41:34 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/09 02:50:47 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	generate_3d_projection(t_all *all)
 		{
 			dist_from_top = y + (wall_strip_height / 2) - (WIN_HEIGHT / 2);
 			text_offset_y = dist_from_top * ((float)all->text.north.height / wall_strip_height);
-		
+
 			if (all->ray[i].ray_up && !all->ray[i].hit_vert)
 				color = pick_pixel(&all->text.north, text_offset_x, text_offset_y);
 			else if (all->ray[i].ray_down && !all->ray[i].hit_vert)

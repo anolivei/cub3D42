@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/08 03:08:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/09 03:18:51 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,76 @@ void	render_sprites_map(t_all *all)
 {
 	int i;
 
-	//printf("entrou\n");
 	i = 0;
 	while (i < NUM_SPRITE)
 	{
-		//printf("entrou2\n");
 		all->map.tile_color = all->sprite[i].visible == 1 ? YELLOW : BLACK;
-		printf("%d\n", all->map.tile_color);
 		draw_square(all, all->sprite[i].x - (TILE_SIZE / 2), all->sprite[i].y - (TILE_SIZE / 2), 20);
 		i++;
 	}
 }
+
+void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visible_sprites)
+{
+	int			i;
+	float		dist_proj_plane;
+	int			top_pixel;
+	int			bottom_pixel;
+	int			right_pixel;
+	int			left_pixel;
+	int			x;
+	int			y;
+	float		sprite_angle;
+	float		sprite_pos_x;
+	t_sprite	sprite;
+	float		height;
+	float		width;
+
+	i = 0;
+	while(i < num_visible_sprites)
+	{
+		sprite = visible_sprite[i];
+		dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV / 2);
+		
+		height = (TILE_SIZE / sprite.distance) * dist_proj_plane;
+		width = height;
+
+		top_pixel = (WIN_HEIGHT / 2) - (height / 2);
+		top_pixel = top_pixel < 0 ? 0 : top_pixel;
+
+		bottom_pixel = (WIN_HEIGHT / 2) + (height / 2);
+		bottom_pixel = bottom_pixel > WIN_HEIGHT ? WIN_HEIGHT : bottom_pixel;
+
+		all->player.rot_angle = normalize_angle(all->player.rot_angle);
+		sprite_angle = atan2(sprite.y - all->player.y, sprite.x - all->player.x)
+			- all->player.rot_angle;
+		
+		sprite_pos_x = tan(sprite_angle) * dist_proj_plane;
+
+		left_pixel = (WIN_WIDTH / 2) * sprite_pos_x;
+
+		right_pixel = left_pixel + width;
+		
+		x = left_pixel;
+		while(x < right_pixel)
+		{
+			y = top_pixel;
+			while (y < bottom_pixel)
+			{
+				if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
+				{
+					//color = pick_pixel(&all->text.sprite, 50, 50);
+					put_pixel(&all->img, x, y, MAGENTA);
+					printf("eae\n");
+				}
+				y++;
+			}
+			x++;
+		}
+		i++;
+	}
+}
+
 
 void	render_sprites_projection(t_all *all)
 {
@@ -89,6 +148,7 @@ void	render_sprites_projection(t_all *all)
 	{
 		angle_sprite_player = all->player.rot_angle - atan2(all->sprite[i].y - all->player.y,
 			all->sprite[i].x - all->player.x);
+		angle_sprite_player = normalize_angle(angle_sprite_player);
 		if (angle_sprite_player > PI)
 			angle_sprite_player -= TWO_PI;
 		if (angle_sprite_player < -PI)
@@ -97,16 +157,16 @@ void	render_sprites_projection(t_all *all)
 		if (angle_sprite_player < FOV / 2)
 		{
 			all->sprite[i].visible = 1;
+			all->sprite[i].angle = angle_sprite_player;
+			all->sprite[i].distance = distance_between_points(all->player.x, all->player.y,  all->sprite[i].x, all->sprite[i].y);
 			visible_sprite[num_visible_sprite] = all->sprite[i];
 			num_visible_sprite++;
-			printf("%d\n", all->sprite[i].visible);
 		}
 		else
 		{
 			all->sprite[i].visible = 0;
-			printf("%d\n", all->sprite[i].visible);
 		}
 		i++;
 	}
-	printf("\n\n");
+	render_visible_sprites(all, visible_sprite, num_visible_sprite);
 }
