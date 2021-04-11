@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 12:59:52 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/10 21:24:40 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 13:08:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	move_player(t_player *player)
 {
 	float	move_step;
+	float	side_step;
 	float	new_player_x;
 	float	new_player_y;
 
@@ -22,6 +23,14 @@ void	move_player(t_player *player)
 	move_step = player->walk_dir * player->walk_speed;
 	new_player_x = player->x + cos(player->rot_angle) * move_step;
 	new_player_y = player->y + sin(player->rot_angle) * move_step;
+	if (!has_wall_at(new_player_x, new_player_y) && !has_sprite_at(new_player_x, new_player_y))
+	{
+		player->x = new_player_x;
+		player->y = new_player_y;
+	}
+	side_step = player->walk_dir_side * player->walk_speed;
+	new_player_x = player->x + cos(player->rot_angle + (90 * (PI / 180))) * side_step;
+	new_player_y = player->y + sin(player->rot_angle + (90 * (PI / 180))) * side_step;
 	if (!has_wall_at(new_player_x, new_player_y) && !has_sprite_at(new_player_x, new_player_y))
 	{
 		player->x = new_player_x;

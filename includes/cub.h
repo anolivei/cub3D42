@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/10 23:39:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 12:01:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,9 @@ typedef struct	s_player
 	float		y;
 	float		width;
 	float		height;
-	int			turn_dir; /* -1 for left, +1 for right */
+	int			turn_dir; /* -1 for turn left, +1 for turn right */
 	int			walk_dir; /* -1 for back, +1 for front */
+	int			walk_dir_side; /* -1 for left, +1 for right */
 	float		rot_angle;
 	float		walk_speed;
 	float		turn_speed;

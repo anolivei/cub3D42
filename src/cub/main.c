@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 02:04:19 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 12:02:20 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	setup_player(t_player *player)
 	player->height = 1;
 	player->turn_dir = 0;
 	player->walk_dir = 0;
+	player->walk_dir_side = 0;
 	player->rot_angle = 45 * (PI / 180);
 	player->walk_speed = 20;
 	player->turn_speed = 10 * (PI / 180);
