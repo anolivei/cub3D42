@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 01:05:48 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 02:04:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,27 +52,27 @@ void	setup_player(t_player *player)
 void	setup_texture(t_all *all, t_text *text)
 {
 	text->north.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/blue.xpm", &text->north.width, &text->north.height);
+		"./textures/volcano.xpm", &text->north.width, &text->north.height);
 	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
 		&text->north.bpp, &text->north.size_l, &text->north.endian);
 
 	text->south.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/brick.xpm", &text->south.width, &text->south.height);
+		"./textures/volcano.xpm", &text->south.width, &text->south.height);
 	text->south.addr = mlx_get_data_addr(text->south.img_ptr,
 		&text->south.bpp, &text->south.size_l, &text->south.endian);
 
 	text->east.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/grey.xpm", &text->east.width, &text->east.height);
+		"./textures/fire.xpm", &text->east.width, &text->east.height);
 	text->east.addr = mlx_get_data_addr(text->east.img_ptr,
 		&text->east.bpp, &text->east.size_l, &text->east.endian);
 
 	text->west.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/wood.xpm", &text->west.width, &text->west.height);
+		"./textures/fire.xpm", &text->west.width, &text->west.height);
 	text->west.addr = mlx_get_data_addr(text->west.img_ptr,
 		&text->west.bpp, &text->west.size_l, &text->west.endian);
 
 	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/mario.xpm", &text->sprite.width, &text->sprite.height);
+		"./textures/jake_the_dog.xpm", &text->sprite.width, &text->sprite.height);
 	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
 		&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
 }

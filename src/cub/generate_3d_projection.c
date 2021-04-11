@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/09 02:50:47 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 02:07:46 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	generate_3d_projection(t_all *all)
 		y = 0;
 		while (y < ((2 * wall_top_pixel) / 2))
 		{
-			put_pixel(&all->img, i, y, 0x0033FF);
+			put_pixel(&all->img, i, y, 0xFF5500);
 			y++;
 		}
 		//wall
@@ -71,7 +71,7 @@ void	generate_3d_projection(t_all *all)
 		//floor
 		while (y < WIN_HEIGHT)
 		{
-			put_pixel(&all->img, i, y, 0x008811);
+			put_pixel(&all->img, i, y, 0xFF1111);
 			y++;
 		}
 		i++;

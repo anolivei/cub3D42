@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 01:15:20 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 01:25:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,17 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 	int			text_offset_y;
 	float		text_width;
 	int			dist_from_top;
+	float		perp_dist;
 
 	i = 0;
 	while(i < num_visible_sprites)
 	{
 		sprite = visible_sprite[i];
+
+		perp_dist = sprite.distance * cos(sprite.angle);
 		dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV / 2);
 
-		height = (TILE_SIZE / sprite.distance) * dist_proj_plane;
+		height = (TILE_SIZE / perp_dist) * dist_proj_plane;
 		width = height;
 
 		top_pixel = (WIN_HEIGHT / 2) - (height / 2);
