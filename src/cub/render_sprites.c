@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/10 22:29:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 00:59:29 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ const int map3 [MAP_NUM_ROWS][MAP_NUM_COLS] = {
 	{1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
-	{1, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
+	{1, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1},
 	{1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1},
@@ -70,6 +70,31 @@ void	render_sprites_map(t_all *all)
 		draw_square(all, all->sprite[i].x - (TILE_SIZE / 2), all->sprite[i].y - (TILE_SIZE / 2), 20);
 		i++;
 	}
+}
+
+t_sprite	*sort_sprites(t_sprite *visible_sprite, int num_visible_sprite)
+{
+	int			i;
+	int			j;
+	t_sprite	sprite;
+
+	i = 0;
+	while (i < num_visible_sprite - 1)
+	{
+		j = i + 1;
+		while (j < num_visible_sprite)
+		{
+			if (visible_sprite[i].distance < visible_sprite[j].distance)
+			{
+				sprite = visible_sprite[i];
+				visible_sprite[i] = visible_sprite[j];
+				visible_sprite[j] = sprite;
+			}
+			j++;
+		}
+		i++;
+	}
+	return(visible_sprite);
 }
 
 void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visible_sprites)
@@ -142,12 +167,13 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 
 void	render_sprites_projection(t_all *all)
 {
-	t_sprite	visible_sprite[NUM_SPRITE];
+	t_sprite	*visible_sprite;
 	int			num_visible_sprite;
 	int			i;
 	float		angle_sprite_player;
 
 	num_visible_sprite = 0;
+	visible_sprite = malloc(sizeof(t_sprite) * NUM_SPRITE);
 	i = 0;
 	find_sprites_on_map(all);
 	while (i < NUM_SPRITE)
@@ -160,7 +186,7 @@ void	render_sprites_projection(t_all *all)
 		if (angle_sprite_player < -PI)
 			angle_sprite_player += TWO_PI;
 		angle_sprite_player = fabs(angle_sprite_player);
-		if (angle_sprite_player < FOV / 2)
+		if (angle_sprite_player < ((FOV / 2) + 0.3))
 		{
 			all->sprite[i].visible = 1;
 			all->sprite[i].angle = angle_sprite_player;
@@ -174,5 +200,20 @@ void	render_sprites_projection(t_all *all)
 		}
 		i++;
 	}
+	i = 0;
+	while (i < num_visible_sprite)
+	{
+		printf("%f\n", visible_sprite[i].distance);
+		i++;
+	}
+	visible_sprite = sort_sprites(visible_sprite, num_visible_sprite);
+	printf("\n");
+	i = 0;
+	while (i < num_visible_sprite)
+	{
+		printf("%f\n", visible_sprite[i].distance);
+		i++;
+	}
 	render_visible_sprites(all, visible_sprite, num_visible_sprite);
+	free (visible_sprite);
 }
