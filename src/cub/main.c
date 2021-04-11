@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 12:02:20 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 19:00:58 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	setup_texture(t_all *all, t_text *text)
 		&text->west.bpp, &text->west.size_l, &text->west.endian);
 
 	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/jake_the_dog.xpm", &text->sprite.width, &text->sprite.height);
+		"./textures/sonic0.xpm", &text->sprite.width, &text->sprite.height);
 	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
 		&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
 }
