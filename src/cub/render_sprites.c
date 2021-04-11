@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 00:59:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/11 01:15:20 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 				if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
 				{
 					color = pick_pixel(&all->text.sprite, text_offset_x, text_offset_y);
-					if (color > 0)
+					if (sprite.distance < all->ray[x].distance && color > 0)
 						put_pixel(&all->img, x, y, color);
 				}
 				y++;
@@ -200,20 +200,7 @@ void	render_sprites_projection(t_all *all)
 		}
 		i++;
 	}
-	i = 0;
-	while (i < num_visible_sprite)
-	{
-		printf("%f\n", visible_sprite[i].distance);
-		i++;
-	}
 	visible_sprite = sort_sprites(visible_sprite, num_visible_sprite);
-	printf("\n");
-	i = 0;
-	while (i < num_visible_sprite)
-	{
-		printf("%f\n", visible_sprite[i].distance);
-		i++;
-	}
 	render_visible_sprites(all, visible_sprite, num_visible_sprite);
 	free (visible_sprite);
 }
