@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/09 01:54:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/10 22:21:16 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	setup_texture(t_all *all, t_text *text)
 		&text->west.bpp, &text->west.size_l, &text->west.endian);
 
 	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/sprite.xpm", &text->sprite.width, &text->sprite.height);
+		"./textures/mario.xpm", &text->sprite.width, &text->sprite.height);
 	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
 		&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
 }

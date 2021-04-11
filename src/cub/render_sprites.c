@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/10 21:15:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/10 22:29:17 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,18 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 	t_sprite	sprite;
 	float		height;
 	float		width;
+	int			color;
+	int			text_offset_x;
+	int			text_offset_y;
+	float		text_width;
+	int			dist_from_top;
 
 	i = 0;
 	while(i < num_visible_sprites)
 	{
 		sprite = visible_sprite[i];
 		dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV / 2);
-		
+
 		height = (TILE_SIZE / sprite.distance) * dist_proj_plane;
 		width = height;
 
@@ -104,23 +109,28 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 		bottom_pixel = bottom_pixel > WIN_HEIGHT ? WIN_HEIGHT : bottom_pixel;
 
 		sprite_angle = atan2(sprite.y - all->player.y, sprite.x - all->player.x) - all->player.rot_angle;
-		
+
 		sprite_pos_x = tan(sprite_angle) * dist_proj_plane;
 
-		left_pixel = (WIN_WIDTH / 2) + sprite_pos_x;
+		left_pixel = (WIN_WIDTH / 2) + sprite_pos_x - (width / 2);
 
 		right_pixel = left_pixel + width;
-		
+
 		x = left_pixel;
 		while(x < right_pixel)
 		{
+			text_width = all->text.sprite.width / width;
+			text_offset_x = (x - left_pixel) * text_width;
 			y = top_pixel;
 			while (y < bottom_pixel)
 			{
+				dist_from_top = y + (height / 2) - (WIN_HEIGHT / 2);
+				text_offset_y = dist_from_top * ((float)all->text.sprite.height / height);
 				if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
 				{
-					//color = pick_pixel(&all->text.sprite, 50, 50);
-					put_pixel(&all->img, x, y, MAGENTA);
+					color = pick_pixel(&all->text.sprite, text_offset_x, text_offset_y);
+					if (color > 0)
+						put_pixel(&all->img, x, y, color);
 				}
 				y++;
 			}
@@ -129,7 +139,6 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 		i++;
 	}
 }
-
 
 void	render_sprites_projection(t_all *all)
 {
