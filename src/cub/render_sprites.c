@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/09 03:18:51 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/10 21:15:29 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,11 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 		bottom_pixel = (WIN_HEIGHT / 2) + (height / 2);
 		bottom_pixel = bottom_pixel > WIN_HEIGHT ? WIN_HEIGHT : bottom_pixel;
 
-		all->player.rot_angle = normalize_angle(all->player.rot_angle);
-		sprite_angle = atan2(sprite.y - all->player.y, sprite.x - all->player.x)
-			- all->player.rot_angle;
+		sprite_angle = atan2(sprite.y - all->player.y, sprite.x - all->player.x) - all->player.rot_angle;
 		
 		sprite_pos_x = tan(sprite_angle) * dist_proj_plane;
 
-		left_pixel = (WIN_WIDTH / 2) * sprite_pos_x;
+		left_pixel = (WIN_WIDTH / 2) + sprite_pos_x;
 
 		right_pixel = left_pixel + width;
 		
@@ -123,7 +121,6 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 				{
 					//color = pick_pixel(&all->text.sprite, 50, 50);
 					put_pixel(&all->img, x, y, MAGENTA);
-					printf("eae\n");
 				}
 				y++;
 			}

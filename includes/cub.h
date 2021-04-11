@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/09 03:18:57 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/10 21:23:17 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ void			render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visi
 
 void			move_player(t_player *player);
 int				has_wall_at(float x, float y);
+int				has_sprite_at(float x, float y);
 
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
