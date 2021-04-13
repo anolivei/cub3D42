@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 19:00:58 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/12 21:25:43 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,11 @@ void	render(t_all *all)
 		all->img.img_ptr, 0, 0);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	t_all	all;
 
+	read_cub(&all, argv[1]);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);
 	setup_player(&all.player);
