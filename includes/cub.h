@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/12 22:03:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/13 19:14:23 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ typedef struct	s_map
 	int			tile_color;
 	int 		tile_x;
 	int			tile_y;
+	char		*line;
 }				t_map;
 
 typedef struct	s_all
@@ -231,7 +232,7 @@ float			distance_between_points(int x1, int y1, int x2, int y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
 
-void			read_cub(t_all *all, char *file);
+int				read_cub(t_all *all, char *file);
 
 /*
 ** LIB FUNCTIONS
