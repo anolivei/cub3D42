@@ -5,7 +5,7 @@ Notion about Cub3D:<br>
 http://bit.ly/cub3D42<br>
 <br>
 <br>
-![Alt text](anolivei_its_fine.png?raw=true "Title")<br>
+![Alt text](pics/anolivei_sonic_fire.png?raw=true "Title")<br>
 <br>
 <br>
 To install minilibX:
