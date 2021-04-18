@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/22 21:17:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:40:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	gnl_return_line(char **s_line, char **line)
 	if (i >= 0)
 	{
 		*line = ft_substr(*s_line, 0, i);
-		tmp = ft_substr(*s_line, i + 1, ft_strlen(*s_line));
+		tmp = ft_substr(*s_line, i + 1, ft_strlen_gnl(*s_line));
 		free(*s_line);
 		*s_line = tmp;
 		tmp = NULL;
@@ -65,7 +65,7 @@ int			get_next_line(int fd, char **line)
 	while ((ret = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[ret] = '\0';
-		s_l[fd] = s_l[fd] == NULL ? ft_strdup(buff) : ft_strjoin(s_l[fd], buff);
+		s_l[fd] = s_l[fd] == NULL ? ft_strdup(buff) : ft_strjoin_gnl(s_l[fd], buff);
 		if (s_l[fd] == 0)
 			return (-1);
 		if (gnl_return_line(&s_l[fd], line) == 1)

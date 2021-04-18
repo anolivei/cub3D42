@@ -6,13 +6,13 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:32:40 by anolivei          #+#    #+#             */
-/*   Updated: 2021/02/22 21:17:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:39:28 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_gnl(const char *str)
 {
 	long int size;
 
@@ -31,7 +31,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (s == 0)
 		return (0);
-	s_len = ft_strlen(s);
+	s_len = ft_strlen_gnl(s);
 	if ((substring = malloc((len + 1) * sizeof(char))) == 0)
 		return (0);
 	while (i < len && (start + i) < s_len)
@@ -43,7 +43,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substring);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2)
 {
 	char	*string;
 	size_t	i;
@@ -52,7 +52,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == 0 || s2 == 0)
 		return (0);
 	i = 0;
-	if ((string = malloc((ft_strlen(s1) + ft_strlen(s2) + 1)
+	if ((string = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1)
 					* sizeof(*string))) == 0)
 		return (0);
 	while (s1[i] != '\0')
@@ -77,7 +77,7 @@ char	*ft_strdup(const char *s1)
 	char	*cpy;
 	int		len;
 
-	len = ft_strlen(s1) + 1;
+	len = ft_strlen_gnl(s1) + 1;
 	if ((cpy = ((char *)malloc(sizeof(char) * len))) != 0)
 	{
 		ft_strlcpy(cpy, s1, len);
@@ -103,5 +103,5 @@ size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 		}
 		dst[i] = '\0';
 	}
-	return (ft_strlen(src));
+	return (ft_strlen_gnl(src));
 }

@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/04/05 23:30:33 by anolivei         ###   ########.fr        #
+#    Updated: 2021/04/18 12:36:36 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,12 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/cast_all_rays.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
-		$(LIB_DIR)/ft_putstr_fd.c
+		$(LIB_DIR)/ft_putstr_fd.c \
+		$(LIB_DIR)/ft_atoi.c \
+		$(LIB_DIR)/ft_split.c \
+		$(LIB_DIR)/ft_strjoin.c \
+		$(LIB_DIR)/ft_strncmp.c \
+		$(LIB_DIR)/ft_strlen.c 
 
 OBJ = $(patsubst $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 

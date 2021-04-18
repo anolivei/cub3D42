@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 19:22:44 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/18 12:59:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ static void	verify_lower_intersection(t_all *all, float ray_angle, int strip_id)
 		? distance_between_points(all->player.x, all->player.y, all->hor.wall_hit_x, all->hor.wall_hit_y) : FLT_MAX;
 	all->ver.hit_distance = all->ver.found_wall_hit
 		? distance_between_points(all->player.x, all->player.y, all->ver.wall_hit_x, all->ver.wall_hit_y) : FLT_MAX;
+	if ((all->ver.hit_distance == all->hor.hit_distance) && all->intsc.is_ray_fac_right)
+		all->ver.hit_distance--;
 	if (all->ver.hit_distance < all->hor.hit_distance)
 	{
 		all->ray[strip_id].distance = all->ver.hit_distance;

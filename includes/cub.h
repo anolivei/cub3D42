@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/13 19:14:23 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/17 23:28:43 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,11 +178,37 @@ typedef struct	s_map
 	int			tile_color;
 	int 		tile_x;
 	int			tile_y;
-	char		*line;
 }				t_map;
+
+typedef struct	s_data
+{
+	int			len_x_map;
+	int			len_y_map;
+	int			scr_weig;
+	int			scr_heig;
+	char		*NO;
+	char		*SO;
+	char		*WE;
+	char		*EA;
+	char		*floor;
+	char		*ceil;
+	int			error;
+	char		**map;
+	char		*map_line;
+	int			my_x;
+	int			my_y;
+	char		orientation;
+	int			scale_x;
+	int			scale_y;
+	int			len_x_minimap;
+	int			len_y_minimap;
+	int			*colors;
+	char		*line;
+}				t_data;
 
 typedef struct	s_all
 {
+	t_data		data;
 	t_text		text;
 	t_sprite	sprite[NUM_SPRITE];
 	t_intsc		intsc;
@@ -232,11 +258,18 @@ float			distance_between_points(int x1, int y1, int x2, int y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
 
-int				read_cub(t_all *all, char *file);
+int				read_cub(t_all *all, char *file, int argc);
+t_data			verify_data(char *line, int posic, t_data data);
 
 /*
 ** LIB FUNCTIONS
 */
 void			ft_putstr_fd(char *s, int fd);
+int				ft_atoi(const char *str);
+size_t			ft_strlen(const char *str);
+int				count_words(const char *s, char c);
+char			**ft_split(char const *s, char c);
+char			*ft_strjoin(char const *s1, char const *s2);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
