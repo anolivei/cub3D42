@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/04/21 17:49:49 by anolivei         ###   ########.fr        #
+#    Updated: 2021/04/21 19:37:42 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/process_input.c \
 		$(CUB_DIR)/cast_all_rays.c \
 		$(CUB_DIR)/read_cub.c \
+		$(CUB_DIR)/colors.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c \

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 18:53:00 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/21 19:38:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,8 @@ typedef struct	s_data
 	char		*SO;
 	char		*WE;
 	char		*EA;
-	char		*floor;
-	char		*ceil;
+	int			floor;
+	int			ceil;
 	char		*sprite;
 	int			error;
 	char		**map;
@@ -261,6 +261,8 @@ void			draw_all_rays(t_all *all, int i);
 
 int				read_cub(t_all *all, char *file, int argc);
 void			verify_data(t_all *all, int posic);
+int				convert_colors (char *color);
+void			free_array(void **array);
 
 /*
 ** LIB FUNCTIONS

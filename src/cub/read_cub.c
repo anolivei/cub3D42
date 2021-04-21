@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 18:55:54 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/21 19:39:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	verify_data(t_all *all, int posic)
 			all->data.WE = ret[1];
 		if (ft_strncmp(ret[0], "EA", 2) == 0)
 			all->data.EA = ret[1];
-		if (ft_strncmp(ret[0], "F", 1) == 0)
-			all->data.floor = ret[1];
+		if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0')
+			all->data.floor = convert_colors(ret[1]);
+		if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0')
+			all->data.ceil = convert_colors(ret[1]);
 		if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0')
 			all->data.sprite = ret[1];
-		if (ft_strncmp(ret[0], "C", 1) == 0)
-			all->data.ceil = ret[1];
 		free(ret);
 		ret = NULL;
 		if (all->data.line[0] == '0' || all->data.line[0] == '1' || all->data.line[0] == 2)
