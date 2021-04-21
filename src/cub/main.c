@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/18 13:11:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/21 18:55:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,27 +53,27 @@ void	setup_player(t_player *player)
 void	setup_texture(t_all *all, t_text *text)
 {
 	text->north.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/volcano.xpm", &text->north.width, &text->north.height);
+		all->data.NO, &text->north.width, &text->north.height);
 	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
 		&text->north.bpp, &text->north.size_l, &text->north.endian);
 
 	text->south.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/volcano.xpm", &text->south.width, &text->south.height);
+		all->data.SO, &text->south.width, &text->south.height);
 	text->south.addr = mlx_get_data_addr(text->south.img_ptr,
 		&text->south.bpp, &text->south.size_l, &text->south.endian);
 
 	text->east.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/fire.xpm", &text->east.width, &text->east.height);
+		all->data.EA, &text->east.width, &text->east.height);
 	text->east.addr = mlx_get_data_addr(text->east.img_ptr,
 		&text->east.bpp, &text->east.size_l, &text->east.endian);
 
 	text->west.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/fire.xpm", &text->west.width, &text->west.height);
+		all->data.WE, &text->west.width, &text->west.height);
 	text->west.addr = mlx_get_data_addr(text->west.img_ptr,
 		&text->west.bpp, &text->west.size_l, &text->west.endian);
 
 	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
-		"./textures/sonic0.xpm", &text->sprite.width, &text->sprite.height);
+		all->data.sprite, &text->sprite.width, &text->sprite.height);
 	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
 		&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
 }
@@ -91,12 +91,13 @@ void	render(t_all *all)
 		all->img.img_ptr, 0, 0);
 }
 
-//int		main(int argc, char **argv)
-int		main(void)
+int		main(int argc, char **argv)
+//int		main(void)
 {
 	t_all	all;
 
-//	read_cub(&all, argv[1], argc);
+	read_cub(&all, argv[1], argc);
+	printf("%s\n", all.data.NO);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);
 	setup_player(&all.player);

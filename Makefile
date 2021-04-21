@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/04/18 12:36:36 by anolivei         ###   ########.fr        #
+#    Updated: 2021/04/21 17:49:49 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/move_player.c \
 		$(CUB_DIR)/process_input.c \
 		$(CUB_DIR)/cast_all_rays.c \
+		$(CUB_DIR)/read_cub.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
@@ -50,7 +51,7 @@ LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME)
-	./$(NAME)
+	./$(NAME) map.cub
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
