@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 19:23:22 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 21:51:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,22 +125,22 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 		sprite = visible_sprite[i];
 
 		perp_dist = sprite.distance * cos(sprite.angle);
-		dist_proj_plane = (WIN_WIDTH / 2) / tan(FOV / 2);
+		dist_proj_plane = (all->data.scr_weig / 2) / tan(FOV / 2);
 
 		height = (TILE_SIZE / perp_dist) * dist_proj_plane;
 		width = height;
 
-		top_pixel = (WIN_HEIGHT / 2) - (height / 2);
+		top_pixel = (all->data.scr_heig / 2) - (height / 2);
 		top_pixel = top_pixel < 0 ? 0 : top_pixel;
 
-		bottom_pixel = (WIN_HEIGHT / 2) + (height / 2);
-		bottom_pixel = bottom_pixel > WIN_HEIGHT ? WIN_HEIGHT : bottom_pixel;
+		bottom_pixel = (all->data.scr_heig / 2) + (height / 2);
+		bottom_pixel = bottom_pixel > all->data.scr_heig ? all->data.scr_heig : bottom_pixel;
 
 		sprite_angle = atan2(sprite.y - all->player.y, sprite.x - all->player.x) - all->player.rot_angle;
 
 		sprite_pos_x = tan(sprite_angle) * dist_proj_plane;
 
-		left_pixel = (WIN_WIDTH / 2) + sprite_pos_x - (width / 2);
+		left_pixel = (all->data.scr_weig / 2) + sprite_pos_x - (width / 2);
 
 		right_pixel = left_pixel + width;
 
@@ -152,9 +152,9 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 			y = top_pixel;
 			while (y < bottom_pixel)
 			{
-				dist_from_top = y + (height / 2) - (WIN_HEIGHT / 2);
+				dist_from_top = y + (height / 2) - (all->data.scr_heig / 2);
 				text_offset_y = dist_from_top * ((float)all->text.sprite.height / height);
-				if (x > 0 && x < WIN_WIDTH && y > 0 && y < WIN_HEIGHT)
+				if (x > 0 && x < all->data.scr_weig && y > 0 && y < all->data.scr_heig)
 				{
 					color = pick_pixel(&all->text.sprite, text_offset_x, text_offset_y);
 					if (sprite.distance < all->ray[x].distance && color > 0)

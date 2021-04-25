@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 23:36:21 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 21:54:35 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	move_render(t_all *all, int *walk_turn, int i)
 {
 	*walk_turn = i;
-	move_player(&all->player);
+	move_player(all, &all->player);
 	render(all);
 }
 

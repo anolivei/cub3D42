@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/11 19:25:05 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 21:48:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ void	render_map(t_all *all)
 	}
 }
 
-int		has_wall_at(float x, float y)
+int		has_wall_at(t_all *all, float x, float y)
 {
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
+	if (x < 0 || x > all->data.scr_weig || y < 0 || y > all->data.scr_heig)
 		return (TRUE);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);
 	return (map[map_y][map_x] == 1 ? 1 : 0);
 }
 
-int		has_sprite_at(float x, float y)
+int		has_sprite_at(t_all *all, float x, float y)
 {
 	int	map_x;
 	int	map_y;
 
-	if (x < 0 || x > WIN_WIDTH || y < 0 || y > WIN_HEIGHT)
+	if (x < 0 || x > all->data.scr_weig || y < 0 || y > all->data.scr_heig)
 		return (TRUE);
 	map_x = floor(x / TILE_SIZE);
 	map_y = floor(y / TILE_SIZE);

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 18:47:36 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 21:57:05 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ static void	horizontal_intersections(t_all *all, float ray_angle)
 	all->hor.x_step *= (all->intsc.is_ray_fac_right && all->hor.x_step < 0) ? -1 : 1;
 	all->hor.next_touch_x = all->hor.x_interc;
 	all->hor.next_touch_y = all->hor.y_interc;
-	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= WIN_WIDTH &&
-		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= WIN_HEIGHT)
+	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= all->data.scr_weig &&
+		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= all->data.scr_heig)
 	{
 		all->hor.x_to_check = all->hor.next_touch_x;
 		all->hor.y_to_check = all->hor.next_touch_y + (all->intsc.is_ray_fac_up ? -1 : 0);
-		if (has_wall_at(all->hor.x_to_check, all->hor.y_to_check))
+		if (has_wall_at(all, all->hor.x_to_check, all->hor.y_to_check))
 		{
 			all->hor.wall_hit_x = all->hor.next_touch_x;
 			all->hor.wall_hit_y = all->hor.next_touch_y;
@@ -88,12 +88,12 @@ static void	vertical_intersections(t_all *all, float ray_angle)
 	all->ver.y_step *= (all->intsc.is_ray_fac_down && all->ver.y_step < 0) ? -1 : 1;
 	all->ver.next_touch_x = all->ver.x_interc;
 	all->ver.next_touch_y = all->ver.y_interc;
-	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= WIN_WIDTH &&
-		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= WIN_HEIGHT)
+	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= all->data.scr_weig &&
+		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= all->data.scr_heig)
 	{
 		all->ver.x_to_check = all->ver.next_touch_x + (all->intsc.is_ray_fac_left ? -1 : 0);
 		all->ver.y_to_check = all->ver.next_touch_y;
-		if (has_wall_at(all->ver.x_to_check, all->ver.y_to_check))
+		if (has_wall_at(all, all->ver.x_to_check, all->ver.y_to_check))
 		{
 			all->ver.wall_hit_x = all->ver.next_touch_x;
 			all->ver.wall_hit_y = all->ver.next_touch_y;
@@ -157,13 +157,15 @@ void		cast_all_rays(t_all *all)
 {
 	float	ray_angle;
 	int		strip_id;
+	int		num_rays;
 
+	num_rays = all->data.scr_weig;
 	ray_angle = all->player.rot_angle - (FOV / 2);
 	strip_id = 0;
-	while (strip_id < NUM_RAYS)
+	while (strip_id < num_rays)
 	{
 		cast_ray(ray_angle, strip_id, all);
-		ray_angle += FOV / NUM_RAYS;
+		ray_angle += FOV / num_rays;
 		strip_id++;
 	}
 }

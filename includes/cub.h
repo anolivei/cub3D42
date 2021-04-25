@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/24 18:11:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 22:10:36 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,8 @@
 # define MAP_NUM_COLS 29
 # define FALSE 0
 # define TRUE 1
-# define WIN_WIDTH (MAP_NUM_COLS * TILE_SIZE)
-# define WIN_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
-# define TEXT_WIDTH 32
-# define TEXT_HEIGHT 32
 # define NUM_SPRITE 5
 # define FOV (60 * (PI/180))
-# define NUM_RAYS WIN_WIDTH
 # define MINIMAP_SCALE_FACTOR 0.3
 
 /*
@@ -169,14 +164,14 @@ typedef struct	s_ray
 	int			ray_left;
 	int			ray_right;
 	int			wall_hit_content;
-}				t_ray[NUM_RAYS];
+}				t_ray[928];
 
 typedef struct	s_map
 {
 	int			wall_color;
 	int			floor_color;
 	int			tile_color;
-	int 		tile_x;
+	int			tile_x;
 	int			tile_y;
 }				t_map;
 
@@ -247,9 +242,9 @@ void			render_sprites_map(t_all *all);
 void			render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visible_sprites);
 t_sprite		*sort_sprites(t_sprite *visible_sprite, int num_visible_sprite);
 
-void			move_player(t_player *player);
-int				has_wall_at(float x, float y);
-int				has_sprite_at(float x, float y);
+void			move_player(t_all *all, t_player *player);
+int				has_wall_at(t_all *all, float x, float y);
+int				has_sprite_at(t_all *all, float x, float y);
 
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
