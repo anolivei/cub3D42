@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:34:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 02:19:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 */
 # define PI 3.14159265
 # define TWO_PI 6.28318530
-# define RADIUS_PLAYER 4
-# define TILE_SIZE 32
+# define TILE_SIZE 33
 # define FALSE 0
 # define TRUE 1
 # define FOV (60 * (PI/180))
@@ -47,7 +46,6 @@
 # define DOWN_ARROW_KEYM 125
 # define RIGHT_ARROW_KEYM 124
 # define LEFT_ARROW_KEYM 123
-# define TAB_KEYM 48
 # define ESC_KEYM 53
 
 /*
@@ -61,7 +59,6 @@
 # define DOWN_ARROW_KEYL 65364
 # define RIGHT_ARROW_KEYL 65363
 # define LEFT_ARROW_KEYL 65361
-# define TAB_KEYL 65289
 # define ESC_KEYL 65307
 
 /*
@@ -189,13 +186,9 @@ typedef struct	s_data
 	char		**map;
 	char		*map_line;
 	char		orientation;
-	int			scale_x;
-	int			scale_y;
-	int			len_x_minimap;
-	int			len_y_minimap;
-	int			*colors;
 	char		*line;
 	int			num_sprites;
+	int			tile_size;
 }				t_data;
 
 typedef struct	s_all
@@ -227,6 +220,7 @@ void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup_player(t_all *all, t_player *player);
 void			setup_texture(t_all *all, t_text *text);
 void			setup_map(t_all *all);
+void			define_tile_size(t_all *all);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 

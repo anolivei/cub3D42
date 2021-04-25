@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:36:12 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 02:18:15 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,19 @@ void	render(t_all *all)
 		all->img.img_ptr, 0, 0);
 }
 
+void	define_tile_size(t_all *all)
+{
+	int col;
+	int row;
+
+	col = ceil(all->data.scr_weig / all->data.len_x_map);
+	row = ceil(all->data.scr_heig / all->data.len_y_map);
+	if (col > row)
+		all->data.tile_size = row;
+	else
+		all->data.tile_size = col;
+}
+
 int		main(int argc, char **argv)
 {
 	t_all	all;
@@ -111,6 +124,7 @@ int		main(int argc, char **argv)
 	setup_map(&all);
 	read_cub(&all, argv[1], argc);
 	allocate_map(&all, 0, 0, 0);
+	define_tile_size(&all);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);
 	setup_player(&all, &all.player);
