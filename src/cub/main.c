@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 18:55:08 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 21:28:44 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int		initialize_window(t_all *all)
 		ft_putstr_fd("Error initializing minilibX\n", 1);
 		return (FALSE);
 	}
-	if ((all->mlx.window = mlx_new_window(all->mlx.init, WIN_WIDTH, WIN_HEIGHT,
+	if ((all->mlx.window = mlx_new_window(all->mlx.init, all->data.scr_weig, all->data.scr_heig,
 		"anolivei")) == 0)
 	{
 		ft_putstr_fd("Error initializing window\n", 1);
 		return (FALSE);
 	}
 	if ((all->img.img_ptr = mlx_new_image(all->mlx.init,
-		WIN_WIDTH + 1, WIN_HEIGHT + 1)) == 0)
+		all->data.scr_weig + 1, all->data.scr_heig + 1)) == 0)
 	{
 		ft_putstr_fd("Error initializing new image\n", 1);
 		return (FALSE);
@@ -36,18 +36,30 @@ int		initialize_window(t_all *all)
 	return (TRUE);
 }
 
-void	setup_player(t_player *player)
+void	setup_player(t_all *all, t_player *player)
 {
-	player->x = WIN_WIDTH / 2;
-	player->y = WIN_HEIGHT / 2;
 	player->width = 1;
 	player->height = 1;
 	player->turn_dir = 0;
 	player->walk_dir = 0;
 	player->walk_dir_side = 0;
-	player->rot_angle = 45 * (PI / 180);
+	if (all->data.orientation == 'W')
+		player->rot_angle = PI;
+	else if (all->data.orientation == 'E')
+		player->rot_angle = 0;
+	else if (all->data.orientation == 'N')
+		player->rot_angle = 1.5 * PI;
+	else if (all->data.orientation == 'S')
+		player->rot_angle = 0.5 * PI;
 	player->walk_speed = 20;
 	player->turn_speed = 10 * (PI / 180);
+}
+
+void	setup_map(t_all *all)
+{
+	all->data.map_line = ft_strdup("");
+	all->data.len_x_map = 0;
+	all->data.len_y_map = 0;
 }
 
 void	setup_texture(t_all *all, t_text *text)
@@ -92,15 +104,15 @@ void	render(t_all *all)
 }
 
 int		main(int argc, char **argv)
-//int		main(void)
 {
 	t_all	all;
-
+	
+	setup_map(&all);
 	read_cub(&all, argv[1], argc);
-	printf("%s\n", all.data.NO);
+	allocate_map(&all, 0, 0, 0);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);
-	setup_player(&all.player);
+	setup_player(&all, &all.player);
 	render(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);

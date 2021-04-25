@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 19:38:21 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 18:11:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,8 +196,6 @@ typedef struct	s_data
 	int			error;
 	char		**map;
 	char		*map_line;
-	int			my_x;
-	int			my_y;
 	char		orientation;
 	int			scale_x;
 	int			scale_y;
@@ -233,8 +231,9 @@ int				key_release(int keycode, t_all *all);
 void			process_input(t_all *all);
 
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
-void			setup_player(t_player *player);
+void			setup_player(t_all *all, t_player *player);
 void			setup_texture(t_all *all, t_text *text);
+void			setup_map(t_all *all);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 
@@ -263,6 +262,7 @@ int				read_cub(t_all *all, char *file, int argc);
 void			verify_data(t_all *all, int posic);
 int				convert_colors (char *color);
 void			free_array(void **array);
+void			allocate_map(t_all *all, int i, int j, int p);
 
 /*
 ** LIB FUNCTIONS

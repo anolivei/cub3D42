@@ -6,11 +6,21 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/21 19:39:21 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/24 18:16:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static int	count_coluns(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] != '\0')
+		i++;
+	return (i);
+}
 
 int	read_cub(t_all *all, char *file, int argc)
 {
@@ -37,7 +47,6 @@ int	read_cub(t_all *all, char *file, int argc)
 	ret = get_next_line(fd, &all->data.line);
 	while (ret > 0)
 	{
-		printf("%s %d\n", all->data.line, posic);
 		verify_data(all, posic);
 		free(all->data.line);
 		all->data.line = NULL;
@@ -51,13 +60,11 @@ int	read_cub(t_all *all, char *file, int argc)
 
 void	verify_data(t_all *all, int posic)
 {
-	int			len_split;
 	char		**ret;
 	
 	if (all->data.line[0] == 0)
 		all->data.error = 1;
 	ret = ft_split(all->data.line, ' ');
-	len_split = count_words(all->data.line, ' ');
 	if (ret[0] != NULL)
 	{
 		if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0)
@@ -81,13 +88,40 @@ void	verify_data(t_all *all, int posic)
 			all->data.sprite = ret[1];
 		free(ret);
 		ret = NULL;
-		if (all->data.line[0] == '0' || all->data.line[0] == '1' || all->data.line[0] == 2)
+		if (all->data.line[0] == '0' || all->data.line[0] == '1' || all->data.line[0] == '2')
 		{
+			if (all->data.len_x_map < count_coluns(all->data.line))
+				all->data.len_x_map = count_coluns(all->data.line);
 			all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
 			all->data.map_line = ft_strjoin(all->data.map_line, "\n");
-			if (all->data.len_x_map < len_split)
-				all->data.len_x_map = len_split;
 			all->data.len_y_map ++;
 		}
+	}
+}
+
+void	allocate_map(t_all *all, int i, int j, int p)
+{
+	all->data.map = malloc((all->data.len_y_map +1) * sizeof(char*) + 1);
+	all->data.map[0] = malloc((all->data.len_x_map +1) * sizeof(char*) + 1);
+	while (all->data.map_line[p] != '\0')
+	{
+		if (all->data.map_line[p] == '\n')
+		{
+			i++;
+			j = 0;
+			all->data.map[i] = malloc(all->data.len_x_map * sizeof(char*) + 1);
+		}
+		else
+		{
+			all->data.map[i][j] = all->data.map_line[p];
+			if (all->data.map_line[p] == 'N' || all->data.map_line[p] == 'S' || all->data.map_line[p] == 'W' || all->data.map_line[p] == 'E')
+			{
+				all->player.x = j * TILE_SIZE;
+				all->player.y = i * TILE_SIZE;
+				all->data.orientation = all->data.map_line[p];
+			}
+			j++;
+		}
+		p++;
 	}
 }
