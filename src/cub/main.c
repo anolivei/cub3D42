@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/24 21:28:44 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 01:36:12 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	setup_map(t_all *all)
 	all->data.map_line = ft_strdup("");
 	all->data.len_x_map = 0;
 	all->data.len_y_map = 0;
+	all->data.num_sprites = 0;
 }
 
 void	setup_texture(t_all *all, t_text *text)

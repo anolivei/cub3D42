@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/24 18:16:45 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 01:19:06 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	allocate_map(t_all *all, int i, int j, int p)
 				all->player.y = i * TILE_SIZE;
 				all->data.orientation = all->data.map_line[p];
 			}
+			if (all->data.map_line[p] == '2')
+				all->data.num_sprites++;
 			j++;
 		}
 		p++;

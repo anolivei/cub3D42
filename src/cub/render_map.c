@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 23:11:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:08:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 01:15:16 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	render_map(t_all *all)
 	int	j;
 
 	i = 0;
-	while (i < MAP_NUM_ROWS)
+	while (i < all->data.len_y_map)
 	{
 		j = 0;
-		while (j < MAP_NUM_COLS)
+		while (j < all->data.len_x_map)
 		{
 			all->map.tile_x = j * TILE_SIZE;
 			all->map.tile_y = i * TILE_SIZE;

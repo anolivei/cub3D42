@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:09:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 01:30:36 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void	find_sprites_on_map(t_all *all)
 
 	i = 0;
 	num = 0;
-	while (i < MAP_NUM_ROWS)
+	while (i < all->data.len_y_map)
 	{
 		j = 0;
-		while (j < MAP_NUM_COLS)
+		while (j < all->data.len_x_map)
 		{
 			all->map.tile_x = (j * TILE_SIZE) + (TILE_SIZE / 2);
 			all->map.tile_y = (i * TILE_SIZE) + (TILE_SIZE / 2);
@@ -44,7 +44,7 @@ void	render_sprites_map(t_all *all)
 	int i;
 
 	i = 0;
-	while (i < NUM_SPRITE)
+	while (i < all->data.num_sprites)
 	{
 		all->map.tile_color = all->sprite[i].visible == 1 ? YELLOW : BLACK;
 		draw_square(all, all->sprite[i].x - (TILE_SIZE / 2), all->sprite[i].y - (TILE_SIZE / 2), 20);
@@ -155,11 +155,12 @@ void	render_sprites_projection(t_all *all)
 	int			i;
 	float		angle_sprite_player;
 
+	all->sprite = malloc((all->data.num_sprites + 1) * sizeof(t_sprite));
 	num_visible_sprite = 0;
-	visible_sprite = malloc(sizeof(t_sprite) * NUM_SPRITE);
+	visible_sprite = malloc(sizeof(t_sprite) * all->data.num_sprites);
 	i = 0;
 	find_sprites_on_map(all);
-	while (i < NUM_SPRITE)
+	while (i < all->data.num_sprites)
 	{
 		angle_sprite_player = all->player.rot_angle - atan2(all->sprite[i].y - all->player.y,
 			all->sprite[i].x - all->player.x);

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/24 22:10:36 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 01:34:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@
 # define TWO_PI 6.28318530
 # define RADIUS_PLAYER 4
 # define TILE_SIZE 32
-# define MAP_NUM_ROWS 17
-# define MAP_NUM_COLS 29
 # define FALSE 0
 # define TRUE 1
-# define NUM_SPRITE 5
 # define FOV (60 * (PI/180))
 # define MINIMAP_SCALE_FACTOR 0.3
 
@@ -164,7 +161,7 @@ typedef struct	s_ray
 	int			ray_left;
 	int			ray_right;
 	int			wall_hit_content;
-}				t_ray[928];
+}				t_ray;
 
 typedef struct	s_map
 {
@@ -198,13 +195,14 @@ typedef struct	s_data
 	int			len_y_minimap;
 	int			*colors;
 	char		*line;
+	int			num_sprites;
 }				t_data;
 
 typedef struct	s_all
 {
 	t_data		data;
 	t_text		text;
-	t_sprite	sprite[NUM_SPRITE];
+	t_sprite	*sprite;
 	t_intsc		intsc;
 	t_intsc		hor;
 	t_intsc		ver;
@@ -212,7 +210,7 @@ typedef struct	s_all
 	t_player	player;
 	t_mlx		mlx;
 	t_map		map;
-	t_ray		ray;
+	t_ray		*ray;
 }				t_all;
 
 /*
