@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 02:19:27 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/27 22:32:10 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@
 */
 # define PI 3.14159265
 # define TWO_PI 6.28318530
-# define TILE_SIZE 33
 # define FALSE 0
 # define TRUE 1
 # define FOV (60 * (PI/180))
-# define MINIMAP_SCALE_FACTOR 0.3
+# define MINIMAP_SCALE_FACTOR 0.2
 
 /*
 ** KEYCODES MAC
@@ -93,6 +92,7 @@ typedef struct	s_text
 	t_img		south;
 	t_img		east;
 	t_img		west;
+	int			res_text[8];
 }				t_text;
 
 typedef struct	s_sprite
@@ -130,7 +130,7 @@ typedef struct	s_intsc
 	int			found_wall_hit;
 	float		wall_hit_x;
 	float		wall_hit_y;
-	int			wall_content;
+	char		wall_content;
 	float		next_touch_x;
 	float		next_touch_y;
 	float		x_to_check;
@@ -220,7 +220,7 @@ void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup_player(t_all *all, t_player *player);
 void			setup_texture(t_all *all, t_text *text);
 void			setup_map(t_all *all);
-void			define_tile_size(t_all *all);
+void			choose_tile_size(t_data *data, t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 

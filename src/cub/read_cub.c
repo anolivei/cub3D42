@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:19:06 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/27 21:48:28 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ void	allocate_map(t_all *all, int i, int j, int p)
 			all->data.map[i][j] = all->data.map_line[p];
 			if (all->data.map_line[p] == 'N' || all->data.map_line[p] == 'S' || all->data.map_line[p] == 'W' || all->data.map_line[p] == 'E')
 			{
-				all->player.x = j * TILE_SIZE;
-				all->player.y = i * TILE_SIZE;
+				all->player.x = j;
+				all->player.y = i;
 				all->data.orientation = all->data.map_line[p];
 			}
 			if (all->data.map_line[p] == '2')

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/24 21:57:48 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/27 18:47:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	generate_3d_projection(t_all *all)
 	{
 		perp_dist = all->ray[i].distance * cos(all->ray[i].ray_angle - all->player.rot_angle);
 		dist_proj_plane = (all->data.scr_weig / 2) / tan(FOV / 2);
-		proj_wall_height = (TILE_SIZE / perp_dist) * dist_proj_plane;
+		proj_wall_height = (all->data.tile_size/ perp_dist) * dist_proj_plane;
 		wall_strip_height = (int)proj_wall_height;
 		wall_top_pixel = (all->data.scr_heig / 2) - (wall_strip_height / 2);
 		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
@@ -49,9 +49,10 @@ void	generate_3d_projection(t_all *all)
 		}
 		//wall
 		if (all->ray[i].hit_vert)
-			text_offset_x = (int)all->ray[i].wall_hit_y % all->text.north.height;
+			text_offset_x = (int)all->ray[i].wall_hit_y % all->data.tile_size;
 		else
-			text_offset_x = (int)all->ray[i].wall_hit_x % all->text.north.width;
+			text_offset_x = (int)all->ray[i].wall_hit_x % all->data.tile_size;
+		text_offset_x *= all->text.north.width / all->data.tile_size;
 		y = wall_top_pixel;
 		while (y < wall_bottom_pixel)
 		{

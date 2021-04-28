@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 02:21:28 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/27 22:25:25 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,71 +22,81 @@ static void	setup_rays(t_intsc *hv)
 
 static void	horizontal_intersections(t_all *all, float ray_angle)
 {
+	int max_width;
+	int max_height;
+	
 	setup_rays(&all->hor);
-	all->hor.y_interc = floor (all->player.y / TILE_SIZE) * TILE_SIZE;
-	all->hor.y_interc += all->intsc.is_ray_fac_down ? TILE_SIZE : 0;
+	all->hor.y_interc = floor (all->player.y / all->data.tile_size) * all->data.tile_size;
+	all->hor.y_interc += all->intsc.is_ray_fac_down ? all->data.tile_size : 0;
 	all->hor.x_interc = all->player.x + (all->hor.y_interc - all->player.y) / tan(ray_angle);
-	all->hor.y_step = TILE_SIZE;
+	all->hor.y_step = all->data.tile_size;
 	all->hor.y_step *= all->intsc.is_ray_fac_up ? -1 : 1;
-	all->hor.x_step = TILE_SIZE / tan(ray_angle);
+	all->hor.x_step = all->data.tile_size / tan(ray_angle);
 	all->hor.x_step *= (all->intsc.is_ray_fac_left && all->hor.x_step > 0) ? -1 : 1;
 	all->hor.x_step *= (all->intsc.is_ray_fac_right && all->hor.x_step < 0) ? -1 : 1;
+	max_width = all->data.tile_size * all->data.len_x_map;
+	max_height = all->data.tile_size * all->data.len_y_map;
 	all->hor.next_touch_x = all->hor.x_interc;
 	all->hor.next_touch_y = all->hor.y_interc;
-	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= all->data.scr_weig &&
-		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= all->data.scr_heig)
+	while (all->hor.next_touch_x >= 0 && all->hor.next_touch_x <= max_width &&
+		all->hor.next_touch_y >= 0 && all->hor.next_touch_y <= max_height)
 	{
 		all->hor.x_to_check = all->hor.next_touch_x;
-		all->hor.y_to_check = all->hor.next_touch_y + (all->intsc.is_ray_fac_up ? -1 : 0);
+		if (all->intsc.is_ray_fac_up)
+			all->hor.y_to_check = all->hor.next_touch_y - 1;
+		else
+			all->hor.y_to_check = all->hor.next_touch_y;
 		if (has_wall_at(all, all->hor.x_to_check, all->hor.y_to_check))
 		{
 			all->hor.wall_hit_x = all->hor.next_touch_x;
 			all->hor.wall_hit_y = all->hor.next_touch_y;
-			all->hor.wall_content = all->data.map[(int)floor(all->hor.y_to_check / TILE_SIZE)]
-				[(int)floor(all->hor.x_to_check / TILE_SIZE)];
+			all->hor.wall_content = all->data.map[(int)floor(all->hor.y_to_check / all->data.tile_size)]
+				[(int)floor(all->hor.x_to_check / all->data.tile_size)];
 			all->hor.found_wall_hit = TRUE;
 			break;
 		}
-		else
-		{
-			all->hor.next_touch_x += all->hor.x_step;
-			all->hor.next_touch_y += all->hor.y_step;
-		}
+		all->hor.next_touch_x += all->hor.x_step;
+		all->hor.next_touch_y += all->hor.y_step;
 	}
 }
 
 static void	vertical_intersections(t_all *all, float ray_angle)
 {
+	int max_width;
+	int max_height;
+	
 	setup_rays(&all->ver);
-	all->ver.x_interc = floor(all->player.x / TILE_SIZE) * TILE_SIZE;
-	all->ver.x_interc += all->intsc.is_ray_fac_right ? TILE_SIZE : 0;
+	all->ver.x_interc = floor(all->player.x / all->data.tile_size) * all->data.tile_size;
+	all->ver.x_interc += all->intsc.is_ray_fac_right ? all->data.tile_size : 0;
 	all->ver.y_interc = all->player.y + (all->ver.x_interc - all->player.x) * tan(ray_angle);
-	all->ver.x_step = TILE_SIZE;
+	all->ver.x_step = all->data.tile_size;
 	all->ver.x_step *= all->intsc.is_ray_fac_left ? -1 : 1;
-	all->ver.y_step = TILE_SIZE * tan(ray_angle);
+	all->ver.y_step = all->data.tile_size * tan(ray_angle);
 	all->ver.y_step *= (all->intsc.is_ray_fac_up && all->ver.y_step > 0) ? -1 : 1;
 	all->ver.y_step *= (all->intsc.is_ray_fac_down && all->ver.y_step < 0) ? -1 : 1;
 	all->ver.next_touch_x = all->ver.x_interc;
 	all->ver.next_touch_y = all->ver.y_interc;
-	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= all->data.scr_weig &&
-		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= all->data.scr_heig)
+	max_width = all->data.tile_size * all->data.len_x_map - 1;
+	max_height = all->data.tile_size * all->data.len_y_map - 1;
+	while (all->ver.next_touch_x >= 0 && all->ver.next_touch_x <= max_width &&
+		all->ver.next_touch_y >= 0 && all->ver.next_touch_y <= max_height)
 	{
-		all->ver.x_to_check = all->ver.next_touch_x + (all->intsc.is_ray_fac_left ? -1 : 0);
 		all->ver.y_to_check = all->ver.next_touch_y;
+		if (all->intsc.is_ray_fac_left)
+			all->ver.x_to_check = all->ver.next_touch_x - 1;
+		else
+			all->ver.x_to_check = all->ver.next_touch_x;
 		if (has_wall_at(all, all->ver.x_to_check, all->ver.y_to_check))
 		{
 			all->ver.wall_hit_x = all->ver.next_touch_x;
 			all->ver.wall_hit_y = all->ver.next_touch_y;
-			all->ver.wall_content = all->data.map[(int)floor(all->ver.y_to_check / TILE_SIZE)]
-				[(int)floor(all->ver.x_to_check / TILE_SIZE)];
+			all->ver.wall_content = all->data.map[(int)floor(all->ver.y_to_check / all->data.tile_size)]
+				[(int)floor(all->ver.x_to_check / all->data.tile_size)];
 			all->ver.found_wall_hit = TRUE;
 			break ;
 		}
-		else
-		{
-			all->ver.next_touch_x += all->ver.x_step;
-			all->ver.next_touch_y += all->ver.y_step;
-		}
+		all->ver.next_touch_x += all->ver.x_step;
+		all->ver.next_touch_y += all->ver.y_step;
 	}
 }
 

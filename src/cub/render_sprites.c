@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/25 01:30:36 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/25 02:30:41 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	find_sprites_on_map(t_all *all)
 		j = 0;
 		while (j < all->data.len_x_map)
 		{
-			all->map.tile_x = (j * TILE_SIZE) + (TILE_SIZE / 2);
-			all->map.tile_y = (i * TILE_SIZE) + (TILE_SIZE / 2);
+			all->map.tile_x = (j * all->data.tile_size) + (all->data.tile_size/ 2);
+			all->map.tile_y = (i * all->data.tile_size) + (all->data.tile_size/ 2);
 			if (all->data.map[i][j] == '2')
 			{
 				all->sprite[num].x = all->map.tile_x;
@@ -47,7 +47,7 @@ void	render_sprites_map(t_all *all)
 	while (i < all->data.num_sprites)
 	{
 		all->map.tile_color = all->sprite[i].visible == 1 ? YELLOW : BLACK;
-		draw_square(all, all->sprite[i].x - (TILE_SIZE / 2), all->sprite[i].y - (TILE_SIZE / 2), 20);
+		draw_square(all, all->sprite[i].x - (all->data.tile_size/ 2), all->sprite[i].y - (all->data.tile_size/ 2), 20);
 		i++;
 	}
 }
@@ -107,7 +107,7 @@ void	render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visibl
 		perp_dist = sprite.distance * cos(sprite.angle);
 		dist_proj_plane = (all->data.scr_weig / 2) / tan(FOV / 2);
 
-		height = (TILE_SIZE / perp_dist) * dist_proj_plane;
+		height = (all->data.tile_size/ perp_dist) * dist_proj_plane;
 		width = height;
 
 		top_pixel = (all->data.scr_heig / 2) - (height / 2);
