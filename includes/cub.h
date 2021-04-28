@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 22:32:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/27 23:23:12 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,6 @@ int				pick_pixel(t_img *data, int x, int y);
 
 void			render(t_all *all);
 void			render_map(t_all *all);
-void			render_player(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
