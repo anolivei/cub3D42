@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 23:22:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/29 21:41:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	setup_player(t_all *all, t_player *player)
 		player->rot_angle = 0.5 * PI;
 	player->walk_speed = 20;
 	player->turn_speed = 10 * (PI / 180);
+	if (!(all->bmp.buff_body = malloc(sizeof(int) * (all->data.scr_weig + 1) * (all->data.scr_heig + 1))))
+		ft_putstr_fd("Malloc failed to allocate 'cub->bmp.buff_body'", 1);
 }
 
 void	setup_map(t_all *all)
@@ -147,6 +149,8 @@ int		main(int argc, char **argv)
 	choose_tile_size(&all.data, &all.text);
 	setup_player(&all, &all.player);
 	render(&all);
+	if (argv[2] && ft_memcmp(argv[2], "--save", 6) == 0 && ft_strlen(argv[2]) == 6)
+		save_image_bmp(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 21:48:28 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/28 21:34:40 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	read_cub(t_all *all, char *file, int argc)
 	
 	posic = 0;
 	ret = 1;
-	if (argc == 2)
+	if (argc == 2 || argc == 3)
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)

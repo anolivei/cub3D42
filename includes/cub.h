@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 23:23:12 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/04/28 22:23:16 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,13 @@
 /*
 ** STRUCTS
 */
+
+typedef struct		s_bmp
+{
+	unsigned char	buff_header[54];
+	int				*buff_body;
+}					t_bmp;
+
 typedef struct	s_img
 {
 	void		*img_ptr;
@@ -193,6 +200,7 @@ typedef struct	s_data
 
 typedef struct	s_all
 {
+	t_bmp		bmp;
 	t_data		data;
 	t_text		text;
 	t_sprite	*sprite;
@@ -249,6 +257,7 @@ void			verify_data(t_all *all, int posic);
 int				convert_colors (char *color);
 void			free_array(void **array);
 void			allocate_map(t_all *all, int i, int j, int p);
+void			save_image_bmp(t_all *all);
 
 /*
 ** LIB FUNCTIONS
@@ -260,5 +269,6 @@ int				count_words(const char *s, char c);
 char			**ft_split(char const *s, char c);
 char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
-
+int				ft_memcmp(const void *s1, const void *s2, size_t n);
+void			*ft_memset(void *b, int c, size_t len);
 #endif
