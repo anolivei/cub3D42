@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 16:22:17 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 22:05:04 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:01:44 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	draw_ray_270_360(t_all *all, float x_init, float y_init, int i)
 	}
 }
 
-void		draw_all_rays(t_all *all, int i)
+void	draw_all_rays(t_all *all, int i)
 {
 	float	x_init;
 	float	y_init;

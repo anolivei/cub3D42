@@ -6,11 +6,11 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/18 12:40:45 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 14:49:14 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "../../includes/cub.h"
 
 static int	gnl_end_line(char *s_line)
 {

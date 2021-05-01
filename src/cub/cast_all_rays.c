@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/27 22:25:25 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:23:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	horizontal_intersections(t_all *all, float ray_angle)
 			all->hor.y_to_check = all->hor.next_touch_y - 1;
 		else
 			all->hor.y_to_check = all->hor.next_touch_y;
-		if (has_wall_at(all, all->hor.x_to_check, all->hor.y_to_check))
+		if (has_colision_at(all, all->hor.x_to_check, all->hor.y_to_check, '1'))
 		{
 			all->hor.wall_hit_x = all->hor.next_touch_x;
 			all->hor.wall_hit_y = all->hor.next_touch_y;
@@ -86,7 +86,7 @@ static void	vertical_intersections(t_all *all, float ray_angle)
 			all->ver.x_to_check = all->ver.next_touch_x - 1;
 		else
 			all->ver.x_to_check = all->ver.next_touch_x;
-		if (has_wall_at(all, all->ver.x_to_check, all->ver.y_to_check))
+		if (has_colision_at(all, all->ver.x_to_check, all->ver.y_to_check, '1'))
 		{
 			all->ver.wall_hit_x = all->ver.next_touch_x;
 			all->ver.wall_hit_y = all->ver.next_touch_y;

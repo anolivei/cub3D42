@@ -6,11 +6,11 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:32:40 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/18 12:39:28 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 14:49:05 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/get_next_line.h"
+#include "../../includes/cub.h"
 
 size_t	ft_strlen_gnl(const char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/28 21:34:40 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 18:31:04 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	count_coluns(char *line)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i] != '\0')
@@ -22,14 +22,33 @@ static int	count_coluns(char *line)
 	return (i);
 }
 
-int	read_cub(t_all *all, char *file, int argc)
+static void	put_data_on_struct(char **ret, t_data *data, int posic)
 {
-	int		ret;
-	int		fd;
-	int		posic;
-	
-	posic = 0;
-	ret = 1;
+	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0)
+	{
+		data->scr_weig = ft_atoi(ret[1]);
+		data->scr_heig = ft_atoi(ret[2]);
+	}
+	if (ft_strncmp(ret[0], "NO", 2) == 0)
+		data->NO = ret[1];
+	if (ft_strncmp(ret[0], "SO", 2) == 0)
+		data->SO = ret[1];
+	if (ft_strncmp(ret[0], "WE", 2) == 0)
+		data->WE = ret[1];
+	if (ft_strncmp(ret[0], "EA", 2) == 0)
+		data->EA = ret[1];
+	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0')
+		data->floor = convert_colors(ret[1]);
+	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0')
+		data->ceil = convert_colors(ret[1]);
+	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0')
+		data->sprite = ret[1];
+}
+
+static int	verify_args(int argc, char *file)
+{
+	int	fd;
+
 	if (argc == 2 || argc == 3)
 	{
 		fd = open(file, O_RDONLY);
@@ -38,12 +57,48 @@ int	read_cub(t_all *all, char *file, int argc)
 			ft_putstr_fd("Error reading file\n", 1);
 			return (0);
 		}
+		else
+			return (fd);
 	}
 	else
 	{
 		ft_putstr_fd("Choose a map", 1);
 		return (0);
 	}
+}
+
+void	verify_data(t_all *all, int posic)
+{
+	char	**ret;
+
+	if (all->data.line[0] == 0)
+		all->data.error = 1;
+	ret = ft_split(all->data.line, ' ');
+	if (ret[0] != NULL)
+	{
+		put_data_on_struct(ret, &all->data, posic);
+		free(ret);
+		ret = NULL;
+		if (all->data.line[0] == '0' || all->data.line[0] == '1'
+			|| all->data.line[0] == '2')
+		{
+			if (all->data.len_x_map < count_coluns(all->data.line))
+				all->data.len_x_map = count_coluns(all->data.line);
+			all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
+			all->data.map_line = ft_strjoin(all->data.map_line, "\n");
+			all->data.len_y_map++;
+		}
+	}
+}
+
+int	read_cub(t_all *all, char *file, int argc, int posic)
+{
+	int	ret;
+	int	fd;
+
+	fd = verify_args(argc, file);
+	if (fd == 0)
+		return (0);
 	ret = get_next_line(fd, &all->data.line);
 	while (ret > 0)
 	{
@@ -55,75 +110,5 @@ int	read_cub(t_all *all, char *file, int argc)
 	}
 	free(all->data.line);
 	all->data.line = NULL;
-	return(1);
-}
-
-void	verify_data(t_all *all, int posic)
-{
-	char		**ret;
-	
-	if (all->data.line[0] == 0)
-		all->data.error = 1;
-	ret = ft_split(all->data.line, ' ');
-	if (ret[0] != NULL)
-	{
-		if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0)
-		{
-			all->data.scr_weig = ft_atoi(ret[1]);
-			all->data.scr_heig = ft_atoi(ret[2]);
-		}
-		if (ft_strncmp(ret[0], "NO", 2) == 0)
-			all->data.NO = ret[1];
-		if (ft_strncmp(ret[0], "SO", 2) == 0)
-			all->data.SO = ret[1];
-		if (ft_strncmp(ret[0], "WE", 2) == 0)
-			all->data.WE = ret[1];
-		if (ft_strncmp(ret[0], "EA", 2) == 0)
-			all->data.EA = ret[1];
-		if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0')
-			all->data.floor = convert_colors(ret[1]);
-		if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0')
-			all->data.ceil = convert_colors(ret[1]);
-		if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0')
-			all->data.sprite = ret[1];
-		free(ret);
-		ret = NULL;
-		if (all->data.line[0] == '0' || all->data.line[0] == '1' || all->data.line[0] == '2')
-		{
-			if (all->data.len_x_map < count_coluns(all->data.line))
-				all->data.len_x_map = count_coluns(all->data.line);
-			all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
-			all->data.map_line = ft_strjoin(all->data.map_line, "\n");
-			all->data.len_y_map ++;
-		}
-	}
-}
-
-void	allocate_map(t_all *all, int i, int j, int p)
-{
-	all->data.map = malloc((all->data.len_y_map +1) * sizeof(char*) + 1);
-	all->data.map[0] = malloc((all->data.len_x_map +1) * sizeof(char*) + 1);
-	while (all->data.map_line[p] != '\0')
-	{
-		if (all->data.map_line[p] == '\n')
-		{
-			i++;
-			j = 0;
-			all->data.map[i] = malloc(all->data.len_x_map * sizeof(char*) + 1);
-		}
-		else
-		{
-			all->data.map[i][j] = all->data.map_line[p];
-			if (all->data.map_line[p] == 'N' || all->data.map_line[p] == 'S' || all->data.map_line[p] == 'W' || all->data.map_line[p] == 'E')
-			{
-				all->player.x = j;
-				all->player.y = i;
-				all->data.orientation = all->data.map_line[p];
-			}
-			if (all->data.map_line[p] == '2')
-				all->data.num_sprites++;
-			j++;
-		}
-		p++;
-	}
+	return (1);
 }

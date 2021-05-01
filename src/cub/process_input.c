@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 13:18:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 14:37:27 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	move_render(t_all *all, int *walk_turn, int i)
 	render(all);
 }
 
-int			key_press(int keycode, t_all *all)
+int	key_press(int keycode, t_all *all)
 {
 	if (keycode == W_KEYM || keycode == W_KEYL)
 		move_render(all, &all->player.walk_dir, +1);
@@ -38,7 +38,7 @@ int			key_press(int keycode, t_all *all)
 	return (1);
 }
 
-int			key_release(int keycode, t_all *all)
+int	key_release(int keycode, t_all *all)
 {
 	if (keycode == W_KEYM || keycode == W_KEYL)
 		all->player.walk_dir = 0;
@@ -55,7 +55,7 @@ int			key_release(int keycode, t_all *all)
 	return (1);
 }
 
-int			destroy_window(t_all *all)
+int	destroy_window(t_all *all)
 {
 	mlx_clear_window(all->mlx.init, all->mlx.window);
 	mlx_destroy_window(all->mlx.init, all->mlx.window);
@@ -68,7 +68,7 @@ int			destroy_window(t_all *all)
 	return (1);
 }
 
-void		process_input(t_all *all)
+void	process_input(t_all *all)
 {
 	mlx_hook(all->mlx.window, 2, 1L << 0, key_press, all);
 	mlx_hook(all->mlx.window, 3, 1L << 1, key_release, all);

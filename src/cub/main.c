@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 14:33:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 17:48:39 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char **argv)
 	t_all	all;
 
 	setup_map(&all);
-	read_cub(&all, argv[1], argc);
+	read_cub(&all, argv[1], argc, 0);
 	allocate_map(&all, 0, 0, 0);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);

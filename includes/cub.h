@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 14:29:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 19:21:52 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,24 @@
 ** INCLUDES
 */
 # include <mlx.h>
-# include "get_next_line.h"
 # include <math.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
 # include <float.h>
 # include <stdbool.h>
+# include <unistd.h>
+# include <stdlib.h>
+
 /*
 ** DEFINES
 */
+# define BUFFER_SIZE 1000
 # define PI 3.14159265
 # define TWO_PI 6.28318530
 # define FALSE 0
 # define TRUE 1
-# define FOV (60 * (PI/180))
+# define FOV 1.0472
 # define MINIMAP_SCALE_FACTOR 0.2
 
 /*
@@ -71,17 +74,17 @@
 # define CYAN 0x0000FFFF
 # define WHITE 0x00FFFFFF
 # define BLACK 0x00000000
+
 /*
 ** STRUCTS
 */
-
-typedef struct		s_bmp
+typedef struct s_bmp
 {
 	unsigned char	buff_header[54];
 	int				*buff_body;
 }					t_bmp;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img_ptr;
 	char		*addr;
@@ -92,7 +95,7 @@ typedef struct	s_img
 	int			height;
 }				t_img;
 
-typedef struct	s_text
+typedef struct s_text
 {
 	t_img		sprite;
 	t_img		north;
@@ -102,7 +105,7 @@ typedef struct	s_text
 	int			res_text[8];
 }				t_text;
 
-typedef struct	s_sprite
+typedef struct s_sprite
 {
 	float		x;
 	float		y;
@@ -112,27 +115,27 @@ typedef struct	s_sprite
 	t_img		sprite;
 }				t_sprite;
 
-typedef struct	s_mlx
+typedef struct s_mlx
 {
 	void		*window;
 	void		*init;
 }				t_mlx;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	float		x;
 	float		y;
 	float		width;
 	float		height;
-	int			turn_dir; /* -1 for turn left, +1 for turn right */
-	int			walk_dir; /* -1 for back, +1 for front */
-	int			walk_dir_side; /* -1 for left, +1 for right */
+	int			turn_dir;
+	int			walk_dir;
+	int			walk_dir_side;
 	float		rot_angle;
 	float		walk_speed;
 	float		turn_speed;
 }				t_player;
 
-typedef struct	s_intsc
+typedef struct s_intsc
 {
 	int			found_wall_hit;
 	float		wall_hit_x;
@@ -153,7 +156,7 @@ typedef struct	s_intsc
 	float		hit_distance;
 }				t_intsc;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	float		ray_angle;
 	float		wall_hit_x;
@@ -167,7 +170,7 @@ typedef struct	s_ray
 	int			wall_hit_content;
 }				t_ray;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int			wall_color;
 	int			floor_color;
@@ -176,7 +179,7 @@ typedef struct	s_map
 	int			tile_y;
 }				t_map;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	int			len_x_map;
 	int			len_y_map;
@@ -198,7 +201,7 @@ typedef struct	s_data
 	int			tile_size;
 }				t_data;
 
-typedef struct	s_all
+typedef struct s_all
 {
 	t_bmp		bmp;
 	t_data		data;
@@ -218,12 +221,10 @@ typedef struct	s_all
 ** CUB FUNCTIONS
 */
 int				initialize_window(t_all *mlx);
-
 int				destroy_window(t_all *all);
 int				key_press(int keycode, t_all *all);
 int				key_release(int keycode, t_all *all);
 void			process_input(t_all *all);
-
 void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup_player(t_all *all, t_player *player);
 void			setup_texture(t_all *all, t_text *text);
@@ -232,28 +233,24 @@ void			put_textures_in_a_array(t_text *text);
 void			choose_tile_size(t_data *data, t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
-
 void			render(t_all *all);
 void			render_map(t_all *all);
 void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
 void			render_sprites_map(t_all *all);
-void			render_visible_sprites(t_all *all, t_sprite *visible_sprite, int num_visible_sprites);
+void			render_visible_sprites(t_all *all, t_sprite *visible_sprite,
+					int num_visible_sprites);
 t_sprite		*sort_sprites(t_sprite *visible_sprite, int num_visible_sprite);
-
 void			move_player(t_all *all, t_player *player);
-int				has_wall_at(t_all *all, float x, float y);
-int				has_sprite_at(t_all *all, float x, float y);
-
+int				has_colision_at(t_all *all, float x, float y, char c);
 void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
 float			distance_between_points(int x1, int y1, int x2, int y2);
 void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
-
-int				read_cub(t_all *all, char *file, int argc);
+int				read_cub(t_all *all, char *file, int argc, int posic);
 void			verify_data(t_all *all, int posic);
 int				convert_colors (char *color);
 void			free_array(void **array);
@@ -272,4 +269,15 @@ char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
+
+/*
+** GNL FUNCTIONS
+*/
+int				get_next_line(int fd, char **line);
+size_t			ft_strlen_gnl(const char *str);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_strjoin_gnl(char const *s1, char const *s2);
+char			*ft_strdup(const char *s1);
+size_t			ft_strlcpy(char *restrict dst,
+					const char *restrict src, size_t destsize);
 #endif
