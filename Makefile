@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/04/29 21:52:49 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/01 14:33:35 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIB_DIR =		src/libft
 OBJ_DIR	=		.obj
 
 SRC =	$(CUB_DIR)/main.c \
+		$(CUB_DIR)/setups.c \
 		$(CUB_DIR)/mlx_utils.c \
 		$(CUB_DIR)/draw_square.c \
 		$(CUB_DIR)/draw_all_rays.c \
@@ -54,7 +55,7 @@ LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME)
-	./$(NAME) map.cub --save
+	./$(NAME) map.cub
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@

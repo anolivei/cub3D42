@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/28 22:23:16 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/01 14:29:37 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,6 +228,7 @@ void			walk_turn_dir(int *walk_turn_dir, int i, t_all *all);
 void			setup_player(t_all *all, t_player *player);
 void			setup_texture(t_all *all, t_text *text);
 void			setup_map(t_all *all);
+void			put_textures_in_a_array(t_text *text);
 void			choose_tile_size(t_data *data, t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
