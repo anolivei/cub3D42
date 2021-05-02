@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 19:21:52 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 00:00:30 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,9 @@ int				convert_colors (char *color);
 void			free_array(void **array);
 void			allocate_map(t_all *all, int i, int j, int p);
 void			save_image_bmp(t_all *all);
-
+void			horizontal_intersections(t_all *all, float ray_angle);
+void			vertical_intersections(t_all *all, float ray_angle);
+void			setup_rays(t_intsc *hv);
 /*
 ** LIB FUNCTIONS
 */
