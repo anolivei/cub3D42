@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 00:00:30 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 03:31:44 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,28 @@ typedef struct s_bmp
 	unsigned char	buff_header[54];
 	int				*buff_body;
 }					t_bmp;
+
+typedef struct s_proj
+{
+	int			i;
+	int			x;
+	int			y;
+	float		dist_proj_plane;
+	float		height;
+	float		width;
+	int			top_pixel;
+	int			bottom_pixel;
+	int			right_pixel;
+	int			left_pixel;
+	float		perp_dist;
+	int			color;
+	int			tex_off_x;
+	int			tex_off_y;
+	int			dist_from_top;
+	int			num_rays;
+	float		spr_angle;
+	float		spr_pos_x;
+}				t_proj;
 
 typedef struct s_img
 {
@@ -204,6 +226,7 @@ typedef struct s_data
 typedef struct s_all
 {
 	t_bmp		bmp;
+	t_proj		p;
 	t_data		data;
 	t_text		text;
 	t_sprite	*sprite;
@@ -239,8 +262,8 @@ void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
 void			render_sprites_map(t_all *all);
-void			render_visible_sprites(t_all *all, t_sprite *visible_sprite,
-					int num_visible_sprites);
+void			find_sprites_on_map(t_all *all);
+void			render_vis_spr(t_all *all, t_sprite *vis_spr, int num_vis_spr);
 t_sprite		*sort_sprites(t_sprite *visible_sprite, int num_visible_sprite);
 void			move_player(t_all *all, t_player *player);
 int				has_colision_at(t_all *all, float x, float y, char c);
@@ -278,7 +301,7 @@ void			*ft_memset(void *b, int c, size_t len);
 int				get_next_line(int fd, char **line);
 size_t			ft_strlen_gnl(const char *str);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin_gnl(char const *s1, char const *s2);
+char			*ft_strjoin_gnl(char const *s1, char const *s2, size_t i, size_t j);
 char			*ft_strdup(const char *s1);
 size_t			ft_strlcpy(char *restrict dst,
 					const char *restrict src, size_t destsize);

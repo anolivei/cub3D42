@@ -6,17 +6,17 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 20:37:31 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/17 23:22:11 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 03:22:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-int				count_words(const char *s, char c)
+int	count_words(const char *s, char c)
 {
-	int i;
-	int n_word;
-	int control;
+	int	i;
+	int	n_word;
+	int	control;
 
 	i = 0;
 	control = 0;
@@ -35,13 +35,13 @@ int				count_words(const char *s, char c)
 	return (n_word);
 }
 
-static char		*string(const char *s, int init, int end)
+static char	*string(const char *s, int init, int end)
 {
 	char	*string;
 	int		i;
 
 	i = 0;
-	string = (char*)malloc((end - init + 1) * sizeof(char));
+	string = (char *)malloc((end - init + 1) * sizeof(char));
 	while (end > init)
 	{
 		string[i] = s[init];
@@ -52,7 +52,7 @@ static char		*string(const char *s, int init, int end)
 	return (string);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		init_w;

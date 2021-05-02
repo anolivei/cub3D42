@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 20:32:40 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 14:49:05 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 03:32:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen_gnl(const char *str)
 {
-	long int size;
+	long int	size;
 
 	size = 0;
 	while (str[size] != '\0')
@@ -32,7 +32,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (s == 0)
 		return (0);
 	s_len = ft_strlen_gnl(s);
-	if ((substring = malloc((len + 1) * sizeof(char))) == 0)
+	substring = malloc((len + 1) * sizeof(char));
+	if (substring == 0)
 		return (0);
 	while (i < len && (start + i) < s_len)
 	{
@@ -43,24 +44,21 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (substring);
 }
 
-char	*ft_strjoin_gnl(char const *s1, char const *s2)
+char	*ft_strjoin_gnl(char const *s1, char const *s2, size_t i, size_t j)
 {
 	char	*string;
-	size_t	i;
-	size_t	j;
 
 	if (s1 == 0 || s2 == 0)
 		return (0);
-	i = 0;
-	if ((string = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1)
-					* sizeof(*string))) == 0)
+	string = malloc((ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1)
+			* sizeof(*string));
+	if (string == 0)
 		return (0);
 	while (s1[i] != '\0')
 	{
 		string[i] = s1[i];
 		i++;
 	}
-	j = 0;
 	while (s2[j] != '\0')
 	{
 		string[i] = s2[j];
@@ -78,7 +76,8 @@ char	*ft_strdup(const char *s1)
 	int		len;
 
 	len = ft_strlen_gnl(s1) + 1;
-	if ((cpy = ((char *)malloc(sizeof(char) * len))) != 0)
+	cpy = ((char *)malloc(sizeof(char) * len));
+	if (cpy != 0)
 	{
 		ft_strlcpy(cpy, s1, len);
 		return (cpy);

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 19:56:45 by anolivei          #+#    #+#             */
-/*   Updated: 2021/04/17 23:23:51 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 03:21:58 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *str)
 {
-	long int size;
+	long int	size;
 
 	size = 0;
 	while (str[size] != '\0')
