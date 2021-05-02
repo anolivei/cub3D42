@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 05:41:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 15:05:45 by anolivei         ###   ########.fr       */
+/*   Created: 2021/05/02 14:57:41 by anolivei          #+#    #+#             */
+/*   Updated: 2021/05/02 15:03:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char		*string;
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	s_len;
+	char	*substring;
 
-	if (s1 == 0 || s2 == 0)
-		return (0);
 	i = 0;
-	string = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(*string));
-	if (string == 0)
+	if (s == 0)
 		return (0);
-	while (s1[i] != '\0')
+	s_len = ft_strlen(s);
+	substring = malloc((len + 1) * sizeof(char));
+	if (substring == 0)
+		return (0);
+	while (i < len && (start + i) < s_len)
 	{
-		string[i] = s1[i];
+		substring[i] = s[i + start];
 		i++;
 	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		string[i] = s2[j];
-		i++;
-		j++;
-	}
-	free((char *)s1);
-	string[i] = '\0';
-	return (string);
+	substring[i] = '\0';
+	return (substring);
 }

@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/02 02:35:16 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/02 15:10:54 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/vertical_intersections.c \
 		$(CUB_DIR)/horizontal_intersections.c \
 		$(GNL_DIR)/get_next_line.c \
-		$(GNL_DIR)/get_next_line_utils.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
 		$(LIB_DIR)/ft_atoi.c \
 		$(LIB_DIR)/ft_split.c \
@@ -48,7 +47,10 @@ SRC =	$(CUB_DIR)/main.c \
 		$(LIB_DIR)/ft_strncmp.c \
 		$(LIB_DIR)/ft_strlen.c \
 		$(LIB_DIR)/ft_memcmp.c \
-		$(LIB_DIR)/ft_memset.c
+		$(LIB_DIR)/ft_memset.c \
+		$(LIB_DIR)/ft_substr.c \
+		$(LIB_DIR)/ft_strdup.c \
+		$(LIB_DIR)/ft_strlcpy.c
 
 OBJ = $(patsubst $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
@@ -59,7 +61,7 @@ LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME)
-	./$(NAME) map.cub
+	./$(NAME) map.cub --save
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@

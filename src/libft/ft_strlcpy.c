@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 05:41:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 15:05:45 by anolivei         ###   ########.fr       */
+/*   Created: 2021/05/02 15:02:13 by anolivei          #+#    #+#             */
+/*   Updated: 2021/05/02 15:02:38 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_strlcpy(char *restrict dst, const char *restrict src, size_t dstsize)
 {
-	char		*string;
-	size_t		i;
-	size_t		j;
+	size_t	i;
 
-	if (s1 == 0 || s2 == 0)
-		return (0);
 	i = 0;
-	string = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(*string));
-	if (string == 0)
+	if (src == 0)
 		return (0);
-	while (s1[i] != '\0')
+	if (dstsize > 0)
 	{
-		string[i] = s1[i];
-		i++;
+		while (src[i] != '\0' && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		string[i] = s2[j];
-		i++;
-		j++;
-	}
-	free((char *)s1);
-	string[i] = '\0';
-	return (string);
+	return (ft_strlen(src));
 }

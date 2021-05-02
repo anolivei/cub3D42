@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 14:33:45 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 15:08:26 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -302,16 +302,14 @@ char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
 void			*ft_memset(void *b, int c, size_t len);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_strdup(const char *s1);
+size_t			ft_strlcpy(char *restrict dst,
+					const char *restrict src, size_t destsize);
 
 /*
 ** GNL FUNCTIONS
 */
 int				get_next_line(int fd, char **line, t_gnl *gnl);
-size_t			ft_strlen_gnl(const char *str);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin_gnl(char const *s1, char const *s2, size_t i,
-					size_t j);
-char			*ft_strdup(const char *s1);
-size_t			ft_strlcpy(char *restrict dst,
-					const char *restrict src, size_t destsize);
+
 #endif
