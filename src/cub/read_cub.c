@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 18:31:04 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 14:34:01 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,13 @@ int	read_cub(t_all *all, char *file, int argc, int posic)
 	fd = verify_args(argc, file);
 	if (fd == 0)
 		return (0);
-	ret = get_next_line(fd, &all->data.line);
+	ret = get_next_line(fd, &all->data.line, &all->gnl);
 	while (ret > 0)
 	{
 		verify_data(all, posic);
 		free(all->data.line);
 		all->data.line = NULL;
-		ret = get_next_line(fd, &all->data.line);
+		ret = get_next_line(fd, &all->data.line, &all->gnl);
 		posic++;
 	}
 	free(all->data.line);

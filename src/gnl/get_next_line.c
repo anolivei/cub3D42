@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 03:32:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 14:43:13 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,38 @@ static int	gnl_return_line(char **s_line, char **line)
 		return (0);
 }
 
-int	get_next_line(int fd, char **line)
+static void	gnl_allocate(t_gnl *gnl, int fd)
 {
-	char		buff[262144];
-	ssize_t		ret;
-	static char	*s_l[102440];
+	if (gnl->s_l[fd] == NULL)
+		gnl->s_l[fd] = ft_strdup(gnl->buff);
+	else
+		gnl->s_l[fd] = ft_strjoin_gnl(gnl->s_l[fd], gnl->buff, 0, 0);
+}
 
+int	get_next_line(int fd, char **line, t_gnl *gnl)
+{
 	if (line == 0 || fd < 0 || BUFFER_SIZE == 0)
 		return (-1);
-	if (s_l[fd] != NULL)
+	if (gnl->s_l[fd] != NULL)
 	{
-		if (gnl_return_line(&s_l[fd], line) == 1)
+		if (gnl_return_line(&gnl->s_l[fd], line) == 1)
 			return (1);
 	}
-	else
-		s_l[fd] = ft_strdup("");
-	ret = read(fd, buff, BUFFER_SIZE);
-	while (ret > 0)
+	gnl->s_l[fd] = ft_strdup("");
+	gnl->ret = read(fd, gnl->buff, BUFFER_SIZE);
+	while (gnl->ret > 0)
 	{
-		buff[ret] = '\0';
-		if (s_l[fd] == NULL)
-			s_l[fd] = ft_strdup(buff);
-		else
-			s_l[fd] = ft_strjoin_gnl(s_l[fd], buff, 0, 0);
-		if (s_l[fd] == 0)
+		gnl->buff[gnl->ret] = '\0';
+		gnl_allocate(gnl, fd);
+		if (gnl->s_l[fd] == 0)
 			return (-1);
-		if (gnl_return_line(&s_l[fd], line) == 1)
+		if (gnl_return_line(&gnl->s_l[fd], line) == 1)
 			return (1);
 	}
-	if (ret < 0)
+	if (gnl->ret < 0)
 		*line = NULL;
 	else
-		*line = s_l[fd];
-	s_l[fd] = NULL;
-	return (ret);
+		*line = gnl->s_l[fd];
+	gnl->s_l[fd] = NULL;
+	return (gnl->ret);
 }

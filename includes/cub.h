@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 03:31:44 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 14:33:45 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,13 @@
 /*
 ** STRUCTS
 */
+typedef struct s_gnl
+{
+	char			buff[262144];
+	ssize_t			ret;
+	char			*s_l[102440];
+}					t_gnl;
+
 typedef struct s_bmp
 {
 	unsigned char	buff_header[54];
@@ -225,6 +232,7 @@ typedef struct s_data
 
 typedef struct s_all
 {
+	t_gnl		gnl;
 	t_bmp		bmp;
 	t_proj		p;
 	t_data		data;
@@ -298,10 +306,11 @@ void			*ft_memset(void *b, int c, size_t len);
 /*
 ** GNL FUNCTIONS
 */
-int				get_next_line(int fd, char **line);
+int				get_next_line(int fd, char **line, t_gnl *gnl);
 size_t			ft_strlen_gnl(const char *str);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin_gnl(char const *s1, char const *s2, size_t i, size_t j);
+char			*ft_strjoin_gnl(char const *s1, char const *s2, size_t i,
+					size_t j);
 char			*ft_strdup(const char *s1);
 size_t			ft_strlcpy(char *restrict dst,
 					const char *restrict src, size_t destsize);
