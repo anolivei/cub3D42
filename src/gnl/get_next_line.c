@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 15:08:48 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 22:56:26 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,17 @@ static int	gnl_end_line(char *s_line)
 	return (-1);
 }
 
-static int	gnl_return_line(char **s_line, char **line)
+static int	gnl_return_line(char **s_line, char **line, t_gnl *gnl)
 {
 	int		i;
-	char	*tmp;
 
 	i = gnl_end_line(*s_line);
 	if (i >= 0)
 	{
 		*line = ft_substr(*s_line, 0, i);
-		tmp = ft_substr(*s_line, i + 1, ft_strlen(*s_line));
+		gnl->tmp = ft_substr(*s_line, i + 1, ft_strlen(*s_line));
 		free(*s_line);
-		*s_line = tmp;
-		tmp = NULL;
+		*s_line = gnl->tmp;
 		return (1);
 	}
 	else
@@ -61,7 +59,7 @@ int	get_next_line(int fd, char **line, t_gnl *gnl)
 		return (-1);
 	if (gnl->s_l[fd] != NULL)
 	{
-		if (gnl_return_line(&gnl->s_l[fd], line) == 1)
+		if (gnl_return_line(&gnl->s_l[fd], line, gnl) == 1)
 			return (1);
 	}
 	gnl->s_l[fd] = ft_strdup("");
@@ -72,7 +70,7 @@ int	get_next_line(int fd, char **line, t_gnl *gnl)
 		gnl_allocate(gnl, fd);
 		if (gnl->s_l[fd] == 0)
 			return (-1);
-		if (gnl_return_line(&gnl->s_l[fd], line) == 1)
+		if (gnl_return_line(&gnl->s_l[fd], line, gnl) == 1)
 			return (1);
 	}
 	if (gnl->ret < 0)
@@ -80,5 +78,6 @@ int	get_next_line(int fd, char **line, t_gnl *gnl)
 	else
 		*line = gnl->s_l[fd];
 	gnl->s_l[fd] = NULL;
+	free_check(gnl->tmp);
 	return (gnl->ret);
 }

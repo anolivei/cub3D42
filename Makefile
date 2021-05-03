@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/02 15:10:54 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/02 16:26:25 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME)
-	./$(NAME) map.cub --save
+	./$(NAME) map.cub
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
@@ -71,7 +71,7 @@ $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				clang -c $(CFLAGS) $< -o $@
 
 linux: $(NAME_LINUX)
-	./$(NAME_LINUX)
+	./$(NAME_LINUX) map.cub
 
 $(NAME_LINUX): $(OBJ)
 		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
@@ -90,4 +90,4 @@ fclean: clean
 
 re: fclean all
 
-.PONY: all clean fclean re debug
+.PONY: all clean fclean re debug debug_linux

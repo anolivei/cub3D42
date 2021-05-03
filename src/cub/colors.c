@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:14:55 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 15:07:14 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:24:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,4 @@ int	convert_colors(char *color)
 	check_color_number(r, g, b);
 	free_array((void *) colors);
 	return (r << 16 | g << 8 | b);
-}
-
-void	free_array(void **array)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (array[i])
-		free(array[i++]);
-	free(array);
 }

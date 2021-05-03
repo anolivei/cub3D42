@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 14:37:27 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 22:59:35 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,8 @@ int	destroy_window(t_all *all)
 {
 	mlx_clear_window(all->mlx.init, all->mlx.window);
 	mlx_destroy_window(all->mlx.init, all->mlx.window);
-	free(all->ray);
-	free(all->data.map);
-	free(all->data.map_line);
-	free(all->sprite);
-	free(all->bmp.buff_body);
+	free_check(all->sprite);
+	free_check(all->bmp.buff_body);
 	exit(0);
 	return (1);
 }

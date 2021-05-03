@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 01:52:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 19:01:12 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 16:42:46 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,23 @@ float	normalize_angle(float angle)
 float	distance_between_points(int x1, int y1, int x2, int y2)
 {
 	return (sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)));
+}
+
+void	free_array(void **array)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (array[i])
+		free(array[i++]);
+	free(array);
+}
+
+void	free_check(void *ptr)
+{
+	if (ptr)
+	{
+		free(ptr);
+		ptr = NULL;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 15:08:26 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 22:43:41 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ typedef struct s_gnl
 {
 	char			buff[262144];
 	ssize_t			ret;
-	char			*s_l[102440];
+	char			*s_l[5];
+	char			*tmp;
 }					t_gnl;
 
 typedef struct s_bmp
@@ -285,6 +286,7 @@ int				read_cub(t_all *all, char *file, int argc, int posic);
 void			verify_data(t_all *all, int posic);
 int				convert_colors (char *color);
 void			free_array(void **array);
+void			free_check(void *ptr);
 void			allocate_map(t_all *all, int i, int j, int p);
 void			save_image_bmp(t_all *all);
 void			horizontal_intersections(t_all *all, float ray_angle);

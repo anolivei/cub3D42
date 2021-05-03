@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 14:34:01 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/02 23:00:05 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ static void	put_data_on_struct(char **ret, t_data *data, int posic)
 		data->scr_heig = ft_atoi(ret[2]);
 	}
 	if (ft_strncmp(ret[0], "NO", 2) == 0)
-		data->NO = ret[1];
+		data->NO = ft_strdup(ret[1]);
 	if (ft_strncmp(ret[0], "SO", 2) == 0)
-		data->SO = ret[1];
+		data->SO = ft_strdup(ret[1]);
 	if (ft_strncmp(ret[0], "WE", 2) == 0)
-		data->WE = ret[1];
+		data->WE = ft_strdup(ret[1]);
 	if (ft_strncmp(ret[0], "EA", 2) == 0)
-		data->EA = ret[1];
+		data->EA = ft_strdup(ret[1]);
 	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0')
 		data->floor = convert_colors(ret[1]);
 	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0')
 		data->ceil = convert_colors(ret[1]);
 	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0')
-		data->sprite = ret[1];
+		data->sprite = ft_strdup(ret[1]);
 }
 
 static int	verify_args(int argc, char *file)
@@ -77,8 +77,6 @@ void	verify_data(t_all *all, int posic)
 	if (ret[0] != NULL)
 	{
 		put_data_on_struct(ret, &all->data, posic);
-		free(ret);
-		ret = NULL;
 		if (all->data.line[0] == '0' || all->data.line[0] == '1'
 			|| all->data.line[0] == '2')
 		{
@@ -89,6 +87,7 @@ void	verify_data(t_all *all, int posic)
 			all->data.len_y_map++;
 		}
 	}
+	free_array((void *)ret);
 }
 
 int	read_cub(t_all *all, char *file, int argc, int posic)
@@ -108,7 +107,7 @@ int	read_cub(t_all *all, char *file, int argc, int posic)
 		ret = get_next_line(fd, &all->data.line, &all->gnl);
 		posic++;
 	}
-	free(all->data.line);
-	all->data.line = NULL;
+	free_check(all->data.line);
+	close(fd);
 	return (1);
 }
