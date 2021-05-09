@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 22:02:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:51:42 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	render_vis_spr(t_all *all, t_sprite *vis_spr, int num_vis_spr)
 	t_sprite	sprite;
 
 	p.i = -1;
-	while (p.i++ < num_vis_spr)
+	while (++p.i < num_vis_spr)
 	{
 		sprite = vis_spr[p.i];
 		p.perp_dist = sprite.distance * cos(sprite.angle);

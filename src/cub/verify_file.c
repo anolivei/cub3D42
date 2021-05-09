@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 22:17:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:37:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	verify_file(t_all *all)
 
 void	max_resolution(t_all *all)
 {
-	int	screen_width = 5000;
-	int	screen_height = 5000;
+	int	screen_width;
+	int	screen_height;
 
-	//mlx_get_screen_size(all->mlx.init, &screen_width, &screen_height);
+	screen_width = 5000;
+	screen_height = 5000;
+	mlx_get_screen_size(all->mlx.init, &screen_width, &screen_height);
 	if (all->data.scr_weig > screen_width)
 		all->data.scr_weig = screen_width;
 	if (all->data.scr_heig > screen_height)

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 21:59:33 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 23:50:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ static void	wall(t_all *all, t_proj *p, int str_heig)
 		p->tex_off_x = (int)all->ray[p->i].wall_hit_x % all->data.tile_size;
 	p->tex_off_x *= all->text.north.width / all->data.tile_size;
 	p->y = p->top_pixel;
+	if (all->ray[p->i].ray_up && !all->ray[p->i].hit_vert)
+		all->text.now = all->text.north;
+	else if (all->ray[p->i].ray_down && !all->ray[p->i].hit_vert)
+		all->text.now = all->text.south;
+	else if (all->ray[p->i].ray_right && all->ray[p->i].hit_vert)
+		all->text.now = all->text.east;
+	else if (all->ray[p->i].ray_left && all->ray[p->i].hit_vert)
+		all->text.now = all->text.west;
 	while (p->y < p->bottom_pixel)
 	{
 		p->dist_from_top = p->y + (str_heig / 2) - (all->data.scr_heig / 2);
 		p->tex_off_y = p->dist_from_top * ((float)all->text.north.height
 				/ str_heig);
-		if (all->ray[p->i].ray_up && !all->ray[p->i].hit_vert)
-			all->text.now = all->text.north;
-		else if (all->ray[p->i].ray_down && !all->ray[p->i].hit_vert)
-			all->text.now = all->text.south;
-		else if (all->ray[p->i].ray_right && all->ray[p->i].hit_vert)
-			all->text.now = all->text.east;
-		else if (all->ray[p->i].ray_left && all->ray[p->i].hit_vert)
-			all->text.now = all->text.west;
 		p->color = pick_pixel(&all->text.now, p->tex_off_x, p->tex_off_y);
 		put_pixel(&all->img, p->i, p->y, p->color);
 		p->y++;

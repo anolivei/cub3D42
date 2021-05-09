@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 21:56:19 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:43:53 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,21 @@
 /*
 ** STRUCTS
 */
+
+typedef struct	s_error
+{
+	int			R;
+	int			NO;
+	int			SO;
+	int			WE;
+	int			EA;
+	int			S;
+	int			F;
+	int			C;
+	int			map;
+	char		*msg;
+}				t_error;
+
 typedef struct s_gnl
 {
 	char			buff[262144];
@@ -235,6 +250,7 @@ typedef struct s_data
 typedef struct s_all
 {
 	t_gnl		gnl;
+	t_error		error;
 	t_bmp		bmp;
 	t_proj		p;
 	t_data		data;
