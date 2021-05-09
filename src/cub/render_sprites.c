@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 03:18:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:02:10 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,15 +110,13 @@ static int	calc_num_vis_sprites(t_all *all, float angle_sprite_player,
 
 void	render_sprites_projection(t_all *all)
 {
-	t_sprite	*visible_sprite;
 	int			num_visible_sprite;
 
-	all->sprite = malloc((all->data.num_sprites + 1) * sizeof(t_sprite));
 	num_visible_sprite = 0;
-	visible_sprite = malloc(sizeof(t_sprite) * all->data.num_sprites);
+	all->visible_sprite = malloc(sizeof(t_sprite) * all->data.num_sprites);
 	find_sprites_on_map(all);
-	num_visible_sprite = calc_num_vis_sprites(all, 0, visible_sprite, 0);
-	visible_sprite = sort_sprites(visible_sprite, num_visible_sprite);
-	render_vis_spr(all, visible_sprite, num_visible_sprite);
-	free (visible_sprite);
+	num_visible_sprite = calc_num_vis_sprites(all, 0, all->visible_sprite, 0);
+	all->visible_sprite = sort_sprites(all->visible_sprite, num_visible_sprite);
+	render_vis_spr(all, all->visible_sprite, num_visible_sprite);
+	free (all->visible_sprite);
 }

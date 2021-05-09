@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 22:17:29 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:16:32 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	initialize_window(t_all *all)
 		ft_putstr_fd("Error initializing minilibX\n", 1);
 		return (FALSE);
 	}
+	verify_file(all);
 	all->mlx.window = mlx_new_window(all->mlx.init, all->data.scr_weig,
 			all->data.scr_heig, "anolivei");
 	if (all->mlx.window == 0)
@@ -62,6 +63,9 @@ int	main(int argc, char **argv)
 	setup_texture(&all, &all.text);
 	choose_tile_size(&all.data, &all.text);
 	setup_player(&all, &all.player);
+	all.ray = malloc((all.data.scr_weig + 1) * sizeof(t_ray));
+	all.sprite = malloc((all.data.num_sprites + 1) * sizeof(t_sprite));
+	find_sprites_on_map(&all);
 	render(&all);
 	if (argv[2] && ft_memcmp(argv[2], "--save", 6) == 0
 		&& ft_strlen(argv[2]) == 6)

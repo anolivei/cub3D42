@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 21:00:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 00:24:57 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/04 21:38:50 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	cast_all_rays(t_all *all)
 	int		strip_id;
 	int		num_rays;
 
-	all->ray = malloc((all->data.scr_weig + 1) * sizeof(t_ray));
 	num_rays = all->data.scr_weig;
 	ray_angle = all->player.rot_angle - (FOV / 2);
 	strip_id = 0;

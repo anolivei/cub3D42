@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/04 22:18:22 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 22:17:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	verify_file(t_all *all)
 {
-	max_resolution(all);	
+	max_resolution(all);
 }
 
 void	max_resolution(t_all *all)

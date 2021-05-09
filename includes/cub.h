@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 22:43:41 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:56:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ typedef struct s_gnl
 {
 	char			buff[262144];
 	ssize_t			ret;
-	char			*s_l[5];
+	char			*s_l[6000];
 	char			*tmp;
 }					t_gnl;
 
@@ -132,6 +132,7 @@ typedef struct s_text
 	t_img		south;
 	t_img		east;
 	t_img		west;
+	t_img		now;
 	int			res_text[8];
 }				t_text;
 
@@ -238,6 +239,7 @@ typedef struct s_all
 	t_proj		p;
 	t_data		data;
 	t_text		text;
+	t_sprite	*visible_sprite;
 	t_sprite	*sprite;
 	t_intsc		intsc;
 	t_intsc		hor;
@@ -284,6 +286,8 @@ void			draw_square(t_all *all, int draw_x, int draw_y, int size);
 void			draw_all_rays(t_all *all, int i);
 int				read_cub(t_all *all, char *file, int argc, int posic);
 void			verify_data(t_all *all, int posic);
+void			verify_file(t_all *all);
+void			max_resolution(t_all *all);
 int				convert_colors (char *color);
 void			free_array(void **array);
 void			free_check(void *ptr);

@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/02 16:26:25 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/04 20:00:26 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/save_image_bmp.c \
 		$(CUB_DIR)/vertical_intersections.c \
 		$(CUB_DIR)/horizontal_intersections.c \
+		$(CUB_DIR)/verify_file.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
 		$(LIB_DIR)/ft_atoi.c \

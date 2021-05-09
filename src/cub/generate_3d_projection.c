@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/24 00:25:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 02:11:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/08 21:59:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ static void	wall(t_all *all, t_proj *p, int str_heig)
 		p->tex_off_y = p->dist_from_top * ((float)all->text.north.height
 				/ str_heig);
 		if (all->ray[p->i].ray_up && !all->ray[p->i].hit_vert)
-			p->color = pick_pixel(&all->text.north, p->tex_off_x, p->tex_off_y);
+			all->text.now = all->text.north;
 		else if (all->ray[p->i].ray_down && !all->ray[p->i].hit_vert)
-			p->color = pick_pixel(&all->text.south, p->tex_off_x, p->tex_off_y);
+			all->text.now = all->text.south;
 		else if (all->ray[p->i].ray_right && all->ray[p->i].hit_vert)
-			p->color = pick_pixel(&all->text.east, p->tex_off_x, p->tex_off_y);
+			all->text.now = all->text.east;
 		else if (all->ray[p->i].ray_left && all->ray[p->i].hit_vert)
-			p->color = pick_pixel(&all->text.west, p->tex_off_x, p->tex_off_y);
+			all->text.now = all->text.west;
+		p->color = pick_pixel(&all->text.now, p->tex_off_x, p->tex_off_y);
 		put_pixel(&all->img, p->i, p->y, p->color);
 		p->y++;
 	}
