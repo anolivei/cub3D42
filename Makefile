@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/04 20:00:26 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/09 01:15:36 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ SRC =	$(CUB_DIR)/main.c \
 		$(LIB_DIR)/ft_memset.c \
 		$(LIB_DIR)/ft_substr.c \
 		$(LIB_DIR)/ft_strdup.c \
-		$(LIB_DIR)/ft_strlcpy.c
+		$(LIB_DIR)/ft_strlcpy.c \
+		$(LIB_DIR)/ft_isdigit.c
 
 OBJ = $(patsubst $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 

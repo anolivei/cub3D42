@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 22:43:53 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/09 01:09:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,6 +328,7 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strdup(const char *s1);
 size_t			ft_strlcpy(char *restrict dst,
 					const char *restrict src, size_t destsize);
+int				ft_isdigit(int c);
 
 /*
 ** GNL FUNCTIONS
