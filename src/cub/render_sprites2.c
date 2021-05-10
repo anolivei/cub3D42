@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_sprites2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 02:31:41 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/02 02:33:03 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/09 20:23:46 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

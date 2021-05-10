@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 01:09:08 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/09 12:46:18 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,6 +225,18 @@ typedef struct s_map
 	int			tile_y;
 }				t_map;
 
+typedef struct s_qtt
+{
+	int			floor;
+	int			ceil;
+	int			sprite;
+	int			resol;
+	int			no;
+	int			so;
+	int			ea;
+	int			we;
+	int			orient;
+}				t_qtt;
 typedef struct s_data
 {
 	int			len_x_map;
@@ -245,7 +257,10 @@ typedef struct s_data
 	char		*line;
 	int			num_sprites;
 	int			tile_size;
+	t_qtt		qtt;
 }				t_data;
+
+
 
 typedef struct s_all
 {
@@ -265,11 +280,13 @@ typedef struct s_all
 	t_mlx		mlx;
 	t_map		map;
 	t_ray		*ray;
+	t_qtt		qtt;
 }				t_all;
 
 /*
 ** CUB FUNCTIONS
 */
+int				verify_number(char *number);
 int				initialize_window(t_all *mlx);
 int				destroy_window(t_all *all);
 int				key_press(int keycode, t_all *all);

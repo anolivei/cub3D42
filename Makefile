@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/09 01:15:36 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/09 20:05:04 by cpereira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			cub3D
-NAME_LINUX =	cub3D_linux
+NAME =			cub3D_mac
+NAME_LINUX =	cub3D
 
 HEADER_DIR =	includes
 CUB_DIR =		src/cub
@@ -56,29 +56,31 @@ SRC =	$(CUB_DIR)/main.c \
 
 OBJ = $(patsubst $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)%.c, $(OBJ_DIR)%.o, $(SRC))
 
-CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g
 
 LINUX_FLAGS = -lXext -lX11 -lbsd -lm -lmlx
 
 MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
-all: $(NAME)
+all: $(NAME_LINUX)
+
+
+mac: $(NAME)
 	./$(NAME) map.cub
 
 $(NAME): $(OBJ)
-		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
+		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -g -fsanitize=address -o $@
 
 $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				mkdir -p $(OBJ_DIR)
 				clang -c $(CFLAGS) $< -o $@
 
-linux: $(NAME_LINUX)
-	./$(NAME_LINUX) map.cub
+
 
 $(NAME_LINUX): $(OBJ)
 		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
 
-debug: 
+debug:
 	gcc -g -lm -lmlx -fsanitize=address -framework OpenGL -framework AppKit $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
 
 debug_linux:

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setups.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 14:31:34 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 22:03:20 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/09 11:54:25 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ void	setup_map(t_all *all)
 	all->data.len_x_map = 0;
 	all->data.len_y_map = 0;
 	all->data.num_sprites = 0;
+
+	all->data.qtt.floor = 0;
+	all->data.qtt.ceil = 0;
+	all->data.qtt.sprite = 0;
+	all->data.qtt.resol = 0;
+	all->data.qtt.no = 0;
+	all->data.qtt.so = 0;
+	all->data.qtt.ea = 0;
+	all->data.qtt.we = 0;
+	all->data.qtt.orient = 0;
+	all->data.scr_heig = 0;
+	all->data.scr_weig = 0;
 }
 
 void	setup_texture(t_all *all, t_text *text)

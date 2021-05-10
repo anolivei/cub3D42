@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 01:27:28 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/09 19:56:36 by cpereira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,80 @@ static int	count_coluns(char *line)
 		i++;
 	return (i);
 }
+static void verify_chars(char **ret)
+{
+	if (ft_strlen(ret[0]) == 1) // c-f-r-s
+	{
+
+		if (ft_strncmp(ret[0], "R", 1) != 0 && ft_strncmp(ret[0], "F", 1) != 0 && ft_strncmp(ret[0], "S", 1) != 0 && ft_strncmp(ret[0], "C", 1) != 0)
+		{
+			ft_putstr_fd("Error\nLetra inválida\n", 1);
+			exit (0);
+		}
+	}
+	if (ft_strlen(ret[0]) == 2) // c-f-r-s
+	{
+		if (ft_strncmp(ret[0], "NO", 2) != 0 && ft_strncmp(ret[0], "SO", 2) != 0 && ft_strncmp(ret[0], "EA", 2) != 0 && ft_strncmp(ret[0], "WE", 2)!= 0)
+		{
+			ft_putstr_fd("Error\nLetra inválida\n", 1);
+			exit (0);
+		}
+	}
+
+}
 
 static void	put_data_on_struct(char **ret, t_data *data, int posic)
 {
-	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0)
+
+	verify_chars(ret);
+	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0 && ret[1] != NULL && ret[2] != NULL && ft_strlen(ret[0]) == 1 && ret[3] == NULL)
 	{
-		data->scr_weig = ft_atoi(ret[1]);
-		data->scr_heig = ft_atoi(ret[2]);
+		if (verify_number(ret[1]) && verify_number(ret[2]))
+		{
+			data->scr_weig = ft_atoi(ret[1]);
+			data->scr_heig = ft_atoi(ret[2]);
+			data->qtt.resol++;
+		}
 	}
-	if (ft_strncmp(ret[0], "NO", 2) == 0)
-		data->NO = ft_strdup(ret[1]);
-	if (ft_strncmp(ret[0], "SO", 2) == 0)
-		data->SO = ft_strdup(ret[1]);
-	if (ft_strncmp(ret[0], "WE", 2) == 0)
-		data->WE = ft_strdup(ret[1]);
-	if (ft_strncmp(ret[0], "EA", 2) == 0)
-		data->EA = ft_strdup(ret[1]);
-	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0')
+	if (ft_strlen(ret[0]) == 2 && ret[1] != NULL && ret[2] == NULL )
+	{
+		if (ft_strncmp(ret[0], "NO", 2) == 0 )
+		{
+			data->NO = ft_strdup(ret[1]);
+			data->qtt.no++;
+		}
+		if (ft_strncmp(ret[0], "SO", 2) == 0 && ret[1] != NULL && ret[2] == NULL)
+		{
+			data->SO = ft_strdup(ret[1]);
+			data->qtt.so++;
+		}
+		if (ft_strncmp(ret[0], "WE", 2) == 0 && ret[1] != NULL && ret[2] == NULL)
+		{
+			data->WE = ft_strdup(ret[1]);
+			data->qtt.we++;
+		}
+		if (ft_strncmp(ret[0], "EA", 2) == 0 && ret[1] != NULL && ret[2] == NULL)
+		{
+			data->EA = ft_strdup(ret[1]);
+			data->qtt.ea++;
+		}
+	}
+
+	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0' && ret[1] != NULL && ret[2] == NULL )
+	{
 		data->floor = convert_colors(ret[1]);
-	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0')
+		data->qtt.floor++;
+	}
+	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0' && ret[1] != NULL && ret[2] == NULL )
+	{
 		data->ceil = convert_colors(ret[1]);
-	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0')
+		data->qtt.ceil++;
+	}
+	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0' && ret[1] != NULL && ret[2] == NULL)
+	{
 		data->sprite = ft_strdup(ret[1]);
+		data->qtt.sprite++;
+	}
 }
 
 static int	verify_args(int argc, char *file)
@@ -67,26 +119,30 @@ static int	verify_args(int argc, char *file)
 	}
 }
 
+static int verift_read(t_all *all)
+{
+	if (all->data.qtt.floor == 1 && all->data.qtt.ceil == 1 && all->data.qtt.no == 1 && all->data.qtt.so == 1
+		&& all->data.qtt.ea == 1 && all->data.qtt.we == 1 && all->data.qtt.sprite == 1)
+		return(1);
+	return (0);
+}
+
 void	verify_data(t_all *all, int posic)
 {
 	char	**ret;
 
-	if (all->data.line[0] == 0)
-		all->data.error = 1;
-	ret = ft_split(all->data.line, ' ');
-	if (ret[0] != NULL)
+	if (((all->data.line[0] == '0' || all->data.line[0] == '1'
+			|| all->data.line[0] == ' ') && verift_read(all)) || (all->data.line[0] == '\0' && all->data.len_x_map > 0 ) )
 	{
-		put_data_on_struct(ret, &all->data, posic);
-		if (all->data.line[0] == '0' || all->data.line[0] == '1'
-			|| all->data.line[0] == '2')
-		{
-			if (all->data.len_x_map < count_coluns(all->data.line))
-				all->data.len_x_map = count_coluns(all->data.line);
-			all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
-			all->data.map_line = ft_strjoin(all->data.map_line, "\n");
-			all->data.len_y_map++;
-		}
+		if (all->data.len_x_map < count_coluns(all->data.line))
+			all->data.len_x_map = count_coluns(all->data.line);
+		all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
+		all->data.map_line = ft_strjoin(all->data.map_line, "*\n");
+		all->data.len_y_map++;
 	}
+	ret = ft_split(all->data.line, ' ');
+	if (ret[0] != NULL && all->data.len_y_map == 0)
+		put_data_on_struct(ret, &all->data, posic);
 	free_array((void *)ret);
 }
 
