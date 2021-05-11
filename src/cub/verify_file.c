@@ -6,33 +6,13 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/10 22:40:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/11 01:05:49 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
 
-static void aux_verify_text(char *coord, char *error)
-{
-	int fd;
-
-	fd = open(coord, O_RDONLY);
-	if (fd < 0)
-	{
-		ft_putstr_fd(error, 1);
-		exit (0);
-	}
-}
-
-void	verify_texture(t_data *data)
-{
-	aux_verify_text(data->NO, "Error\nNorth texture not found\n");
-	aux_verify_text(data->SO, "Error\nNorth texture not found\n");
-	aux_verify_text(data->EA, "Error\nNorth texture not found\n");
-	aux_verify_text(data->WE, "Error\nNorth texture not found\n");
-}
-
-int	verify_around(int x, int y, t_data *data)
+int	verify_around(int x, int y, t_data *data, t_all *all)
 {
 	int		k;
 	int		l;
@@ -40,27 +20,28 @@ int	verify_around(int x, int y, t_data *data)
 
 	k = -1;
 	l = -1;
-	if (x == 0 || y == 0 || x == data->len_x_map || y == data->len_y_map )
+	if (x == 0 || y == 0 || x == data->len_x_map || y == data->len_y_map)
+		all->error.msg = "Error\nOpen Maze\n";
+	else
 	{
-		ft_putstr_fd("Error\nOpen Maze\n", 1);
-		exit (0);
-	}
-	while (k < 2)
-	{
-		l = -1;
-		while (l < 2)
+		while (k < 2)
 		{
-			c = data->map[y + l][x + k];
-			if (((c < '0' || c > '2') && c != data->orientation) || c == ' ')
-				return (1);
-			l++;
+			l = -1;
+			while (l < 2)
+			{
+				c = data->map[y + l][x + k];
+				if (((c < '0' || c > '2') && c != data->orientation)
+					|| c == ' ')
+					return (1);
+				l++;
+			}
+			k++;
 		}
-		k++;
 	}
 	return (0);
 }
 
-void	verify_map(t_data *data)
+void	verify_map(t_data *data, t_all *all)
 {
 	int	x;
 	int	y;
@@ -69,54 +50,36 @@ void	verify_map(t_data *data)
 	x = 0;
 	y = 0;
 	resp = 0;
-	while (x <=  data->len_y_map - 1)
+	while (x <= data->len_y_map - 1)
 	{
 		y = 0;
-		while (y <= data->len_x_map -1 )
+		while (y <= data->len_x_map -1)
 		{
 			if (data->map[x][y] == '0')
-				resp += verify_around(y, x, data);
+				resp += verify_around(y, x, data, all);
 			y++;
 		}
 		x++;
 	}
 	if (resp > 0)
-	{
-		ft_putstr_fd("Error\nMapa borda aberta/ caracter inválido\n", 1);
-		exit (0);
-	}
+		all->error.msg = "Error\nBorder map opened / Invalid character on map\n";
 }
 
-void verify_dup2(t_data *data)
+void	verify_dup(t_all *all, t_data *data)
 {
-	if(data->len_y_map == 0 || data->len_x_map == 0)
-	{
-		ft_putstr_fd("Error\nNone map or invalid order\n", 1);
-		exit (0);
-	}
-	if (data->qtt.floor != 1 || data->qtt.ceil != 1)
-	{
-		ft_putstr_fd("Error\nFloor duplicated or empty\n", 1);
-		exit (0);
-	}
-	if (data->qtt.no != 1 || data->qtt.so != 1 || data->qtt.we != 1 || data->qtt.ea != 1 || data->qtt.sprite != 1)
-	{
-		ft_putstr_fd("Error\nTexture duplicated or empty\n", 1);
-		exit (0);
-	}
-	if (data->qtt.orient != 1)
-	{
-		ft_putstr_fd("Error\nOrientation duplicated or empty\n", 1);
-		exit (0);
-	}
-
-	if (data->scr_weig <= 0 || data->scr_heig <= 0 || data->qtt.resol != 1)
-	{
-		ft_putstr_fd("Error\nResolution duplicated, empty or invalid\n", 1);
-		exit (0);
-	}
+	if (data->len_y_map == 0 || data->len_x_map == 0)
+		all->error.msg = "Error\nWithout map or Invalid order\n";
+	if (all->error.floor != 1 || all->error.ceil != 1)
+		all->error.msg = "Error\nDuplicate or empty floor\n";
+	if (all->error.no != 1 || all->error.so != 1 || all->error.we != 1
+		|| all->error.ea != 1 || all->error.sprite != 1)
+		all->error.msg = "Error\nDuplicate or empty texture\n";
+	if (all->error.orient != 1)
+		all->error.msg = "Error\nDuplicate or empty orientation\n";
+	if (data->scr_weig <= 0 || data->scr_heig <= 0 || all->error.resol != 1)
+		all->error.msg = "Error\nDuplicate, empty or invalid resolution\n";
 	verify_texture(data);
-	verify_map(data);
+	verify_map(data, all);
 }
 
 void	max_resolution(t_all *all)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+         #
+#    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/09 20:05:04 by cpereira         ###   ########.fr        #
+#    Updated: 2021/05/11 00:48:51 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/vertical_intersections.c \
 		$(CUB_DIR)/horizontal_intersections.c \
 		$(CUB_DIR)/verify_file.c \
+		$(CUB_DIR)/exit_failure.c \
+		$(CUB_DIR)/verify_texture.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
 		$(LIB_DIR)/ft_atoi.c \
@@ -66,7 +68,7 @@ all: $(NAME_LINUX)
 
 
 mac: $(NAME)
-	./$(NAME) map.cub
+	./$(NAME) map1.cub
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -g -fsanitize=address -o $@

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/10 22:05:31 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/11 00:39:36 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	main(int argc, char **argv)
 	setup_map(&all);
 	read_cub(&all, argv[1], argc, 0);
 	allocate_map(&all, 0, 0, 0);
-	verify_dup2(&all.data);
+	verify_dup(&all, &all.data);
+	exit_failure(&all);
 	initialize_window(&all);
 	setup_texture(&all, &all.text);
 	choose_tile_size(&all.data, &all.text);

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/10 22:04:08 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/11 00:42:17 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,6 @@
 /*
 ** STRUCTS
 */
-typedef struct s_error
-{
-	int			R;
-	int			NO;
-	int			SO;
-	int			WE;
-	int			EA;
-	int			S;
-	int			F;
-	int			C;
-	int			map;
-	char		*msg;
-}				t_error;
-
 typedef struct s_gnl
 {
 	char			buff[262144];
@@ -224,7 +210,7 @@ typedef struct s_map
 	int			tile_y;
 }				t_map;
 
-typedef struct s_qtt
+typedef struct s_error
 {
 	int			floor;
 	int			ceil;
@@ -235,7 +221,8 @@ typedef struct s_qtt
 	int			ea;
 	int			we;
 	int			orient;
-}				t_qtt;
+	char		*msg;
+}				t_error;
 
 typedef struct s_data
 {
@@ -257,7 +244,6 @@ typedef struct s_data
 	char		*line;
 	int			num_sprites;
 	int			tile_size;
-	t_qtt		qtt;
 }				t_data;
 
 typedef struct s_all
@@ -278,7 +264,6 @@ typedef struct s_all
 	t_mlx		mlx;
 	t_map		map;
 	t_ray		*ray;
-	t_qtt		qtt;
 }				t_all;
 
 /*
@@ -328,9 +313,10 @@ void			horizontal_intersections(t_all *all, float ray_angle);
 void			vertical_intersections(t_all *all, float ray_angle);
 void			setup_rays(t_intsc *hv);
 void			verify_texture(t_data *data);
-void			verify_dup2(t_data *data);
-int				verify_around(int x, int y, t_data *data);
-void			verify_map(t_data *data);
+void			verify_dup(t_all *all, t_data *data);
+int				verify_around(int x, int y, t_data *data, t_all *all);
+void			verify_map(t_data *data, t_all *all);
+void			exit_failure(t_all *all);
 
 /*
 ** LIB FUNCTIONS

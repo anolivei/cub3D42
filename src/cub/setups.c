@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setups.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 14:31:34 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 11:54:25 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/11 01:04:49 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ void	setup_map(t_all *all)
 	all->data.len_x_map = 0;
 	all->data.len_y_map = 0;
 	all->data.num_sprites = 0;
-
-	all->data.qtt.floor = 0;
-	all->data.qtt.ceil = 0;
-	all->data.qtt.sprite = 0;
-	all->data.qtt.resol = 0;
-	all->data.qtt.no = 0;
-	all->data.qtt.so = 0;
-	all->data.qtt.ea = 0;
-	all->data.qtt.we = 0;
-	all->data.qtt.orient = 0;
+	all->error.floor = 0;
+	all->error.ceil = 0;
+	all->error.sprite = 0;
+	all->error.resol = 0;
+	all->error.no = 0;
+	all->error.so = 0;
+	all->error.ea = 0;
+	all->error.we = 0;
+	all->error.orient = 0;
+	all->error.msg = 0;
 	all->data.scr_heig = 0;
 	all->data.scr_weig = 0;
 }
