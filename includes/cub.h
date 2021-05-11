@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 12:46:18 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/10 22:04:08 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@
 /*
 ** STRUCTS
 */
-
-typedef struct	s_error
+typedef struct s_error
 {
 	int			R;
 	int			NO;
@@ -237,6 +236,7 @@ typedef struct s_qtt
 	int			we;
 	int			orient;
 }				t_qtt;
+
 typedef struct s_data
 {
 	int			len_x_map;
@@ -259,8 +259,6 @@ typedef struct s_data
 	int			tile_size;
 	t_qtt		qtt;
 }				t_data;
-
-
 
 typedef struct s_all
 {
@@ -329,6 +327,11 @@ void			save_image_bmp(t_all *all);
 void			horizontal_intersections(t_all *all, float ray_angle);
 void			vertical_intersections(t_all *all, float ray_angle);
 void			setup_rays(t_intsc *hv);
+void			verify_texture(t_data *data);
+void			verify_dup2(t_data *data);
+int				verify_around(int x, int y, t_data *data);
+void			verify_map(t_data *data);
+
 /*
 ** LIB FUNCTIONS
 */

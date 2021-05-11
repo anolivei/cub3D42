@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   allocate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 17:45:10 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 20:26:27 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/10 22:46:19 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	count_sprites(t_data *data, int p, int i, int j)
 	{
 		if (i == 0 || j == 0 || i == data->len_y_map - 1 || j == data->len_x_map - 1)
 		{
-			ft_putstr_fd("Error\nInvalid map, sprits on border\n", 1);
+			ft_putstr_fd("Error\nInvalid map, sprites on border\n", 1);
 			exit (0);
 		}
 		data->num_sprites++;

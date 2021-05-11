@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:14:55 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 12:44:55 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/10 21:59:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_color_number(int r, int g, int b)
 
 int	verify_number(char *number)
 {
-	size_t t;
+	size_t	t;
 
 	t = 0;
 	while (t < ft_strlen(&number[t]) || number[t] != '\0')
@@ -36,20 +36,19 @@ int	verify_number(char *number)
 	return (1);
 }
 
-static int count_comma(char *color)
+static int	count_comma(char *color)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
 	while (color[i] != '\0')
 	{
-		if (color[i]== ',')
+		if (color[i] == ',')
 			count++;
 		i++;
 	}
-
 	return (count);
 }
 
@@ -64,8 +63,6 @@ int	convert_colors(char *color)
 	g = -1;
 	b = -1;
 	colors = ft_split(color, ',');
-
-
 	if (colors[0] != 0 && verify_number(colors[0]))
 		r = ft_atoi(colors[0]);
 	if (colors[1] != 0 && verify_number(colors[1]))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_cub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cpereira <cpereira@student.42sp.org>       +#+  +:+       +#+        */
+/*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/09 19:56:36 by cpereira         ###   ########.fr       */
+/*   Updated: 2021/05/10 22:45:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@ static int	count_coluns(char *line)
 		i++;
 	return (i);
 }
-static void verify_chars(char **ret)
+
+static void	verify_chars(char **ret)
 {
-	if (ft_strlen(ret[0]) == 1) // c-f-r-s
+	if (ft_strlen(ret[0]) == 1)
 	{
 
 		if (ft_strncmp(ret[0], "R", 1) != 0 && ft_strncmp(ret[0], "F", 1) != 0 && ft_strncmp(ret[0], "S", 1) != 0 && ft_strncmp(ret[0], "C", 1) != 0)
 		{
-			ft_putstr_fd("Error\nLetra inválida\n", 1);
+			ft_putstr_fd("Error\nInvalid Character\n", 1);
 			exit (0);
 		}
 	}
-	if (ft_strlen(ret[0]) == 2) // c-f-r-s
+	if (ft_strlen(ret[0]) == 2)
 	{
 		if (ft_strncmp(ret[0], "NO", 2) != 0 && ft_strncmp(ret[0], "SO", 2) != 0 && ft_strncmp(ret[0], "EA", 2) != 0 && ft_strncmp(ret[0], "WE", 2)!= 0)
 		{
-			ft_putstr_fd("Error\nLetra inválida\n", 1);
+			ft_putstr_fd("Error\nInvalid Character\n", 1);
 			exit (0);
 		}
 	}
@@ -45,7 +46,6 @@ static void verify_chars(char **ret)
 
 static void	put_data_on_struct(char **ret, t_data *data, int posic)
 {
-
 	verify_chars(ret);
 	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0 && ret[1] != NULL && ret[2] != NULL && ft_strlen(ret[0]) == 1 && ret[3] == NULL)
 	{
@@ -79,7 +79,6 @@ static void	put_data_on_struct(char **ret, t_data *data, int posic)
 			data->qtt.ea++;
 		}
 	}
-
 	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0' && ret[1] != NULL && ret[2] == NULL )
 	{
 		data->floor = convert_colors(ret[1]);
