@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 23:57:50 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:33:11 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 17:20:13 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	exit_failure(t_all *all)
 	{
 		ft_putstr_fd("Error", 1);
 		ft_putstr_fd(all->error.msg, 1);
+		ft_putstr_fd("\n", 1);
 		if (all->data.map_line != NULL)
 			free(all->data.map_line);
 		if (all->error.no > 0)

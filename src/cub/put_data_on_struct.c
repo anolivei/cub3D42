@@ -6,11 +6,80 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:52:28 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:36:06 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:09:46 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static void	verify_chars(char **ret, t_all *all)
+{
+	if (ft_strlen(ret[0]) == 1)
+	{
+		if (ft_strncmp(ret[0], "R", 1) != 0 && ft_strncmp(ret[0], "F", 1) != 0
+			&& ft_strncmp(ret[0], "S", 1) != 0
+			&& ft_strncmp(ret[0], "C", 1) != 0)
+			all->error.msg = ft_strjoin(all->error.msg, "\nInvalid Character");
+	}
+	if (ft_strlen(ret[0]) == 2)
+	{
+		if (ft_strncmp(ret[0], "NO", 2) != 0 && ft_strncmp(ret[0], "SO", 2) != 0
+			&& ft_strncmp(ret[0], "EA", 2) != 0
+			&& ft_strncmp(ret[0], "WE", 2) != 0)
+			all->error.msg = ft_strjoin(all->error.msg, "\nInvalid Character");
+	}
+}
+
+static void	put_textures_no_so_on_struct(t_all *all, t_data *data, char **ret)
+{
+	if (ft_strncmp(ret[0], "NO", 2) == 0 )
+	{
+		if (all->error.no == 0)
+			data->NO = ft_strdup(ret[1]);
+		all->error.no++;
+	}
+	if (ft_strncmp(ret[0], "SO", 2) == 0 && ret[1] != NULL
+		&& ret[2] == NULL)
+	{
+		if (all->error.so == 0)
+			data->SO = ft_strdup(ret[1]);
+		all->error.so++;
+	}
+}
+
+static void	put_textures_we_ea_on_struct(t_all *all, t_data *data, char **ret)
+{
+	if (ft_strncmp(ret[0], "WE", 2) == 0 && ret[1] != NULL
+		&& ret[2] == NULL)
+	{
+		if (all->error.we == 0)
+			data->WE = ft_strdup(ret[1]);
+		all->error.we++;
+	}
+	if (ft_strncmp(ret[0], "EA", 2) == 0 && ret[1] != NULL
+		&& ret[2] == NULL)
+	{
+		if (all->error.ea == 0)
+			data->EA = ft_strdup(ret[1]);
+		all->error.ea++;
+	}
+}
+
+static void	put_floor_ceil_on_struct(t_all *all, t_data *data, char **ret)
+{
+	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0'
+		&& ret[1] != NULL && ret[2] == NULL )
+	{
+		data->floor = convert_colors(ret[1], all);
+		all->error.floor++;
+	}
+	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0'
+		&& ret[1] != NULL && ret[2] == NULL)
+	{
+		data->ceil = convert_colors(ret[1], all);
+		all->error.ceil++;
+	}
+}
 
 void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
 {
@@ -25,71 +94,17 @@ void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
 			all->error.resol++;
 		}
 	}
-	if (ft_strlen(ret[0]) == 2 && ret[1] != NULL && ret[2] == NULL )
+	if (ft_strlen(ret[0]) == 2 && ret[1] != NULL && ret[2] == NULL)
 	{
-		if (ft_strncmp(ret[0], "NO", 2) == 0 )
-		{
-			if (all->error.no == 0)
-				data->NO = ft_strdup(ret[1]);
-			all->error.no++;
-		}
-		if (ft_strncmp(ret[0], "SO", 2) == 0 && ret[1] != NULL
-			&& ret[2] == NULL)
-		{
-			if (all->error.so == 0)
-				data->SO = ft_strdup(ret[1]);
-			all->error.so++;
-		}
-		if (ft_strncmp(ret[0], "WE", 2) == 0 && ret[1] != NULL
-			&& ret[2] == NULL)
-		{
-			if (all->error.we == 0)
-				data->WE = ft_strdup(ret[1]);
-			all->error.we++;
-		}
-		if (ft_strncmp(ret[0], "EA", 2) == 0 && ret[1] != NULL
-			&& ret[2] == NULL)
-		{
-			if (all->error.ea == 0)
-				data->EA = ft_strdup(ret[1]);
-			all->error.ea++;
-		}
+		put_textures_no_so_on_struct(all, data, ret);
+		put_textures_we_ea_on_struct(all, data, ret);
 	}
-	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0'
-		&& ret[1] != NULL && ret[2] == NULL )
-	{
-		data->floor = convert_colors(ret[1], all);
-		all->error.floor++;
-	}
-	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0'
-		&& ret[1] != NULL && ret[2] == NULL)
-	{
-		data->ceil = convert_colors(ret[1], all);
-		all->error.ceil++;
-	}
+	put_floor_ceil_on_struct(all, data, ret);
 	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0'
 		&& ret[1] != NULL && ret[2] == NULL)
 	{
 		if (all->error.sprite == 0)
 			data->sprite = ft_strdup(ret[1]);
 		all->error.sprite++;
-	}
-}
-
-void	verify_chars(char **ret, t_all *all)
-{
-	if (ft_strlen(ret[0]) == 1)
-	{
-		if (ft_strncmp(ret[0], "R", 1) != 0 && ft_strncmp(ret[0], "F", 1) != 0
-			&& ft_strncmp(ret[0], "S", 1) != 0
-			&& ft_strncmp(ret[0], "C", 1) != 0)
-			all->error.msg = ft_strjoin(all->error.msg, "\nInvalid Character");
-	}
-	if (ft_strlen(ret[0]) == 2)
-	{
-		if (ft_strncmp(ret[0], "NO", 2) != 0 && ft_strncmp(ret[0], "SO", 2) != 0
-			&& ft_strncmp(ret[0], "EA", 2) != 0
-			&& ft_strncmp(ret[0], "WE", 2) != 0)
-			all->error.msg = ft_strjoin(all->error.msg,"\nInvalid Character");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 14:56:00 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:10:06 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,7 +240,7 @@ typedef struct s_data
 	int			ceil;
 	char		*sprite;
 	int			error;
-	char		map[990][990];
+	char		map[1000][1000];
 	char		*map_line;
 	char		orientation;
 	char		*line;
@@ -319,8 +319,8 @@ void			verify_dup(t_all *all, t_data *data);
 int				verify_around(int x, int y, t_data *data, t_all *all);
 void			verify_map(t_data *data, t_all *all);
 void			exit_failure(t_all *all);
-void			put_data_on_struct(t_all *all, char **ret, t_data *data, int posic);
-void			verify_chars(char **ret, t_all *all);
+void			put_data_on_struct(t_all *all, char **ret, t_data *data,
+					int posic);
 
 /*
 ** LIB FUNCTIONS

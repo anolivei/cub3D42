@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:57:00 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:11:31 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,30 @@ void	verify_map(t_data *data, t_all *all)
 		x++;
 	}
 	if (all->error.ret > 0)
-		all->error.msg = ft_strjoin(all->error.msg, "\nBorder map opened / Invalid character on map");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nBorder map opened / Invalid character on map");
 }
 
 void	verify_dup(t_all *all, t_data *data)
 {
 	if (data->len_y_map == 0 || data->len_x_map == 0)
-		all->error.msg = ft_strjoin(all->error.msg, "\nWithout map or Invalid order");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nWithout map or Invalid order");
 	if (all->error.floor != 1)
-		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty floor");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nDuplicate or empty floor");
 	if (all->error.ceil != 1)
 		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty ceil");
 	if (all->error.no != 1 || all->error.so != 1 || all->error.we != 1
 		|| all->error.ea != 1 || all->error.sprite != 1)
-		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty texture");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nDuplicate or empty texture");
 	if (all->error.orient != 1)
-		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty orientation");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nDuplicate or empty orientation");
 	if (data->scr_weig <= 0 || data->scr_heig <= 0 || all->error.resol != 1)
-		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate, empty or invalid resolution");
+		all->error.msg = ft_strjoin(all->error.msg,
+				"\nDuplicate, empty or invalid resolution");
 	verify_texture(data, all);
 	verify_map(data, all);
 }
