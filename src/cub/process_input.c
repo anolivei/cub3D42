@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 23:06:00 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 12:42:33 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:45:26 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ int	key_release(int keycode, t_all *all)
 	return (1);
 }
 
-int	destroy_window(t_all *all)
+static int	refresh(t_all *all)
 {
-	free_check(all->bmp.buff_body);
-	exit(0);
+	render(all);
 	return (1);
 }
 
@@ -66,5 +65,6 @@ void	process_input(t_all *all)
 {
 	mlx_hook(all->mlx.window, 2, 1L << 0, key_press, all);
 	mlx_hook(all->mlx.window, 3, 1L << 1, key_release, all);
-	mlx_hook(all->mlx.window, 17, 1l << 17, destroy_window, all);
+	mlx_hook(all->mlx.window, 9, 1L << 21, refresh, all);
+	mlx_hook(all->mlx.window, 17, 1L << 17, destroy_window, all);
 }

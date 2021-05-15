@@ -6,11 +6,18 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 23:57:50 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 17:20:13 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:45:44 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+int	destroy_window(t_all *all)
+{
+	free_check(all->bmp.buff_body);
+	exit(0);
+	return (1);
+}
 
 void	exit_failure(t_all *all)
 {
