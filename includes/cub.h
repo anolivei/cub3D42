@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 18:10:06 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:55:52 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_bmp
 {
 	unsigned char	buff_header[54];
 	int				*buff_body;
+	int				dont_put_on_screen;
 }					t_bmp;
 
 typedef struct s_proj

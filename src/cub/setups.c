@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 14:31:34 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:24:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 18:56:59 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	setup_map(t_all *all)
 	all->data.scr_heig = 0;
 	all->data.scr_weig = 0;
 	all->data.orientation = 0;
+	all->bmp.dont_put_on_screen = 0;
 }
 
 void	setup_texture(t_all *all, t_text *text)

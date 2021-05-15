@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 21:16:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/01 14:59:10 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 19:03:50 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	save_image_bmp(t_all *all)
 	fd = open("img.bmp", O_CREAT | O_WRONLY | O_TRUNC, 444);
 	if (fd == -1)
 		ft_putstr_fd("Error creating bmp file\n", 1);
+	all->bmp.dont_put_on_screen = 1;
 	render(all);
 	header_bmp(all, &all->bmp, fd);
 	body_bmp(all, &all->bmp, fd);

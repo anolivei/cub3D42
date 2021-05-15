@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 12:41:56 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 19:47:48 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ void	render(t_all *all)
 	render_map(all);
 	render_rays(all);
 	render_sprites_map(all);
-	mlx_put_image_to_window(all->mlx.init, all->mlx.window,
-		all->img.img_ptr, 0, 0);
+	if (all->bmp.dont_put_on_screen == 0)
+		mlx_put_image_to_window(all->mlx.init, all->mlx.window,
+			all->img.img_ptr, 0, 0);
 }
 
 int	main(int argc, char **argv)
@@ -68,10 +69,10 @@ int	main(int argc, char **argv)
 	all.ray = malloc((all.data.scr_weig + 1) * sizeof(t_ray));
 	all.sprite = malloc((all.data.num_sprites + 1) * sizeof(t_sprite));
 	find_sprites_on_map(&all);
-	render(&all);
 	if (argv[2] && ft_memcmp(argv[2], "--save", 6) == 0
 		&& ft_strlen(argv[2]) == 6)
 		save_image_bmp(&all);
+	render(&all);
 	process_input(&all);
 	mlx_loop(all.mlx.init);
 	return (0);
