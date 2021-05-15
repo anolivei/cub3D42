@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/14 23:35:59 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 15:57:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	verify_around(int x, int y, t_data *data, t_all *all)
 	k = -1;
 	l = -1;
 	if (x == 0 || y == 0 || x == data->len_x_map || y == data->len_y_map)
-		all->error.msg = "Error\nOpen Maze\n";
+		all->error.msg = ft_strjoin(all->error.msg, "\nOpen Maze");
 	else
 	{
 		while (k < 2)
@@ -45,39 +45,40 @@ void	verify_map(t_data *data, t_all *all)
 {
 	int	x;
 	int	y;
-	int	resp;
 
 	x = 0;
 	y = 0;
-	resp = 0;
+	all->error.ret = 0;
 	while (x <= data->len_y_map - 1)
 	{
 		y = 0;
 		while (y <= data->len_x_map -1)
 		{
 			if (data->map[x][y] == '0')
-				resp += verify_around(y, x, data, all);
+				all->error.ret += verify_around(y, x, data, all);
 			y++;
 		}
 		x++;
 	}
-	if (resp > 0)
-		all->error.msg = "Error\nBorder map5 opened / Invalid character on map\n";
+	if (all->error.ret > 0)
+		all->error.msg = ft_strjoin(all->error.msg, "\nBorder map opened / Invalid character on map");
 }
 
 void	verify_dup(t_all *all, t_data *data)
 {
 	if (data->len_y_map == 0 || data->len_x_map == 0)
-		all->error.msg = "Error\nWithout map or Invalid order\n";
-	if (all->error.floor != 1 || all->error.ceil != 1)
-		all->error.msg = "Error\nDuplicate or empty floor\n";
+		all->error.msg = ft_strjoin(all->error.msg, "\nWithout map or Invalid order");
+	if (all->error.floor != 1)
+		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty floor");
+	if (all->error.ceil != 1)
+		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty ceil");
 	if (all->error.no != 1 || all->error.so != 1 || all->error.we != 1
 		|| all->error.ea != 1 || all->error.sprite != 1)
-		all->error.msg = "Error\nDuplicate or empty texture\n";
+		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty texture");
 	if (all->error.orient != 1)
-		all->error.msg = "Error\nDuplicate or empty orientation\n";
+		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate or empty orientation");
 	if (data->scr_weig <= 0 || data->scr_heig <= 0 || all->error.resol != 1)
-		all->error.msg = "Error\nDuplicate, empty or invalid resolution\n";
+		all->error.msg = ft_strjoin(all->error.msg, "\nDuplicate, empty or invalid resolution");
 	verify_texture(data, all);
 	verify_map(data, all);
 }
@@ -89,7 +90,7 @@ void	max_resolution(t_all *all)
 
 	screen_width = 5000;
 	screen_height = 5000;
-//	mlx_get_screen_size(all->mlx.init, &screen_width, &screen_height);
+	mlx_get_screen_size(all->mlx.init, &screen_width, &screen_height);
 	if (all->data.scr_weig > screen_width)
 		all->data.scr_weig = screen_width;
 	if (all->data.scr_heig > screen_height)

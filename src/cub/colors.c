@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 19:14:55 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/10 21:59:33 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 15:20:48 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	check_color_number(int r, int g, int b, t_all *all)
 {
 	if (r > 255 || r < 0 || g > 255 || g < 0
 		|| b > 255 || b < 0)
-		all->error.msg = "Error\nInvalid color\n";
+		all->error.msg = ft_strjoin(all->error.msg,"\nInvalid color");
 }
 
 int	verify_number(char *number)
@@ -67,7 +67,7 @@ int	convert_colors(char *color, t_all *all)
 	if (colors[2] != 0 && verify_number(colors[2]))
 		b = ft_atoi(colors[2]);
 	if (colors[3] != NULL || count_comma(color) != 2)
-		all->error.msg = "Error\nSo much arguments in colors\n";
+		all->error.msg = ft_strjoin(all->error.msg,"\nSo much arguments in colors");
 	check_color_number(r, g, b, all);
 	free_array((void *) colors);
 	return (r << 16 | g << 8 | b);

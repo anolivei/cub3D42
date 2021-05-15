@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/14 23:36:09 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 14:56:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,8 @@ typedef struct s_error
 	int			so;
 	int			ea;
 	int			we;
+	int			ret;
+	int			double_map;
 	int			orient;
 	char		*msg;
 }				t_error;
@@ -317,6 +319,8 @@ void			verify_dup(t_all *all, t_data *data);
 int				verify_around(int x, int y, t_data *data, t_all *all);
 void			verify_map(t_data *data, t_all *all);
 void			exit_failure(t_all *all);
+void			put_data_on_struct(t_all *all, char **ret, t_data *data, int posic);
+void			verify_chars(char **ret, t_all *all);
 
 /*
 ** LIB FUNCTIONS

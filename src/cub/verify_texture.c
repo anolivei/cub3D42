@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 00:48:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/14 23:37:43 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 15:23:38 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	aux_verify_text(char *coord, char *error, t_all *all)
 
 	fd = open(coord, O_RDONLY);
 	if (fd < 0)
-		all->error.msg = (error);
+		all->error.msg = ft_strjoin(all->error.msg, (error));
 	close (fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 17:45:10 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/14 23:36:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 15:19:38 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	count_sprites(t_all *all, int p, int i, int j)
 	{
 		if (i == 0 || j == 0 || i == all->data.len_y_map - 1
 			|| j == all->data.len_x_map - 1)
-			all->error.msg ="Error\nInvalid map, sprites on border\n";
+			all->error.msg = ft_strjoin(all->error.msg,"\nInvalid map, sprites on border");
 		all->data.num_sprites++;
 	}
 }
@@ -36,18 +36,15 @@ void	ft_bzero(void *s, size_t n)
 
 void	allocate_map(t_all *all, int i, int j, int p)
 {
-	//all->data.map = malloc((all->data.len_y_map + 1) * sizeof(char *) + 1);
-	//all->data.map[0] = malloc((all->data.len_x_map + 1) * sizeof(char *) + 1);
-	//all->data.map[0] = '0';
-	////ft_bzero(all->data.map[0], all->data.len_x_map + 1);
+	all->error.double_map = 0;
 	while (all->data.map_line[p] != '\0')
 	{
 		if (all->data.map_line[p] == '\n')
 		{
+			if (j == 0)
+				all->error.double_map = 99;
 			i++;
 			j = 0;
-			//all->data.map[i] = malloc(all->data.len_x_map * sizeof(char *) + 1);
-			////ft_bzero(all->data.map[i], all->data.len_x_map + 1);
 		}
 		else
 		{
@@ -57,7 +54,7 @@ void	allocate_map(t_all *all, int i, int j, int p)
 			{
 				if (i == 0 || j == 0 || i == all->data.len_y_map
 					|| j == all->data.len_x_map)
-					all->error.msg = "Error\nInvalid map, orientation on border\n";
+					all->error.msg = ft_strjoin(all->error.msg,"\nInvalid map, NWSE on border");
 				all->error.orient++;
 				all->player.x = j;
 				all->player.y = i;

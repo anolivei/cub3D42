@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/14 23:34:04 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/15 14:26:13 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/verify_file.c \
 		$(CUB_DIR)/exit_failure.c \
 		$(CUB_DIR)/verify_texture.c \
+		$(CUB_DIR)/put_data_on_struct.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
 		$(LIB_DIR)/ft_atoi.c \
@@ -67,7 +68,7 @@ MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 all: $(NAME_LINUX)
 
 mac: $(NAME)
-	./$(NAME) map1.cub
+	./$(NAME) map.cub
 
 $(NAME): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -g -fsanitize=address -o $@
