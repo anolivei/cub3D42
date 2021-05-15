@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/11 00:42:17 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/14 23:36:09 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,7 @@ typedef struct s_data
 	int			ceil;
 	char		*sprite;
 	int			error;
-	char		**map;
+	char		map[990][990];
 	char		*map_line;
 	char		orientation;
 	char		*line;
@@ -304,7 +304,7 @@ int				read_cub(t_all *all, char *file, int argc, int posic);
 void			verify_data(t_all *all, int posic);
 void			verify_file(t_all *all);
 void			max_resolution(t_all *all);
-int				convert_colors (char *color);
+int				convert_colors (char *color, t_all *all);
 void			free_array(void **array);
 void			free_check(void *ptr);
 void			allocate_map(t_all *all, int i, int j, int p);
@@ -312,7 +312,7 @@ void			save_image_bmp(t_all *all);
 void			horizontal_intersections(t_all *all, float ray_angle);
 void			vertical_intersections(t_all *all, float ray_angle);
 void			setup_rays(t_intsc *hv);
-void			verify_texture(t_data *data);
+void			verify_texture(t_data *data, t_all *all);
 void			verify_dup(t_all *all, t_data *data);
 int				verify_around(int x, int y, t_data *data, t_all *all);
 void			verify_map(t_data *data, t_all *all);

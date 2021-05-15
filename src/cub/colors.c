@@ -12,14 +12,11 @@
 
 #include "../../includes/cub.h"
 
-static void	check_color_number(int r, int g, int b)
+static void	check_color_number(int r, int g, int b, t_all *all)
 {
 	if (r > 255 || r < 0 || g > 255 || g < 0
 		|| b > 255 || b < 0)
-	{
-		ft_putstr_fd("Error\nInvalid color\n", 1);
-		exit(0);
-	}
+		all->error.msg = "Error\nInvalid color\n";
 }
 
 int	verify_number(char *number)
@@ -52,7 +49,7 @@ static int	count_comma(char *color)
 	return (count);
 }
 
-int	convert_colors(char *color)
+int	convert_colors(char *color, t_all *all)
 {
 	char	**colors;
 	int		r;
@@ -70,11 +67,8 @@ int	convert_colors(char *color)
 	if (colors[2] != 0 && verify_number(colors[2]))
 		b = ft_atoi(colors[2]);
 	if (colors[3] != NULL || count_comma(color) != 2)
-	{
-		ft_putstr_fd("Error\nSo much arguments in colors\n", 1);
-		exit(0);
-	}
-	check_color_number(r, g, b);
+		all->error.msg = "Error\nSo much arguments in colors\n";
+	check_color_number(r, g, b, all);
 	free_array((void *) colors);
 	return (r << 16 | g << 8 | b);
 }

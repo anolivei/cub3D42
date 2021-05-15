@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/11 01:05:49 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/14 23:35:59 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	verify_map(t_data *data, t_all *all)
 		x++;
 	}
 	if (resp > 0)
-		all->error.msg = "Error\nBorder map opened / Invalid character on map\n";
+		all->error.msg = "Error\nBorder map5 opened / Invalid character on map\n";
 }
 
 void	verify_dup(t_all *all, t_data *data)
@@ -78,7 +78,7 @@ void	verify_dup(t_all *all, t_data *data)
 		all->error.msg = "Error\nDuplicate or empty orientation\n";
 	if (data->scr_weig <= 0 || data->scr_heig <= 0 || all->error.resol != 1)
 		all->error.msg = "Error\nDuplicate, empty or invalid resolution\n";
-	verify_texture(data);
+	verify_texture(data, all);
 	verify_map(data, all);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/11 00:39:36 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/14 23:37:12 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,10 @@ void	render(t_all *all)
 int	main(int argc, char **argv)
 {
 	t_all	all;
+
+	//all = (t_all) 0;
+	//ft_memset(&all, 0, sizeof(t_all));
+	//all = (t_all){ 0 };
 
 	setup_map(&all);
 	read_cub(&all, argv[1], argc, 0);

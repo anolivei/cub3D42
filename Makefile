@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/11 00:48:51 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/14 23:34:04 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME_LINUX)
 
-
 mac: $(NAME)
 	./$(NAME) map1.cub
 
@@ -76,8 +75,6 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				mkdir -p $(OBJ_DIR)
 				clang -c $(CFLAGS) $< -o $@
-
-
 
 $(NAME_LINUX): $(OBJ)
 		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
@@ -89,7 +86,7 @@ debug_linux:
 	gdd -g -lXext -lX11 -lbsd -lm -lmlx $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
 
 clean:
-	/bin/rm -rf $(OBJ_DIR) cub3D.dSYM cub3D_debug.dSYM
+	/bin/rm -rf $(OBJ_DIR) cub3D.dSYM cub3D_debug.dSYM cub3D_mac.dSYM
 
 fclean: clean
 	/bin/rm -f $(NAME) $(NAME_LINUX) cub3D_debug

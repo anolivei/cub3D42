@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/11 00:58:47 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/14 23:35:20 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,27 @@ static int	count_coluns(char *line)
 	return (i);
 }
 
-static void	verify_chars(char **ret)
+static void	verify_chars(char **ret, t_all *all)
 {
 	if (ft_strlen(ret[0]) == 1)
 	{
 		if (ft_strncmp(ret[0], "R", 1) != 0 && ft_strncmp(ret[0], "F", 1) != 0
 			&& ft_strncmp(ret[0], "S", 1) != 0
 			&& ft_strncmp(ret[0], "C", 1) != 0)
-		{
-			ft_putstr_fd("Error\nInvalid Character\n", 1);
-			exit (0);
-		}
+			all->error.msg = "Error\nInvalid Character\n";
 	}
 	if (ft_strlen(ret[0]) == 2)
 	{
 		if (ft_strncmp(ret[0], "NO", 2) != 0 && ft_strncmp(ret[0], "SO", 2) != 0
 			&& ft_strncmp(ret[0], "EA", 2) != 0
 			&& ft_strncmp(ret[0], "WE", 2) != 0)
-		{
-			ft_putstr_fd("Error\nInvalid Character\n", 1);
-			exit (0);
-		}
+		all->error.msg = "Error\nInvalid Character\n";
 	}
 }
 
 static void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
 {
-	verify_chars(ret);
+	verify_chars(ret, all);
 	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0 && ret[1] != NULL
 		&& ret[2] != NULL && ft_strlen(ret[0]) == 1 && ret[3] == NULL)
 	{
@@ -63,46 +57,53 @@ static void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
 	{
 		if (ft_strncmp(ret[0], "NO", 2) == 0 )
 		{
-			data->NO = ft_strdup(ret[1]);
+			if (all->error.no == 0)
+				data->NO = ft_strdup(ret[1]);
 			all->error.no++;
 		}
 		if (ft_strncmp(ret[0], "SO", 2) == 0 && ret[1] != NULL
 			&& ret[2] == NULL)
 		{
-			data->SO = ft_strdup(ret[1]);
+			if (all->error.so == 0)
+				data->SO = ft_strdup(ret[1]);
 			all->error.so++;
 		}
 		if (ft_strncmp(ret[0], "WE", 2) == 0 && ret[1] != NULL
 			&& ret[2] == NULL)
 		{
-			data->WE = ft_strdup(ret[1]);
+			if (all->error.we == 0)
+				data->WE = ft_strdup(ret[1]);
 			all->error.we++;
 		}
 		if (ft_strncmp(ret[0], "EA", 2) == 0 && ret[1] != NULL
 			&& ret[2] == NULL)
 		{
-			data->EA = ft_strdup(ret[1]);
+			if (all->error.ea == 0)
+				data->EA = ft_strdup(ret[1]);
 			all->error.ea++;
 		}
 	}
 	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0'
 		&& ret[1] != NULL && ret[2] == NULL )
 	{
-		data->floor = convert_colors(ret[1]);
+		data->floor = convert_colors(ret[1], all);
 		all->error.floor++;
 	}
 	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0'
 		&& ret[1] != NULL && ret[2] == NULL)
 	{
-		data->ceil = convert_colors(ret[1]);
+		data->ceil = convert_colors(ret[1], all);
 		all->error.ceil++;
 	}
 	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0'
 		&& ret[1] != NULL && ret[2] == NULL)
 	{
-		data->sprite = ft_strdup(ret[1]);
+
+		if (all->error.sprite == 0)
+			data->sprite = ft_strdup(ret[1]);
 		all->error.sprite++;
 	}
+	//ret = NULL;
 }
 
 static int	verify_args(int argc, char *file)
@@ -148,7 +149,7 @@ void	verify_data(t_all *all, int posic)
 		if (all->data.len_x_map < count_coluns(all->data.line))
 			all->data.len_x_map = count_coluns(all->data.line);
 		all->data.map_line = ft_strjoin(all->data.map_line, all->data.line);
-		all->data.map_line = ft_strjoin(all->data.map_line, "*\n");
+		all->data.map_line = ft_strjoin(all->data.map_line, "\n");
 		all->data.len_y_map++;
 	}
 	ret = ft_split(all->data.line, ' ');
@@ -165,6 +166,15 @@ int	read_cub(t_all *all, char *file, int argc, int posic)
 	fd = verify_args(argc, file);
 	if (fd == 0)
 		return (0);
+	//all->gnl.tmp = ft_strdup("");
+	/*char			buff[262144];
+	ssize_t			ret;
+	char			*s_l[6000];
+	char			*tmp;*/
+	all->data.line = NULL;
+	all->gnl.tmp = NULL;
+	all->gnl.s_l[fd] = NULL;
+
 	ret = get_next_line(fd, &all->data.line, &all->gnl);
 	while (ret > 0)
 	{
