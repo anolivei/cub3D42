@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 01:52:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 03:11:39 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 12:03:11 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,6 @@ char	*remove_space(t_all *all, char *color)
 		}
 		i++;
 	}
+	all->aux[j] = '\0';
 	return (all->aux);
 }
