@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 23:57:50 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 00:15:52 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 19:21:21 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ static void	freeing_error(t_all *all)
 		free_check(all->data.EA);
 	if (all->error.sprite > 0)
 		free(all->data.sprite);
-	if (all->gnl.tmp > 0 && all->error.double_map == 99)
-		free_check(all->gnl.tmp);
 	free_check(all->gnl.s_l[0]);
 	all->gnl.buff[0] = '\0';
 	free(all->error.msg);
@@ -50,6 +48,6 @@ void	exit_failure(t_all *all)
 		ft_putstr_fd(all->error.msg, 1);
 		ft_putstr_fd("\n", 1);
 		freeing_error(all);
-		exit (0);
+		exit(0);
 	}
 }

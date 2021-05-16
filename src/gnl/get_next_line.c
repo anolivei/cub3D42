@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 17:53:16 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 14:42:16 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 18:53:22 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,15 @@ static void	gnl_allocate(t_gnl *gnl, int fd)
 
 int	get_next_line(int fd, char **line, t_gnl *gnl)
 {
-	if (line == 0 || fd < 0 || BUFFER_SIZE == 0)
+	if (line == NULL || fd < 0 || BUFFER_SIZE == 0)
 		return (-1);
 	if (gnl->s_l[fd] != NULL)
 	{
 		if (gnl_return_line(&gnl->s_l[fd], line, gnl) == 1)
 			return (1);
 	}
-	gnl->s_l[fd] = ft_strdup("");
+	else
+		gnl->s_l[fd] = ft_strdup("");
 	gnl->ret = read(fd, gnl->buff, BUFFER_SIZE);
 	while (gnl->ret > 0)
 	{
@@ -78,6 +79,5 @@ int	get_next_line(int fd, char **line, t_gnl *gnl)
 	else
 		*line = gnl->s_l[fd];
 	gnl->s_l[fd] = NULL;
-	free_check(gnl->tmp);
 	return (gnl->ret);
 }

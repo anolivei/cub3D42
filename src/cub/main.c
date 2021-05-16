@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 02:38:35 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 18:41:22 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ void	render(t_all *all)
 			all->img.img_ptr, 0, 0);
 }
 
+static void	allocate_rays_sprites(t_all *all)
+{
+	all->ray = malloc((all->data.scr_weig + 1) * sizeof(t_ray));
+	all->sprite = malloc((all->data.num_sprites + 1) * sizeof(t_sprite));
+	all->visible_sprite = malloc(sizeof(t_sprite) * all->data.num_sprites);
+}
+
 int	main(int argc, char **argv)
 {
 	t_all	all;
@@ -60,12 +67,15 @@ int	main(int argc, char **argv)
 	verify_dup(&all, &all.data);
 	exit_failure(&all);
 	initialize_window(&all);
-	setup_texture(&all, &all.text);
+	if (setup_texture(&all, &all.text) == 1)
+	{
+		all.error.msg = ft_strjoin(all.error.msg,
+				"\nInvalid Texture or Sprite");
+		exit_failure(&all);
+	}
 	choose_tile_size(&all.data, &all.text);
 	setup_player(&all, &all.player);
-	all.ray = malloc((all.data.scr_weig + 1) * sizeof(t_ray));
-	all.sprite = malloc((all.data.num_sprites + 1) * sizeof(t_sprite));
-	all.visible_sprite = malloc(sizeof(t_sprite) * all.data.num_sprites);
+	allocate_rays_sprites(&all);
 	find_sprites_on_map(&all);
 	if (argv[2] && ft_memcmp(argv[2], "--save", 6) == 0
 		&& ft_strlen(argv[2]) == 6)

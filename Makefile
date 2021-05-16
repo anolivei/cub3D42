@@ -6,11 +6,11 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/16 03:06:06 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/16 19:34:40 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			cub3D_mac
+NAME_MAC =		cub3D_mac
 NAME_LINUX =	cub3D
 
 HEADER_DIR =	includes
@@ -42,6 +42,7 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/exit_failure.c \
 		$(CUB_DIR)/verify_texture.c \
 		$(CUB_DIR)/put_data_on_struct.c \
+		$(CUB_DIR)/verify_data.c \
 		$(GNL_DIR)/get_next_line.c \
 		$(LIB_DIR)/ft_putstr_fd.c \
 		$(LIB_DIR)/ft_atoi.c \
@@ -67,10 +68,10 @@ MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 
 all: $(NAME_LINUX)
 
-mac: $(NAME)
-	./$(NAME) map.cub
+mac: $(NAME_MAC)
+	./$(NAME_MAC) map.cub
 
-$(NAME): $(OBJ)
+$(NAME_MAC): $(OBJ)
 		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -g -fsanitize=address -o $@
 
 $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
@@ -78,13 +79,13 @@ $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				clang -c $(CFLAGS) $< -o $@
 
 $(NAME_LINUX): $(OBJ)
-		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -g -fsanitize=address -o $@
+		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
 
-debug:
+debug_mac:
 	gcc -g -lm -lmlx -fsanitize=address -framework OpenGL -framework AppKit $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
 
 debug_linux:
-	gdd -g -lXext -lX11 -lbsd -lm -lmlx $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"
+	gdd -g -lXext -lX11 -lbsd -lm -lmlx $(SRC) -Wall -Wextra -Werror -o "cub3D_debug"
 
 clean:
 	/bin/rm -rf $(OBJ_DIR) cub3D.dSYM cub3D_debug.dSYM cub3D_mac.dSYM
@@ -94,4 +95,4 @@ fclean: clean
 
 re: fclean all
 
-.PONY: all clean fclean re debug debug_linux
+.PONY: all clean fclean re debug_mac debug_linux mac

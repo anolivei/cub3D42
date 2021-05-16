@@ -1,10 +1,10 @@
 R 1490 900
-NO ./textures/doge/text1.xpm
-SO ./textures/doge/text2.xpm
-WE ./textures/doge/text3.xpm
-EA ./textures/doge/text4.xpm
+NO ./textures/wolf/blue.xpm
+SO ./textures/wolf/brick.xpm
+WE ./textures/wolf/grey.xpm
+EA ./textures/wolf/wood.xpm
 
-S ./textures/doge/doge.xpm
+S ./textures/mario/mario.xpm
 F 245,172,105
 C 205,249,255
 

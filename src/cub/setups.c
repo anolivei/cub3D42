@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 14:31:34 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 23:56:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 15:13:43 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,28 +59,32 @@ void	setup_map(t_all *all)
 	all->bmp.dont_put_on_screen = 0;
 }
 
-void	setup_texture(t_all *all, t_text *text)
+int	setup_texture(t_all *all, t_text *text)
 {
 	text->north.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
 			all->data.NO, &text->north.width, &text->north.height);
-	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
-			&text->north.bpp, &text->north.size_l, &text->north.endian);
 	text->south.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
 			all->data.SO, &text->south.width, &text->south.height);
-	text->south.addr = mlx_get_data_addr(text->south.img_ptr,
-			&text->south.bpp, &text->south.size_l, &text->south.endian);
 	text->east.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
 			all->data.EA, &text->east.width, &text->east.height);
-	text->east.addr = mlx_get_data_addr(text->east.img_ptr,
-			&text->east.bpp, &text->east.size_l, &text->east.endian);
 	text->west.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
 			all->data.WE, &text->west.width, &text->west.height);
-	text->west.addr = mlx_get_data_addr(text->west.img_ptr,
-			&text->west.bpp, &text->west.size_l, &text->west.endian);
 	text->sprite.img_ptr = mlx_xpm_file_to_image(all->mlx.init,
 			all->data.sprite, &text->sprite.width, &text->sprite.height);
+	if (!text->north.img_ptr || !text->south.img_ptr || !text->east.img_ptr
+		|| !text->west.img_ptr || !text->sprite.img_ptr)
+		return (1);
+	text->north.addr = mlx_get_data_addr(text->north.img_ptr,
+			&text->north.bpp, &text->north.size_l, &text->north.endian);
+	text->south.addr = mlx_get_data_addr(text->south.img_ptr,
+			&text->south.bpp, &text->south.size_l, &text->south.endian);
+	text->east.addr = mlx_get_data_addr(text->east.img_ptr,
+			&text->east.bpp, &text->east.size_l, &text->east.endian);
 	text->sprite.addr = mlx_get_data_addr(text->sprite.img_ptr,
 			&text->sprite.bpp, &text->sprite.size_l, &text->sprite.endian);
+	text->west.addr = mlx_get_data_addr(text->west.img_ptr,
+			&text->west.bpp, &text->west.size_l, &text->west.endian);
+	return (0);
 }
 
 void	put_textures_in_a_array(t_text *text)

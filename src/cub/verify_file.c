@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 21:17:39 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 18:11:31 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 18:05:01 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	verify_map(t_data *data, t_all *all)
 	while (x <= data->len_y_map - 1)
 	{
 		y = 0;
-		while (y <= data->len_x_map -1)
+		while (y <= data->len_x_map - 1)
 		{
 			if (data->map[x][y] == '0')
 				all->error.ret += verify_around(y, x, data, all);
