@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/21 01:52:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/04 21:26:00 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 03:11:39 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,24 @@ void	free_check(void *ptr)
 		free(ptr);
 		ptr = NULL;
 	}
+}
+
+char	*remove_space(t_all *all, char *color)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	all->aux = malloc((ft_strlen(color)) * sizeof(char *) + 1);
+	while (color[i] != '\0')
+	{
+		if (color[i] != ' ' && color[i] != '\t' )
+		{
+			all->aux[j] = color[i];
+			j++;
+		}
+		i++;
+	}
+	return (all->aux);
 }

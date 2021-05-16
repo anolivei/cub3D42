@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 22:27:13 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 02:57:07 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	verify_args(t_all *all, int argc, char *file)
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
 		{
-			all->error.msg = ft_strjoin(all->error.msg, "\nCan't read file\n");
+			all->error.msg = ft_strjoin(all->error.msg, "\nCan't read file");
 			return (0);
 		}
 		else
@@ -54,7 +54,7 @@ static int	verify_read(t_all *all)
 	return (0);
 }
 
-void	verify_data(t_all *all, int posic)
+void	verify_data(t_all *all)
 {
 	char	**ret;
 
@@ -68,13 +68,16 @@ void	verify_data(t_all *all, int posic)
 		all->data.map_line = ft_strjoin(all->data.map_line, "\n");
 		all->data.len_y_map++;
 	}
+	if ((all->data.line[0] == 'F' || all->data.line[0] == 'C')
+		&& all->data.line[1] != '\0' )
+		put_floor_ceil_on_struct(all);
 	ret = ft_split(all->data.line, ' ');
 	if (ret[0] != NULL && all->data.len_y_map == 0)
-		put_data_on_struct(all, ret, &all->data, posic);
+		put_data_on_struct(all, ret, &all->data);
 	free_array((void *)ret);
 }
 
-int	read_cub(t_all *all, char *file, int argc, int posic)
+int	read_cub(t_all *all, char *file, int argc)
 {
 	int	ret;
 	int	fd;
@@ -88,11 +91,10 @@ int	read_cub(t_all *all, char *file, int argc, int posic)
 	ret = get_next_line(fd, &all->data.line, &all->gnl);
 	while (ret > 0)
 	{
-		verify_data(all, posic);
+		verify_data(all);
 		free(all->data.line);
 		all->data.line = NULL;
 		ret = get_next_line(fd, &all->data.line, &all->gnl);
-		posic++;
 	}
 	free_check(all->data.line);
 	close(fd);

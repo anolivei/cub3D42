@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/15 12:52:28 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 18:09:46 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 02:41:55 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,26 +65,26 @@ static void	put_textures_we_ea_on_struct(t_all *all, t_data *data, char **ret)
 	}
 }
 
-static void	put_floor_ceil_on_struct(t_all *all, t_data *data, char **ret)
+void	put_floor_ceil_on_struct(t_all *all)
 {
-	if (ft_strncmp(ret[0], "F", 1) == 0 && ret[0][1] == '\0'
-		&& ret[1] != NULL && ret[2] == NULL )
+	remove_space(all, &all->data.line[2]);
+	if (all->data.line[0] == 'F')
 	{
-		data->floor = convert_colors(ret[1], all);
+		all->data.floor = convert_colors(all->aux, all);
 		all->error.floor++;
 	}
-	if (ft_strncmp(ret[0], "C", 1) == 0 && ret[0][1] == '\0'
-		&& ret[1] != NULL && ret[2] == NULL)
+	if (all->data.line[0] == 'C')
 	{
-		data->ceil = convert_colors(ret[1], all);
+		all->data.ceil = convert_colors(all->aux, all);
 		all->error.ceil++;
 	}
+	free(all->aux);
 }
 
-void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
+void	put_data_on_struct(t_all *all, char **ret, t_data *data)
 {
 	verify_chars(ret, all);
-	if (ft_strncmp(ret[0], "R", 1) == 0 && posic == 0 && ret[1] != NULL
+	if (ft_strncmp(ret[0], "R", 1) == 0 && ret[1] != NULL
 		&& ret[2] != NULL && ft_strlen(ret[0]) == 1 && ret[3] == NULL)
 	{
 		if (verify_number(ret[1]) && verify_number(ret[2]))
@@ -99,7 +99,6 @@ void	put_data_on_struct(t_all *all, char **ret, t_data *data, int posic)
 		put_textures_no_so_on_struct(all, data, ret);
 		put_textures_we_ea_on_struct(all, data, ret);
 	}
-	put_floor_ceil_on_struct(all, data, ret);
 	if (ft_strncmp(ret[0], "S", 1) == 0 && ret[0][1] == '\0'
 		&& ret[1] != NULL && ret[2] == NULL)
 	{

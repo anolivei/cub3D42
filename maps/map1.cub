@@ -1,13 +1,14 @@
-R 1490 900
-NO ./textures/dragonball/text1.xpm
+
+
 SO ./textures/dragonball/text1.xpm
-WE ./textures/dragonball/text1.xpm
+R 1490 900
 EA ./textures/dragonball/text1.xpm
 
 S ./textures/dragonball/majinboo.xpm
-C 251,126,253
-F 255,217,117
-
+C 251, 		126,253
+NO ./textures/dragonball/text1.xpm
+F 255, 		217,		117
+WE ./textures/dragonball/text1.xpm
 11111111111111111
 10000000000000001
 10200000200000201

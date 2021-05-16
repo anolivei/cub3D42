@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/15 22:44:49 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/16 03:06:06 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,7 @@ $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				clang -c $(CFLAGS) $< -o $@
 
 $(NAME_LINUX): $(OBJ)
-		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -o $@
+		clang $(OBJ) $(CFLAGS) $(LINUX_FLAGS) -g -fsanitize=address -o $@
 
 debug:
 	gcc -g -lm -lmlx -fsanitize=address -framework OpenGL -framework AppKit $(SRC) -Wall -Wextra -Werror  -o "cub3D_debug"

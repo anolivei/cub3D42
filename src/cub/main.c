@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 00:13:51 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 02:38:35 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int argc, char **argv)
 	t_all	all;
 
 	setup_map(&all);
-	read_cub(&all, argv[1], argc, 0);
+	read_cub(&all, argv[1], argc);
 	allocate_map(&all, 0, 0, 0);
 	verify_dup(&all, &all.data);
 	exit_failure(&all);
