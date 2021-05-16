@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 00:48:12 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:23:38 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:17:49 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void	aux_verify_text(char *coord, char *error, t_all *all)
 
 void	verify_texture(t_data *data, t_all *all)
 {
-	aux_verify_text(data->NO, "Error\nNorth texture not found\n", all);
-	aux_verify_text(data->SO, "Error\nSouth texture not found\n", all);
-	aux_verify_text(data->EA, "Error\nEast texture not found\n", all);
-	aux_verify_text(data->WE, "Error\nWest texture not found\n", all);
-	aux_verify_text(data->sprite, "Error\nsprite texture not found\n", all);
+	aux_verify_text(data->NO, "North texture not found\n", all);
+	aux_verify_text(data->SO, "South texture not found\n", all);
+	aux_verify_text(data->EA, "East texture not found\n", all);
+	aux_verify_text(data->WE, "West texture not found\n", all);
+	aux_verify_text(data->sprite, "Sprite texture not found\n", all);
 }

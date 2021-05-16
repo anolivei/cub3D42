@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 15:58:08 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:17:18 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	count_coluns(char *line)
 	return (i);
 }
 
-static int	verify_args(int argc, char *file)
+static int	verify_args(t_all *all, int argc, char *file)
 {
 	int	fd;
 
@@ -31,7 +31,7 @@ static int	verify_args(int argc, char *file)
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
 		{
-			ft_putstr_fd("Error reading file\n", 1);
+			all->error.msg = ft_strjoin(all->error.msg, "Can't read file\n");
 			return (0);
 		}
 		else
@@ -39,7 +39,7 @@ static int	verify_args(int argc, char *file)
 	}
 	else
 	{
-		ft_putstr_fd("Choose a map", 1);
+		all->error.msg = ft_strjoin(all->error.msg, "Without file .cub");
 		return (0);
 	}
 }
@@ -79,7 +79,7 @@ int	read_cub(t_all *all, char *file, int argc, int posic)
 	int	ret;
 	int	fd;
 
-	fd = verify_args(argc, file);
+	fd = verify_args(all, argc, file);
 	if (fd == 0)
 		return (0);
 	all->data.line = NULL;

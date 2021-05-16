@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:54:06 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 19:47:48 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:13:57 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	initialize_window(t_all *all)
 	all->mlx.init = mlx_init();
 	if (all->mlx.init == 0)
 	{
-		ft_putstr_fd("Error initializing minilibX\n", 1);
+		all->error.msg = ft_strjoin(all->error.msg, "Can't initialize mlx\n");
 		return (FALSE);
 	}
 	max_resolution(all);
@@ -25,14 +25,14 @@ int	initialize_window(t_all *all)
 			all->data.scr_heig, "anolivei");
 	if (all->mlx.window == 0)
 	{
-		ft_putstr_fd("Error initializing window\n", 1);
+		all->error.msg = ft_strjoin(all->error.msg, "Can't initialize window\n");
 		return (FALSE);
 	}
 	all->img.img_ptr = mlx_new_image(all->mlx.init, all->data.scr_weig + 1,
 			all->data.scr_heig + 1);
 	if (all->img.img_ptr == 0)
 	{
-		ft_putstr_fd("Error initializing new image\n", 1);
+		all->error.msg = ft_strjoin(all->error.msg, "Can't initialize image\n");
 		return (FALSE);
 	}
 	all->img.addr = mlx_get_data_addr(all->img.img_ptr, &all->img.bpp,

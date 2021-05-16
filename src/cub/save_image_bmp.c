@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/28 21:16:44 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 19:03:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:19:06 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	header_bmp(t_all *all, t_bmp *bmp, int fd)
 	bmp->buff_header[26] = (0x1);
 	put_in_buffer(&bmp->buff_header[28], all->img.bpp);
 	if (!(write(fd, &bmp->buff_header, 54)))
-		ft_putstr_fd("Couldn't write the header of the bmp file\n", 1);
+		all->error.msg = ft_strjoin(all->error.msg,
+				"Couldn't write the header of the bmp file\n");
 }
 
 void	save_image_bmp(t_all *all)
@@ -65,7 +66,7 @@ void	save_image_bmp(t_all *all)
 
 	fd = open("img.bmp", O_CREAT | O_WRONLY | O_TRUNC, 444);
 	if (fd == -1)
-		ft_putstr_fd("Error creating bmp file\n", 1);
+		all->error.msg = ft_strjoin(all->error.msg, "Can't create bmp file\n");
 	all->bmp.dont_put_on_screen = 1;
 	render(all);
 	header_bmp(all, &all->bmp, fd);
