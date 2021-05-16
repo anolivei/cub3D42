@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 16:07:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 20:05:20 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,8 +299,6 @@ void			cast_all_rays(t_all *all);
 void			cast_ray(float ray_angle, int strip_id, t_all *all);
 float			normalize_angle(float angle);
 float			distance_between_points(int x1, int y1, int x2, int y2);
-void			draw_square(t_all *all, int draw_x, int draw_y, int size);
-void			draw_all_rays(t_all *all, int i);
 int				read_cub(t_all *all, char *file, int argc);
 void			verify_data(t_all *all);
 void			verify_file(t_all *all);

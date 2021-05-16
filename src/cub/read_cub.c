@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/16 19:30:50 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 20:02:33 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 static int	verify_args(t_all *all, int argc, char *file)
 {
 	int	fd;
+	int	size;
 
-	if (argc == 2 || argc == 3)
+	size = ft_strlen(file) - 1;
+	if ((argc == 2 || argc == 3) && (file[size - 3] == '.'
+			&& file[size - 2] == 'c' && file[size - 1] == 'u'
+			&& file[size] == 'b'))
 	{
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
