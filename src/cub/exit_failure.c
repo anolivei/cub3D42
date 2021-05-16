@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 23:57:50 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 20:36:02 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:15:52 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,11 @@ static void	freeing_error(t_all *all)
 	free(all->error.msg);
 }
 
-static void	freeing_all(t_all *all)
-{
-	free_check(all->img.img_ptr);
-	free_check(all->text.east.img_ptr);
-	free_check(all->text.south.img_ptr);
-	free_check(all->text.north.img_ptr);
-	free_check(all->text.west.img_ptr);
-	free_check(all->text.sprite.img_ptr);
-	free_check(all->bmp.buff_body);
-	free_check(all->error.msg);
-}
-
 int	destroy_window(t_all *all)
 {
-	freeing_all(all);
+	free_check(all->bmp.buff_body);
+	free_check(all->error.msg);
+	free (all->visible_sprite);
 	exit(0);
 	return (1);
 }

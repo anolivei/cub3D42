@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/01 14:31:34 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 18:56:59 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 23:56:02 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	setup_player(t_all *all, t_player *player)
 		player->rot_angle = 1.5 * PI;
 	else if (all->data.orientation == 'S')
 		player->rot_angle = 0.5 * PI;
-	player->walk_speed = 20;
+	player->walk_speed = 40;
 	player->turn_speed = 10 * (PI / 180);
 	all->bmp.buff_body = malloc(sizeof(int) * (all->data.scr_weig + 1)
 			* (all->data.scr_heig + 1));

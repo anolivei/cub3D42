@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 02:31:41 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/11 20:45:36 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:53:54 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,6 @@ void	find_sprites_on_map(t_all *all)
 			}
 			j++;
 		}
-		i++;
-	}
-}
-
-void	render_sprites_map(t_all *all)
-{
-	int	i;
-
-	i = 0;
-	while (i < all->data.num_sprites)
-	{
-		if (all->sprite[i].visible == 1)
-			all->map.tile_color = YELLOW;
-		else
-			all->map.tile_color = BLACK;
-		draw_square(all, all->sprite[i].x - (all->data.tile_size / 2),
-			all->sprite[i].y - (all->data.tile_size / 2), 20);
 		i++;
 	}
 }

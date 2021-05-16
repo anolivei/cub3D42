@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 00:47:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 18:55:52 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:14:44 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -287,11 +287,8 @@ void			choose_tile_size(t_data *data, t_text *text);
 void			put_pixel(t_img *data, int x, int y, int color);
 int				pick_pixel(t_img *data, int x, int y);
 void			render(t_all *all);
-void			render_map(t_all *all);
-void			render_rays(t_all *all);
 void			generate_3d_projection(t_all *all);
 void			render_sprites_projection(t_all *all);
-void			render_sprites_map(t_all *all);
 void			find_sprites_on_map(t_all *all);
 void			render_vis_spr(t_all *all, t_sprite *vis_spr, int num_vis_spr);
 t_sprite		*sort_sprites(t_sprite *visible_sprite, int num_visible_sprite);
@@ -340,6 +337,7 @@ char			*ft_strdup(const char *s1);
 size_t			ft_strlcpy(char *restrict dst,
 					const char *restrict src, size_t destsize);
 int				ft_isdigit(int c);
+void			ft_bzero(void *s, size_t n);
 
 /*
 ** GNL FUNCTIONS

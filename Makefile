@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/15 17:40:33 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/15 22:44:49 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC =	$(CUB_DIR)/main.c \
 		$(CUB_DIR)/draw_all_rays.c \
 		$(CUB_DIR)/cub_utils.c \
 		$(CUB_DIR)/render_map.c \
-		$(CUB_DIR)/render_rays.c \
 		$(CUB_DIR)/render_sprites.c \
 		$(CUB_DIR)/render_sprites2.c \
 		$(CUB_DIR)/generate_3d_projection.c \

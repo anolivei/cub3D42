@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 23:25:05 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/08 22:51:42 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/16 00:17:00 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,9 @@ void	render_sprites_projection(t_all *all)
 	int			num_visible_sprite;
 
 	num_visible_sprite = 0;
-	all->visible_sprite = malloc(sizeof(t_sprite) * all->data.num_sprites);
+	ft_bzero(all->visible_sprite, all->data.num_sprites);
 	find_sprites_on_map(all);
 	num_visible_sprite = calc_num_vis_sprites(all, 0, all->visible_sprite, 0);
 	all->visible_sprite = sort_sprites(all->visible_sprite, num_visible_sprite);
 	render_vis_spr(all, all->visible_sprite, num_visible_sprite);
-	free (all->visible_sprite);
 }

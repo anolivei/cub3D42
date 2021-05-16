@@ -6,7 +6,7 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/15 22:17:18 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/15 22:27:13 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	verify_args(t_all *all, int argc, char *file)
 		fd = open(file, O_RDONLY);
 		if (fd == -1)
 		{
-			all->error.msg = ft_strjoin(all->error.msg, "Can't read file\n");
+			all->error.msg = ft_strjoin(all->error.msg, "\nCan't read file\n");
 			return (0);
 		}
 		else
@@ -39,7 +39,7 @@ static int	verify_args(t_all *all, int argc, char *file)
 	}
 	else
 	{
-		all->error.msg = ft_strjoin(all->error.msg, "Without file .cub");
+		all->error.msg = ft_strjoin(all->error.msg, "\nWithout file .cub");
 		return (0);
 	}
 }
