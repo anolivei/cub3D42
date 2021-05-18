@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/16 20:05:46 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/18 18:26:56 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,9 @@ MAC_FLAGS = -framework OpenGL -framework AppKit -lm -lmlx
 all: $(NAME_LINUX)
 
 mac: $(NAME_MAC)
-	./$(NAME_MAC) map.cub
 
 $(NAME_MAC): $(OBJ)
-		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -g -fsanitize=address -o $@
+		gcc -I. -L. $(OBJ) $(CFLAGS) $(MAC_FLAGS) -o $@
 
 $(OBJ_DIR)/%.o : $(CUB_DIR) $(LIB_DIR) $(GNL_DIR)/%.c
 				mkdir -p $(OBJ_DIR)
