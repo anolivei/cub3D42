@@ -18,5 +18,3 @@ cd ~ && git clone https://github.com/42Paris/minilibx-linux.git && cd minilibx-l
 
 sudo cp man/man1/* /usr/local/man/man1/ && sudo cp libmlx.a /usr/local/lib/ && sudo cp mlx.h /usr/local/include/
 ```
-
-![Alt text](https://media1.tenor.com/images/83592060cb2d2cf51e98a5809aeb60d3/tenor.gif?itemid=16734116 "")
