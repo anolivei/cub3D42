@@ -2,7 +2,7 @@
 My first RayCaster with miniLibX<br>
 
 
-First of all, install minilibX in you Linux:<br>
+First of all, install minilibX in your Linux:<br>
 ```
 sudo apt-get install -y libxext-dev && sudo apt-get install -y libxrandr-dev && sudo apt-get install -y libx11-dev && sudo apt-get install -y libbsd-dev && sudo apt-get install -y libssl-dev
 
