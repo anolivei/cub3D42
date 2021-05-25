@@ -38,7 +38,7 @@ And them, execute Cub3D with a file .cub (ex: maps/map0.cub)
 </table>
 </center>
 <p align="center">
-<img src="screenshots/nyan.png" alt="drawing" width="600"/>
+<img src="screenshots/nyan.png" alt="drawing" width="500"/>
 </p>
 
 For more information about Cub3D: http://bit.ly/cub3D42<br>
