@@ -23,6 +23,23 @@ And them, execute Cub3D with a file .cub (ex: maps/map0.cub)
 ```
 ./cub3D maps/map0.cub
 ```
+<center>
+<table>
+    <tr>
+        <td><img width="500px" align="left" src="screenshots/wow.png" /></td>
+        <td><img width="500px" align="left" src="screenshots/majinboo.png"/></td>
+    </tr>   
+</table>
+<table>
+    <tr>
+        <td><img width="500px" align="left" src="screenshots/peach.png" /></td>
+        <td><img width="500px" align="left" src="screenshots/sonic.png"/></td>
+    </tr>   
+</table>
+</center>
+<p align="center">
+<img src="screenshots/nyan.png" alt="drawing" width="600"/>
+</p>
 
 For more information about Cub3D: http://bit.ly/cub3D42<br>
 <br>
