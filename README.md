@@ -1,8 +1,8 @@
-# cub3D42
+# Cub3D
 My first RayCaster with miniLibX<br>
 
-
-First of all, install minilibX in your Linux:<br>
+## How to execute:
+First of all, install minilibX in your Linux OS:<br>
 ```
 sudo apt-get install -y libxext-dev && sudo apt-get install -y libxrandr-dev && sudo apt-get install -y libx11-dev && sudo apt-get install -y libbsd-dev && sudo apt-get install -y libssl-dev
 
@@ -23,6 +23,11 @@ And them, execute Cub3D with a file .cub (ex: maps/map0.cub)
 ```
 ./cub3D maps/map0.cub
 ```
+To save the first image that appears on a map in bmp format, type:
+```
+./cub3D maps/map0.cub --save
+```
+## Some funny images:
 <center>
 <table>
     <tr>
@@ -41,5 +46,7 @@ And them, execute Cub3D with a file .cub (ex: maps/map0.cub)
 <img src="screenshots/nyan.png" alt="drawing" width="500"/>
 </p>
 
-For more information about Cub3D: http://bit.ly/cub3D42<br>
+## For more information about Cub3D:
+Read the [Subject](https://github.com/anolivei/cub3D42/blob/master/en.subject.pdf)<br>
+See the [Notion](http://bit.ly/cub3D42)<br>
 <br>
