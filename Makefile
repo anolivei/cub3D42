@@ -6,7 +6,7 @@
 #    By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/27 18:58:03 by anolivei          #+#    #+#              #
-#    Updated: 2021/05/18 18:26:56 by anolivei         ###   ########.fr        #
+#    Updated: 2021/05/24 22:54:15 by anolivei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,7 @@ clean:
 	/bin/rm -rf $(OBJ_DIR) cub3D.dSYM cub3D_debug.dSYM cub3D_mac.dSYM
 
 fclean: clean
-	/bin/rm -f $(NAME) $(NAME_LINUX) cub3D_debug
+	/bin/rm -f $(NAME) $(NAME_LINUX) $(NAME_MAC) cub3D_debug
 
 re: fclean all
 

@@ -1,7 +1,7 @@
 
 
 SO ./textures/dragonball/text1.xpm
-R 1490 900
+R 1200 800
 EA ./textures/dragonball/text1.xpm
 
 S ./textures/dragonball/majinboo.xpm

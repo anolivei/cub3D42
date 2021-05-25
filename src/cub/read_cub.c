@@ -6,18 +6,27 @@
 /*   By: anolivei <anolivei@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 21:10:22 by anolivei          #+#    #+#             */
-/*   Updated: 2021/05/18 18:26:37 by anolivei         ###   ########.fr       */
+/*   Updated: 2021/05/24 23:01:07 by anolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub.h"
+
+static int	without_file(t_all *all)
+{
+	all->error.msg = ft_strjoin(all->error.msg, "\nWithout file .cub");
+	return (0);
+}
 
 static int	verify_args(t_all *all, int argc, char *file)
 {
 	int	fd;
 	int	size;
 
-	size = ft_strlen(file) - 1;
+	if (file)
+		size = ft_strlen(file) - 1;
+	else
+		return (without_file(all));
 	if ((argc == 2 || argc == 3) && (file[size - 3] == '.'
 			&& file[size - 2] == 'c' && file[size - 1] == 'u'
 			&& file[size] == 'b'))
@@ -32,10 +41,7 @@ static int	verify_args(t_all *all, int argc, char *file)
 			return (fd);
 	}
 	else
-	{
-		all->error.msg = ft_strjoin(all->error.msg, "\nWithout file .cub");
-		return (0);
-	}
+		return (without_file(all));
 }
 
 int	read_cub(t_all *all, char *file, int argc)

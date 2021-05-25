@@ -1,4 +1,4 @@
-R 1024 800
+R 1200 800
 NO ./textures/mario/text1.xpm
 SO ./textures/mario/text2.xpm
 WE ./textures/mario/text3.xpm
