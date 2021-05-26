@@ -4,8 +4,8 @@ This project uses the technique of raycasting, developed by John Carmack and Joh
 Shooter” in the history of video games
 
 ## How to execute:
-First of all, install minilibX in your Linux OS<br>
-The minilbx library is used as a graphic library in this project<br>
+First of all, install [minilibX](https://github.com/42Paris/minilibx-linux) in your Linux OS<br>
+The minilbX library is used as a graphic library in this project<br>
 ```
 sudo apt-get install -y libxext-dev && sudo apt-get install -y libxrandr-dev && sudo apt-get install -y libx11-dev && sudo apt-get install -y libbsd-dev && sudo apt-get install -y libssl-dev
 
