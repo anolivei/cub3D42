@@ -62,7 +62,7 @@ To save the first image that appears on a map in bmp format, type:
 <img src="screenshots/nyan.png" alt="drawing" width="500"/>
 </p>
 
-## For more information about Cub3D, you can:
-Read the [Subject](https://github.com/anolivei/cub3D42/blob/master/en.subject.pdf)<br>
-See the [Notion](http://bit.ly/cub3D42)<br>
+## For more information about Cub3D:
+[Subject](https://github.com/anolivei/cub3D42/blob/master/en.subject.pdf)<br>
+[Notion](http://bit.ly/cub3D42)<br>
 <br>
